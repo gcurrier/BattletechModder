@@ -1,0 +1,4 @@
+/bin/
+/build/deploy/*.jnlp
+/build/deploy/*.html
+/build/deploy/*.jar
