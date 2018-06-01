@@ -5,6 +5,7 @@ import com.battletech.modder.BTModderMain;
 import javafx.fxml.FXML;
 
 public class CategoryOverviewController {
+	@SuppressWarnings("unused")
 	private BTModderMain btModderMain;
 	
 	/**

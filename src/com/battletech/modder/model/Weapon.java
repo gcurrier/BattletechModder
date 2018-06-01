@@ -2,6 +2,11 @@ package com.battletech.modder.model;
 
 import javafx.beans.property.StringProperty;
 
+/**
+ * Model class for a Weapon object
+ * @author jinx3y
+ *
+ */
 public class Weapon {
 	private StringProperty category;
 	private StringProperty type;

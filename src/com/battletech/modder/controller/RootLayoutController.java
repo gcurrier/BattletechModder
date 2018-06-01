@@ -15,12 +15,13 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class RootLayoutController {
 
+	@SuppressWarnings("unused")
 	private BTModderMain btModderMain;
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 * 
-	 * @param mainApp
+	 * @param btModderMain
 	 */
 	public void setMainApp(BTModderMain btModderMain) {
 		this.btModderMain = btModderMain;

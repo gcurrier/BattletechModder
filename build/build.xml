@@ -88,8 +88,8 @@
 		</fx:resources>
 	
 		<fx:application id="fxApplication"
-			name="Battletech Modder"
-			mainClass="com.battlech.modder.BTModderMain"
+			name="BattletechModder"
+			mainClass="com.battletech.modder.BTModderMain"
 			version="0.1a"
 		/>
 	
@@ -105,7 +105,7 @@
 	
 			<manifest>
 				<attribute name="Implementation-Vendor" value="Glen Currier"/>
-				<attribute name="Implementation-Title" value="Battletech Modder"/>
+				<attribute name="Implementation-Title" value="BattletechModder"/>
 				<attribute name="Implementation-Version" value="0.1a"/>
 				<attribute name="JavaFX-Feature-Proxy" value="None"/>
 			</manifest>
