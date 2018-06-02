@@ -4,7 +4,7 @@
     <img src="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png" alt="BattletechModder" width="200">
   </a>
   <br>
-  BattleTechModder
+  BattletechModder
   <br>
 </h1>
 
