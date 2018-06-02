@@ -10,7 +10,7 @@ Desktop tool written in Java, using JavaFX to make modifying Battletech configur
 
 ### Author
 
-- Glen Currier: primary author (and currently the only one)
+- Glen Currier (sole contributor)
 
 ### License
 
