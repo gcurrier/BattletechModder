@@ -2,12 +2,13 @@ package com.battletech.modder;
 
 import java.io.IOException;
 
-import com.battletech.modder.controller.CategoryOverviewController;
-import com.battletech.modder.controller.RootLayoutController;
+import com.battletech.modder.view.CategoryOverviewController;
+import com.battletech.modder.view.RootLayoutController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 //import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -25,6 +26,7 @@ public class BTModderMain extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Battletech Modder");
+		this.primaryStage.getIcons().add(new Image("file:resources/BattletechModder.png"));
 		// Set the application icon (for dev).
 		// this.primaryStage.getIcons().add(new
 		// Image("file:resources/images/AddressApp.png"));
@@ -64,14 +66,17 @@ public class BTModderMain extends Application {
 		// }
 	}
 
+	/**
+	 * Show the Category Overview inside the Root Layout
+	 */
 	public void showCategoryOverview() {
 		try {
-			// Load person overview.
+			// Load category overview.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(BTModderMain.class.getResource("view/CategoryOverview.fxml"));
 			AnchorPane categoryOverview = (AnchorPane) loader.load();
 
-			// Set person overview into the center of root layout.
+			// Set category overview into the center of root layout.
 			rootLayout.setCenter(categoryOverview);
 
 			// Give the controller access to the main app.
@@ -82,8 +87,18 @@ public class BTModderMain extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+     * Returns the main stage.
+     * @return
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+
 }

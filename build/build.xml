@@ -85,12 +85,13 @@
 		<fx:resources id="appRes">
 			<fx:fileset dir="dist" includes="BattletechModder.jar"/>
 			<fx:fileset dir="dist" includes="libs/*"/>
+			<fx:fileset dir="dist" includes="resources/**"/>
 		</fx:resources>
 	
 		<fx:application id="fxApplication"
 			name="BattletechModder"
 			mainClass="com.battletech.modder.BTModderMain"
-			version="0.1a"
+			version="0.2a"
 		/>
 	
 		<mkdir dir="build/classes/META-INF" />
