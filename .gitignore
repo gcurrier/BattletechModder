@@ -3,3 +3,7 @@
 /build/deploy/*.html
 /build/deploy/*.jar
 /build/project
+projectRefs
+build
+externalLibs
+project
