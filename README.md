@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://gcurrier.github.io/BattletechModder">
+  <a href="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png">
     <img src="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png" alt="BattletechModder" width="200">
   </a>
   <br>
