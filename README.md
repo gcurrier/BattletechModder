@@ -1,4 +1,4 @@
-<h1 align="center">
+<!--<h1 align="center">
   <br>
   <a href="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png">
     <img src="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png" alt="BattletechModder" width="200">
@@ -6,27 +6,30 @@
   <br>
   BattletechModder
   <br>
-</h1>
+</h1>-->
+# BattletechModder
+![logo](https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png)
+
 
 A Desktop tool written in Java, using JavaFX, to make modifying Battletech configuration files easier and more controlled, thereby preventing accidental breaking of the Mulitplayer mode with a "bad" config.
 
-# Current Version
+## Current Version
 - 0.2.0a
 
-# Supported Platforms
+## Supported Platforms
 
 Windows 7,10 
 
-# Overview
+## Overview
 - [BattletechModder Wiki page](https://github.com/gcurrier/BattletechModder/wiki)
     Details on how to download, install and run the app.
 
 - [BattletechModder webpage](https://gcurrier.github.io/BattletechModder/)
     Shows this README file, but as a webpage with its own address
 
-# Project
+## Project
 
-## Download
+### Download
 
 The BattletechModder repository maybe either be downloaded by clicking [here](https://github.com/gcurrier/BattletechModder/archive/master.zip) or by cloning the repository like so:
 ```
@@ -36,7 +39,7 @@ cd BattletechModder
 git status
 ```
 
-## Build
+### Build
 
 - This project was built using Eclipse (Oxygen.3), JavaFX, SceneBuilder and uses InnoSetup 5 as the Install package tool. 
 - I also chose to build it as a Native app, so that everything required is packaged with it.
@@ -49,15 +52,15 @@ _Note: you will need to have the latest version of InnoSetup (or some other inst
 4. Select the **Ant Build** option associated with the workspace
 5. Build times may vary, but the build usually completes within a minute.
 
-# Author
+## Author
 
 - Glen Currier (sole contributor)
 
-# License
+## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details
 
-# Acknowledgments
+## Acknowledgments
 
 * Acknowledgement to the imagery used from the  Steam Community
 * Harebrained schemes (for the game)
