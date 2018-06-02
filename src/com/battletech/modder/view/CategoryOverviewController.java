@@ -2,6 +2,8 @@ package com.battletech.modder.view;
 
 import com.battletech.modder.BTModderMain;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,6 +39,8 @@ public class CategoryOverviewController {
 	private ObservableList<Tab> allTabs;
 
 	private BTModderMain btModder;
+	
+	public String activeTabText;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -51,15 +55,29 @@ public class CategoryOverviewController {
 	@FXML
 	private void initialize() {
 		setAllTabs(tabPane.getTabs());
+		//set the active tab to be the first one (should be Weapons tab)
+		tabPane.getSelectionModel().select(0);
+		setActiveTabText("Weapons");
+		//TODO 
 		mechsTabLabel.setText("Mechs Data Display");
 		shopsTabLabel.setText("Shops Data Display");
 		componentsTabLabel.setText("Components Data Display");
 		weaponsTabLabel.setText("Weapons Data Display");
+		//Change the display label at the bottom of the window whenever a tab is selected AFTER a directory has been selected.
+		tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+			   @Override
+			   public void changed(ObservableValue<? extends Tab> ov, Tab tabOld, Tab tabNew) {
+				   setActiveTabText(tabNew.getText());
+				   getBtModder().rootController.setLabelConfigDirText(getActiveTabText());
+				   System.out.println("Tab Selection changed to " + getActiveTabText());
+				   //TODO Open directory associated with tab, parse all files into a single ArrayList and display in LHS tree view. Clicking a tree view item will display data in RHS gridview.
+			   }
+			});
 	}
 	
 	@FXML
 	private void setMechsTab() {
-
+		
 	}
 
 	@FXML
@@ -107,8 +125,6 @@ public class CategoryOverviewController {
 	 */
 	public void setMainApp(BTModderMain btModder) {
 		this.setBtModder(btModder);
-
-		// TODO add category display
 	}
 
 	/**
@@ -125,4 +141,25 @@ public class CategoryOverviewController {
 		this.btModder = btModder;
 	}
 
+	/**
+	 * @return the activeTab text name
+	 */
+	public String getActiveTabText() {
+		return this.activeTabText.toLowerCase();
+	}
+	
+	/**
+	 * @param activeTabText the activeTabText to set
+	 */
+	public void setActiveTabText(String activeTabText) {
+		this.activeTabText = activeTabText;
+	}
+
+	/**
+	 * @return the activeTab
+	 */
+	public Tab getActiveTab() {
+		Tab activeTab = tabPane.getSelectionModel().getSelectedItem();
+		return activeTab;
+	}
 }

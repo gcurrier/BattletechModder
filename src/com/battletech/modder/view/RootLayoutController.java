@@ -1,8 +1,6 @@
 package com.battletech.modder.view;
 
 import java.io.File;
-import java.util.Enumeration;
-import java.util.Properties;
 
 import com.battletech.modder.BTModderMain;
 
@@ -11,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.stage.DirectoryChooser;
 
 /**
@@ -24,6 +23,11 @@ public class RootLayoutController {
 
 	@FXML
 	private Label labelConfigDir;
+
+	public Tab selectedTab;
+	public File selectedDirectory;
+	public String selectedDirectoryPath;
+	// public String selectedTabText;
 	private BTModderMain btModder;
 
 	/**
@@ -43,28 +47,107 @@ public class RootLayoutController {
 	}
 
 	/**
-	 * @param btModder the btModder to set
+	 * @param btModder
+	 *            the btModder to set
 	 */
 	public void setBtModder(BTModderMain btModder) {
 		this.btModder = btModder;
 	}
 
 	/**
+	 * @return the selectedDirectory
+	 */
+	public File getSelectedDirectory() {
+		return selectedDirectory;
+	}
+
+	/**
+	 * @return the selectedDirectoryPath
+	 */
+	public String getSelectedDirectoryPath() {
+		return selectedDirectoryPath;
+	}
+
+	/**
+	 * @param selectedDirectory
+	 *            the selectedDirectory to set
+	 */
+	public void setSelectedDirectory(File selectedDirectory) throws NullPointerException {
+		try {
+			this.selectedDirectory = selectedDirectory;
+			this.selectedDirectoryPath = selectedDirectory.getAbsolutePath() + "\\";
+		} catch (NullPointerException npe) {
+			this.selectedDirectoryPath = "No Directory Selected";
+		}
+	}
+
+	/**
+	 * @return the labelConfigDir
+	 */
+	public Label getLabelConfigDir() {
+		return labelConfigDir;
+	}
+
+	/**
+	 * @param labelConfigDir
+	 *            the labelConfigDir to set
+	 */
+	public void setLabelConfigDirText(String tabName) {
+		// this.labelConfigDir.setText("");
+		this.labelConfigDir.setText(getSelectedDirectoryPath() + tabName);
+	}
+
+	/**
+	 * @return the selectedTab
+	 */
+	public Tab getSelectedTab() {
+		return selectedTab;
+	}
+
+	/**
+	 * @param selectedTab
+	 *            the selectedTab to set
+	 */
+	public void setSelectedTab(Tab selectedTab) {
+		this.selectedTab = selectedTab;
+	}
+
+	/**
+	 * @return the selecedTabText
+	 */
+	// public String getSelectedTabText() {
+	// return selectedTabText;
+	// }
+
+	/**
+	 * @param selecedTabText
+	 *            the selecedTabText to set
+	 */
+	// public void setSelectedTabText(String selectedTabText) {
+	// this.selectedTabText = selectedTabText;
+	// }
+
+	/**
 	 * Opens a FileChooser to let the user select an address book to load.
 	 */
 	@FXML
-	private void handleOpenDirectory(ActionEvent e) {
-
+	private void handleOpenDirectory(ActionEvent e) throws NullPointerException {
 		DirectoryChooser dirChooser = new DirectoryChooser();
-		//Properties props = System.getProperties();
-		//props.list(System.out);
+		// Properties props = System.getProperties();
+		// props.list(System.out);
 		dirChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-		File selectedDirectory = dirChooser.showDialog(getBtModder().getPrimaryStage());
-
-		if (selectedDirectory == null) {
+		
+		try {
+			setSelectedDirectory(dirChooser.showDialog(getBtModder().getPrimaryStage()));
+		} catch (NullPointerException npe) {
+			this.selectedDirectoryPath = "No Directory Selected";
+		}
+		
+		if (getSelectedDirectory() == null) {
 			labelConfigDir.setText("No Directory selected");
 		} else {
-			labelConfigDir.setText(selectedDirectory.getAbsolutePath());
+			labelConfigDir
+					.setText(getSelectedDirectoryPath() + getBtModder().categoryController.getActiveTabText());
 		}
 	}
 
