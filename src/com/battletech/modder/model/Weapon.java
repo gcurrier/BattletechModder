@@ -1,5 +1,7 @@
 package com.battletech.modder.model;
 
+import java.util.ArrayList;
+
 import javafx.beans.property.StringProperty;
 
 /**
@@ -54,6 +56,8 @@ public class Weapon {
 	private StringProperty allowedLocations;
 	private StringProperty disallowedLocations;
 	private StringProperty criticalComponent;
+	
+	private ArrayList<Weapon> weaponList;
 
 	/**
 	 * Default Weapon Constructor
@@ -121,6 +125,22 @@ public class Weapon {
 			String bonusValueB, String componentType, String componentSubType, String prefabIdentifier,
 			String battleValue, String inventorySize, String tonnage, String allowedLocations,
 			String disallowedLocations, String criticalComponent) {
+	}
+	
+	/**
+	 * Creates an ArrayList of weapon objects
+	 * @param weaponList
+	 */
+	public void setWeaponList (ArrayList<Weapon> weaponList){
+		this.weaponList = weaponList;
+	}
+	
+	/**
+	 * Returns an ArrayList of Weapon objects
+	 * @return
+	 */
+	public ArrayList<Weapon> getWeaponList (){
+		return this.weaponList;
 	}
 
 	/**

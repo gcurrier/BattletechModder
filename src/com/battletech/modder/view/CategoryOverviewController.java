@@ -1,6 +1,10 @@
 package com.battletech.modder.view;
 
+import java.util.ArrayList;
+
 import com.battletech.modder.BTModderMain;
+import com.battletech.modder.control.utils.DirectoryAndFileUtility;
+import com.battletech.modder.model.Weapon;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,13 +38,18 @@ public class CategoryOverviewController {
 	@FXML
 	private Label mechsTabLabel;
 	@FXML
-	private Label componentsTabLabel;
+	private Label heatsinksTabLabel;
+	@FXML
+	private Label upgradesTabLabel;
 
 	private ObservableList<Tab> allTabs;
 
 	private BTModderMain btModder;
 	
+	private DirectoryAndFileUtility fUtil;
+	
 	public String activeTabText;
+	public String selectedDirectoryPath;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -61,7 +70,8 @@ public class CategoryOverviewController {
 		//TODO 
 		mechsTabLabel.setText("Mechs Data Display");
 		shopsTabLabel.setText("Shops Data Display");
-		componentsTabLabel.setText("Components Data Display");
+		heatsinksTabLabel.setText("Heatsinks Data Display");
+		upgradesTabLabel.setText("Upgrades Data Display");
 		weaponsTabLabel.setText("Weapons Data Display");
 		//Change the display label at the bottom of the window whenever a tab is selected AFTER a directory has been selected.
 		tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
@@ -75,6 +85,25 @@ public class CategoryOverviewController {
 			});
 	}
 	
+	/**
+	 * @return the selectedDirectoryPath
+	 */
+	public String getSelectedDirectoryPath() {
+		return selectedDirectoryPath;
+	}
+
+	/**
+	 * @param selectedDirectory
+	 *            the selectedDirectory to set
+	 */
+	public void setSelectedDirectoryPath(String selectedDirectoryPath) throws NullPointerException {
+		try {
+			this.selectedDirectoryPath = selectedDirectoryPath;
+		} catch (NullPointerException npe) {
+			this.selectedDirectoryPath = "No Directory Selected";
+		}
+	}
+	
 	@FXML
 	private void setMechsTab() {
 		
@@ -86,12 +115,20 @@ public class CategoryOverviewController {
 	}
 	
 	@FXML
-	private void setComponentsTab() {
+	private void setHeatsinksTab() {
 
 	}
 	
 	@FXML
-	private void setWeaponsTab() {
+	private void setUpgradesTab() {
+		
+	}
+	
+	@FXML
+	private void setWeaponTab() {
+//		Weapon weapon = new Weapon();
+//		ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+		fUtil.setFileArray(getSelectedDirectoryPath() + getActiveTabText());
 		
 	}
 

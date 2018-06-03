@@ -1,6 +1,7 @@
 package com.battletech.modder.view;
 
 import java.io.File;
+import java.util.Properties;
 
 import com.battletech.modder.BTModderMain;
 
@@ -76,6 +77,7 @@ public class RootLayoutController {
 		try {
 			this.selectedDirectory = selectedDirectory;
 			this.selectedDirectoryPath = selectedDirectory.getAbsolutePath() + "\\";
+			getBtModder().categoryController.setSelectedDirectoryPath(selectedDirectory.getAbsolutePath() + "\\");
 		} catch (NullPointerException npe) {
 			this.selectedDirectoryPath = "No Directory Selected";
 		}
@@ -133,8 +135,8 @@ public class RootLayoutController {
 	@FXML
 	private void handleOpenDirectory(ActionEvent e) throws NullPointerException {
 		DirectoryChooser dirChooser = new DirectoryChooser();
-		// Properties props = System.getProperties();
-		// props.list(System.out);
+		 Properties props = System.getProperties();
+		 props.list(System.out);
 		dirChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		
 		try {
@@ -146,8 +148,12 @@ public class RootLayoutController {
 		if (getSelectedDirectory() == null) {
 			labelConfigDir.setText("No Directory selected");
 		} else {
-			labelConfigDir
-					.setText(getSelectedDirectoryPath() + getBtModder().categoryController.getActiveTabText());
+			
+			labelConfigDir.setText(getSelectedDirectoryPath() + getBtModder().categoryController.getActiveTabText());
+			//TODO original directory needs to be copied to app folder or to System.property location. /BattletechModderBackups...
+			//TODO from here the subdirectory needs to be opened and all files therein parsed into an array.
+			//TODO pass parsed data back to categoryController and set the LHS tree view.
+			//TODO clicking on element in tree view opens up the data and displays it for edit in the RHS pane
 		}
 	}
 
