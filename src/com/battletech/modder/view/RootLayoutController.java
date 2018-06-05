@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Properties;
 
 import com.battletech.modder.BTModderMain;
+import com.battletech.modder.control.utils.SimpleLogger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,12 +25,10 @@ public class RootLayoutController {
 
 	@FXML
 	private Label labelConfigDir;
-
-	public Tab selectedTab;
-	public File selectedDirectory;
-	public String selectedDirectoryPath;
-	// public String selectedTabText;
+	
 	private BTModderMain btModder;
+	
+	public static File selectedDirectory;
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
@@ -63,23 +62,14 @@ public class RootLayoutController {
 	}
 
 	/**
-	 * @return the selectedDirectoryPath
-	 */
-	public String getSelectedDirectoryPath() {
-		return selectedDirectoryPath;
-	}
-
-	/**
 	 * @param selectedDirectory
 	 *            the selectedDirectory to set
 	 */
 	public void setSelectedDirectory(File selectedDirectory) throws NullPointerException {
 		try {
-			this.selectedDirectory = selectedDirectory;
-			this.selectedDirectoryPath = selectedDirectory.getAbsolutePath() + "\\";
-			getBtModder().categoryController.setSelectedDirectoryPath(selectedDirectory.getAbsolutePath() + "\\");
+			RootLayoutController.selectedDirectory = selectedDirectory;
 		} catch (NullPointerException npe) {
-			this.selectedDirectoryPath = "No Directory Selected";
+			System.out.println("No Directory Selected");
 		}
 	}
 
@@ -94,40 +84,10 @@ public class RootLayoutController {
 	 * @param labelConfigDir
 	 *            the labelConfigDir to set
 	 */
-	public void setLabelConfigDirText(String tabName) {
+	public void setLabelConfigDirText(String absolutePath) {
 		// this.labelConfigDir.setText("");
-		this.labelConfigDir.setText(getSelectedDirectoryPath() + tabName);
+		this.labelConfigDir.setText(absolutePath);
 	}
-
-	/**
-	 * @return the selectedTab
-	 */
-	public Tab getSelectedTab() {
-		return selectedTab;
-	}
-
-	/**
-	 * @param selectedTab
-	 *            the selectedTab to set
-	 */
-	public void setSelectedTab(Tab selectedTab) {
-		this.selectedTab = selectedTab;
-	}
-
-	/**
-	 * @return the selecedTabText
-	 */
-	// public String getSelectedTabText() {
-	// return selectedTabText;
-	// }
-
-	/**
-	 * @param selecedTabText
-	 *            the selecedTabText to set
-	 */
-	// public void setSelectedTabText(String selectedTabText) {
-	// this.selectedTabText = selectedTabText;
-	// }
 
 	/**
 	 * Opens a FileChooser to let the user select an address book to load.
@@ -135,26 +95,28 @@ public class RootLayoutController {
 	@FXML
 	private void handleOpenDirectory(ActionEvent e) throws NullPointerException {
 		DirectoryChooser dirChooser = new DirectoryChooser();
-		 Properties props = System.getProperties();
-		 props.list(System.out);
+		Properties props = System.getProperties();
+		props.list(System.out);
 		dirChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-		
+		// String selectedTabName = "";
 		try {
 			setSelectedDirectory(dirChooser.showDialog(getBtModder().getPrimaryStage()));
+			setLabelConfigDirText(getSelectedDirectory().getAbsolutePath() + "\\");
 		} catch (NullPointerException npe) {
-			this.selectedDirectoryPath = "No Directory Selected";
+			setLabelConfigDirText("No Directory selected");
+			System.out.println("No Directory Selected");
 		}
-		
-		if (getSelectedDirectory() == null) {
-			labelConfigDir.setText("No Directory selected");
-		} else {
-			
-			labelConfigDir.setText(getSelectedDirectoryPath() + getBtModder().categoryController.getActiveTabText());
-			//TODO original directory needs to be copied to app folder or to System.property location. /BattletechModderBackups...
-			//TODO from here the subdirectory needs to be opened and all files therein parsed into an array.
-			//TODO pass parsed data back to categoryController and set the LHS tree view.
-			//TODO clicking on element in tree view opens up the data and displays it for edit in the RHS pane
-		}
+
+//		if (getSelectedDirectory() != null) {			
+//			getBtModder().categoryController.setInitialView();
+			// TODO original directory needs to be copied to app folder or to
+			// System.property location. /BattletechModderBackups...
+			// TODO from here the subdirectory needs to be opened and all files therein
+			// parsed into an array.
+			// TODO pass parsed data back to categoryController and set the LHS tree view.
+			// TODO clicking on element in tree view opens up the data and displays it for
+			// edit in the RHS pane
+//		}
 	}
 
 	@FXML
@@ -175,7 +137,7 @@ public class RootLayoutController {
 	@FXML
 	private void handleAbout() {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Battletech Modder Tool");
+		alert.setTitle("Battletech Modder Tool (version 0.2.1a)");
 		alert.setHeaderText("About");
 		alert.setContentText("Author: Glen Currier\nBuildDate: TBD\nWebsite: forthcoming");
 		alert.showAndWait();

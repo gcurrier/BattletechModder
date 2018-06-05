@@ -1,10 +1,8 @@
 package com.battletech.modder.view;
 
-import java.util.ArrayList;
+import java.io.File;
 
 import com.battletech.modder.BTModderMain;
-import com.battletech.modder.control.utils.DirectoryAndFileUtility;
-import com.battletech.modder.model.Weapon;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -43,13 +41,10 @@ public class CategoryOverviewController {
 	private Label upgradesTabLabel;
 
 	private ObservableList<Tab> allTabs;
-
 	private BTModderMain btModder;
-	
-	private DirectoryAndFileUtility fUtil;
-	
-	public String activeTabText;
-	public String selectedDirectoryPath;
+
+	public static String activeTabText;
+	public static String componentFullPath;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -59,77 +54,145 @@ public class CategoryOverviewController {
 
 	/**
 	 * Initializes the controller class. This method is automatically called after
-	 * the fxml file has been loaded.
+	 * the fxml file has been loaded. Creates a listener on tab selection change.
 	 */
 	@FXML
 	private void initialize() {
 		setAllTabs(tabPane.getTabs());
-		//set the active tab to be the first one (should be Weapons tab)
-		tabPane.getSelectionModel().select(0);
-		setActiveTabText("Weapons");
-		//TODO 
-		mechsTabLabel.setText("Mechs Data Display");
-		shopsTabLabel.setText("Shops Data Display");
-		heatsinksTabLabel.setText("Heatsinks Data Display");
-		upgradesTabLabel.setText("Upgrades Data Display");
-		weaponsTabLabel.setText("Weapons Data Display");
-		//Change the display label at the bottom of the window whenever a tab is selected AFTER a directory has been selected.
 		tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
-			   @Override
-			   public void changed(ObservableValue<? extends Tab> ov, Tab tabOld, Tab tabNew) {
-				   setActiveTabText(tabNew.getText());
-				   getBtModder().rootController.setLabelConfigDirText(getActiveTabText());
-				   System.out.println("Tab Selection changed to " + getActiveTabText());
-				   //TODO Open directory associated with tab, parse all files into a single ArrayList and display in LHS tree view. Clicking a tree view item will display data in RHS gridview.
-			   }
-			});
+			@Override
+			public void changed(ObservableValue<? extends Tab> oldValue, Tab tabOld, Tab tabNew) {
+				setActiveTabText(tabNew.getText());
+				setComponentFullPath(getSelectedDirectoryPath() + "\\" + getActiveTabText());
+				updateDirectoryLabel(getActiveTabText());
+				updateTabDisplay(getActiveTabText());
+			}
+		});
 	}
-	
+
 	/**
-	 * @return the selectedDirectoryPath
+	 * Update the parent view directory label with the selected tab's component
+	 * folder path or set an instructional message
+	 * 
+	 * @param selectedTabName
+	 */
+	private void updateDirectoryLabel(String selectedTabName) {
+		File selectedDirectory = RootLayoutController.selectedDirectory;
+		String tabName;
+		tabName = selectedTabName != null ? selectedTabName : "<selected tab>";
+		if (selectedDirectory != null) {
+			String currentSelectedDirectoryPath = getSelectedDirectoryPath();
+			getBtModder().rootController.setLabelConfigDirText(currentSelectedDirectoryPath + "\\" + tabName);
+		}
+		// else {
+		// updateDirectoryLabelWithMessage("Please select a folder from the
+		// \"Directory\" -> \"Open...\" menu.");
+		// }
+	}
+
+//	/**
+//	 * Update the parent view directory label with an instructional message
+//	 * 
+//	 * @param msg
+//	 */
+//	private void updateDirectoryLabelWithMessage(String msg) {
+//		getBtModder().rootController.setLabelConfigDirText(msg);
+//	}
+//
+//	public void setInitialView() {
+//		tabPane.getSelectionModel().select(0);
+//	}
+
+	/**
+	 * Update the directory display label according to the tab selected
+	 * 
+	 * @param tabName
+	 */
+	private void updateTabDisplay(String tabName) {
+		switch (tabName) {
+		case "weapon":
+			updateDirectoryLabel(tabName);
+			weaponsTabLabel.setText("(setTabDisplay): Weapons Data Display");
+			break;
+		case "shops":
+			updateDirectoryLabel(tabName);
+			shopsTabLabel.setText("(setTabDisplay): Shops Data Display");
+			break;
+		case "heatsinks":
+			updateDirectoryLabel(tabName);
+			heatsinksTabLabel.setText("(setTabDisplay): Heatsinks Data Display");
+			break;
+		case "upgrades":
+			updateDirectoryLabel(tabName);
+			upgradesTabLabel.setText("(setTabDisplay): Upgrades Data Display");
+			break;
+		case "mech":
+			updateDirectoryLabel(tabName);
+			mechsTabLabel.setText("(setTabDisplay): Mechs Data Display");
+			break;
+		default:
+			updateDirectoryLabel(tabName);
+			break;
+		}
+	}
+
+	/**
+	 * @return the componentFullPath
 	 */
 	public String getSelectedDirectoryPath() {
-		return selectedDirectoryPath;
+		// return getBtModder().rootController.getSelectedDirectory().getAbsolutePath();
+		return RootLayoutController.selectedDirectory.getAbsolutePath();
+	}
+
+	public String getComponentFullPath() {
+		return CategoryOverviewController.componentFullPath;
 	}
 
 	/**
 	 * @param selectedDirectory
 	 *            the selectedDirectory to set
 	 */
-	public void setSelectedDirectoryPath(String selectedDirectoryPath) throws NullPointerException {
+	public void setComponentFullPath(String componetFullPath) throws NullPointerException {
 		try {
-			this.selectedDirectoryPath = selectedDirectoryPath;
+			CategoryOverviewController.componentFullPath = componetFullPath;
 		} catch (NullPointerException npe) {
-			this.selectedDirectoryPath = "No Directory Selected";
+			System.out.println("No Directory Selected");
 		}
 	}
-	
+
 	@FXML
 	private void setMechsTab() {
-		
+		System.out.println("Mechs tab initialized");
 	}
 
 	@FXML
 	private void setShopsTab() {
-
+		System.out.println("Shops tab initialized");
 	}
-	
+
 	@FXML
 	private void setHeatsinksTab() {
-
+		System.out.println("Heatsinks tab initialized");
 	}
-	
+
 	@FXML
 	private void setUpgradesTab() {
-		
+		System.out.println("Upgrades tab initialized");
 	}
-	
+
 	@FXML
-	private void setWeaponTab() {
-//		Weapon weapon = new Weapon();
-//		ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
-		fUtil.setFileArray(getSelectedDirectoryPath() + getActiveTabText());
-		
+	public void setWeaponTab() {
+		try {
+		if (RootLayoutController.selectedDirectory.exists()) {
+			System.out.println(getComponentFullPath());
+			System.out.println("[setWeaponTab]: Weapons tab initialized");
+		} else {
+			System.out.println("[setWeaponTab] No Directory yet selected.");
+		}
+		}
+		catch(NullPointerException npe) {
+			System.out.println("[setWeaponTab]: No directory selected - causing null pointer exception");
+		}
 	}
 
 	public ObservableList<Tab> getAllTabs() {
@@ -172,7 +235,8 @@ public class CategoryOverviewController {
 	}
 
 	/**
-	 * @param btModder the btModder to set
+	 * @param btModder
+	 *            the btModder to set
 	 */
 	public void setBtModder(BTModderMain btModder) {
 		this.btModder = btModder;
@@ -182,14 +246,15 @@ public class CategoryOverviewController {
 	 * @return the activeTab text name
 	 */
 	public String getActiveTabText() {
-		return this.activeTabText.toLowerCase();
+		return CategoryOverviewController.activeTabText;
 	}
-	
+
 	/**
-	 * @param activeTabText the activeTabText to set
+	 * @param activeTabText
+	 *            the activeTabText to set
 	 */
 	public void setActiveTabText(String activeTabText) {
-		this.activeTabText = activeTabText;
+		CategoryOverviewController.activeTabText = activeTabText.toLowerCase();
 	}
 
 	/**
