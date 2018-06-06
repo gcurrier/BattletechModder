@@ -13,7 +13,7 @@
    <children>
       <TabPane fx:id="tabPane" prefHeight="598.0" prefWidth="663.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
-            <Tab onSelectionChanged="#setWeaponTab" text="Weapon">
+            <Tab text="Weapon">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -42,7 +42,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab onSelectionChanged="#setHeatsinksTab" text="Heatsinks">
+            <Tab text="Heatsinks">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -71,7 +71,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#setUpgradesTab" text="Upgrades">
+            <Tab text="Upgrades">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -100,7 +100,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#setShopsTab" text="Shops">
+            <Tab text="Shops">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -129,7 +129,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#setMechsTab" text="Mech">
+            <Tab text="Mech">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

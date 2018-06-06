@@ -4,9 +4,9 @@ import java.io.File;
 
 import com.battletech.modder.BTModderMain;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,6 +45,7 @@ public class CategoryOverviewController {
 
 	public static String activeTabText;
 	public static String componentFullPath;
+	public static int selectedTabIdx = 0;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -58,15 +59,41 @@ public class CategoryOverviewController {
 	 */
 	@FXML
 	private void initialize() {
+		// EventHandler<Event> configureSelectedTab = event -> {
+		// selectedTabIdx = tabPane.getSelectionModel().getSelectedIndex();
+		//
+		// Tab currentTab = (Tab) event.getTarget();
+		// if (currentTab.isSelected()) {
+		// System.out.println(currentTab.getText() + " is currently selected");
+		// }
+		// };
 		setAllTabs(tabPane.getTabs());
-		tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
-			@Override
-			public void changed(ObservableValue<? extends Tab> oldValue, Tab tabOld, Tab tabNew) {
-				setActiveTabText(tabNew.getText());
-				setComponentFullPath(getSelectedDirectoryPath() + "\\" + getActiveTabText());
-				updateDirectoryLabel(getActiveTabText());
-				updateTabDisplay(getActiveTabText());
+		tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+			setActiveTabText(newTab.getText());
+			switch (newTab.getText()) {
+			case "Weapon":
+				weaponsTabLabel.setText("(setTabDisplay): Weapons Data Display");
+				setWeaponTab();
+				break;
+			case "Heatsinks":
+				heatsinksTabLabel.setText("(setTabDisplay): Heatsinks Data Display");
+				setHeatsinksTab();
+				break;
+			case "Upgrades":
+				upgradesTabLabel.setText("(setTabDisplay): Upgrades Data Display");
+				setUpgradesTab();
+				break;
+			case "Shops":
+				shopsTabLabel.setText("(setTabDisplay): Shops Data Display");
+				setShopsTab();
+				break;
+			case "Mech":
+				mechsTabLabel.setText("(setTabDisplay): Mechs Data Display");
+				setMechsTab();
+				break;
 			}
+			setComponentFullPath(getSelectedDirectoryPath() + "\\" + getActiveTabText());
+			updateDirectoryLabel(getActiveTabText());
 		});
 	}
 
@@ -77,75 +104,30 @@ public class CategoryOverviewController {
 	 * @param selectedTabName
 	 */
 	private void updateDirectoryLabel(String selectedTabName) {
-		File selectedDirectory = RootLayoutController.selectedDirectory;
+		File selectedDirectory = getBtModder().rootController.getSelectedDirectory();
 		String tabName;
 		tabName = selectedTabName != null ? selectedTabName : "<selected tab>";
 		if (selectedDirectory != null) {
 			String currentSelectedDirectoryPath = getSelectedDirectoryPath();
 			getBtModder().rootController.setLabelConfigDirText(currentSelectedDirectoryPath + "\\" + tabName);
 		}
-		// else {
-		// updateDirectoryLabelWithMessage("Please select a folder from the
-		// \"Directory\" -> \"Open...\" menu.");
-		// }
-	}
-
-//	/**
-//	 * Update the parent view directory label with an instructional message
-//	 * 
-//	 * @param msg
-//	 */
-//	private void updateDirectoryLabelWithMessage(String msg) {
-//		getBtModder().rootController.setLabelConfigDirText(msg);
-//	}
-//
-//	public void setInitialView() {
-//		tabPane.getSelectionModel().select(0);
-//	}
-
-	/**
-	 * Update the directory display label according to the tab selected
-	 * 
-	 * @param tabName
-	 */
-	private void updateTabDisplay(String tabName) {
-		switch (tabName) {
-		case "weapon":
-			updateDirectoryLabel(tabName);
-			weaponsTabLabel.setText("(setTabDisplay): Weapons Data Display");
-			break;
-		case "shops":
-			updateDirectoryLabel(tabName);
-			shopsTabLabel.setText("(setTabDisplay): Shops Data Display");
-			break;
-		case "heatsinks":
-			updateDirectoryLabel(tabName);
-			heatsinksTabLabel.setText("(setTabDisplay): Heatsinks Data Display");
-			break;
-		case "upgrades":
-			updateDirectoryLabel(tabName);
-			upgradesTabLabel.setText("(setTabDisplay): Upgrades Data Display");
-			break;
-		case "mech":
-			updateDirectoryLabel(tabName);
-			mechsTabLabel.setText("(setTabDisplay): Mechs Data Display");
-			break;
-		default:
-			updateDirectoryLabel(tabName);
-			break;
-		}
 	}
 
 	/**
 	 * @return the componentFullPath
 	 */
-	public String getSelectedDirectoryPath() {
-		// return getBtModder().rootController.getSelectedDirectory().getAbsolutePath();
-		return RootLayoutController.selectedDirectory.getAbsolutePath();
+	public String getSelectedDirectoryPath() throws NullPointerException {
+		try {
+			return getBtModder().rootController.getSelectedDirectory().getAbsolutePath();
+		} catch (NullPointerException npe) {
+			System.out.println("[getSelectedDirectoryPath]: No directory selected");
+			return "";
+		}
 	}
 
 	public String getComponentFullPath() {
-		return CategoryOverviewController.componentFullPath;
+		// return CategoryOverviewController.componentFullPath;
+		return getSelectedDirectoryPath() + "\\" + getActiveTabText();
 	}
 
 	/**
@@ -156,42 +138,67 @@ public class CategoryOverviewController {
 		try {
 			CategoryOverviewController.componentFullPath = componetFullPath;
 		} catch (NullPointerException npe) {
-			System.out.println("No Directory Selected");
+			System.out.println("[setComponentFullPath]: No Directory Selected");
 		}
-	}
-
-	@FXML
-	private void setMechsTab() {
-		System.out.println("Mechs tab initialized");
-	}
-
-	@FXML
-	private void setShopsTab() {
-		System.out.println("Shops tab initialized");
-	}
-
-	@FXML
-	private void setHeatsinksTab() {
-		System.out.println("Heatsinks tab initialized");
-	}
-
-	@FXML
-	private void setUpgradesTab() {
-		System.out.println("Upgrades tab initialized");
 	}
 
 	@FXML
 	public void setWeaponTab() {
 		try {
-		if (RootLayoutController.selectedDirectory.exists()) {
-			System.out.println(getComponentFullPath());
-			System.out.println("[setWeaponTab]: Weapons tab initialized");
-		} else {
-			System.out.println("[setWeaponTab] No Directory yet selected.");
+			if (getBtModder().rootController.selectedDirectory.exists()) {
+				System.out.println(getComponentFullPath());				
+			}
+			// TODO
+		} catch (NullPointerException npe) {
+			System.out.println("[setWeaponTab]: No directory selected");
 		}
+	}
+
+	@FXML
+	private void setShopsTab() throws NullPointerException {
+		try {
+			if (getBtModder().rootController.selectedDirectory.exists()) {
+				System.out.println(getComponentFullPath());
+			}
+			// TODO
+		} catch (NullPointerException npe) {
+			System.out.println("[setShopsTab]: No directory selected");
 		}
-		catch(NullPointerException npe) {
-			System.out.println("[setWeaponTab]: No directory selected - causing null pointer exception");
+	}
+
+	@FXML
+	private void setHeatsinksTab() throws NullPointerException {
+		try {
+			if (getBtModder().rootController.selectedDirectory.exists()) {
+				System.out.println(getComponentFullPath());
+			}
+			// TODO
+		} catch (NullPointerException npe) {
+			System.out.println("[setHeatsinksTab]: No directory selected");
+		}
+	}
+
+	@FXML
+	private void setUpgradesTab() throws NullPointerException {
+		try {
+			if (getBtModder().rootController.selectedDirectory.exists()) {
+				System.out.println(getComponentFullPath());
+			}
+			// TODO
+		} catch (NullPointerException npe) {
+			System.out.println("[setUpgradesTab]: No directory selected");
+		}
+	}
+
+	@FXML
+	private void setMechsTab() throws NullPointerException {
+		try {
+			if (getBtModder().rootController.selectedDirectory.exists()) {
+				System.out.println(getComponentFullPath());
+			}
+			// TODO
+		} catch (NullPointerException npe) {
+			System.out.println("[setMechsTab]: No directory selected");
 		}
 	}
 
