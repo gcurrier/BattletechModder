@@ -28,7 +28,7 @@ public class RootLayoutController {
 	
 	private BTModderMain btModder;
 	
-	public static File selectedDirectory;
+	public File selectedDirectory;
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
@@ -67,7 +67,7 @@ public class RootLayoutController {
 	 */
 	public void setSelectedDirectory(File selectedDirectory) throws NullPointerException {
 		try {
-			RootLayoutController.selectedDirectory = selectedDirectory;
+			this.selectedDirectory = selectedDirectory;
 		} catch (NullPointerException npe) {
 			System.out.println("No Directory Selected");
 		}
