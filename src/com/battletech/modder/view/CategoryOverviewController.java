@@ -1,18 +1,27 @@
 package com.battletech.modder.view;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.battletech.modder.BTModderMain;
+//import com.battletech.modder.model.Weapon;
 
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
 public class CategoryOverviewController {
@@ -73,7 +82,11 @@ public class CategoryOverviewController {
 			switch (newTab.getText()) {
 			case "Weapon":
 				weaponsTabLabel.setText("(setTabDisplay): Weapons Data Display");
-				setWeaponTab();
+				try {
+					setWeaponTab();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			case "Heatsinks":
 				heatsinksTabLabel.setText("(setTabDisplay): Heatsinks Data Display");
@@ -142,11 +155,75 @@ public class CategoryOverviewController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
-	public void setWeaponTab() {
+	private void setWeaponTab() throws NullPointerException, IOException, JSONException {
+		ArrayList<JSONObject> weaponList = new ArrayList<JSONObject>();
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
-				System.out.println(getComponentFullPath());				
+				System.out.println(getComponentFullPath());
+				try {
+					File directory = new File(getComponentFullPath());
+					// get all the files from a directory
+					File[] fList = directory.listFiles();
+					for (File file : fList) {
+						if (file.isFile()) {
+							Path path = file.toPath();
+							List<String> files = Files.readAllLines(path);
+							String thisFile = files.toString().replaceAll(",,", ",").replaceAll("^\\[", "")
+									.replaceAll("\\]$", "").replaceAll("\\{,", "\\{");
+							// System.out.println(thisFile);
+							JSONObject wpn = new JSONObject(thisFile);
+							weaponList.add(wpn);
+						}
+					}
+					TreeItem<String> rootItem = new TreeItem<>("Weapons");
+					TreeItem<String> energyItems = new TreeItem<>("Energy");
+					TreeItem<String> missileItems = new TreeItem<>("Missile");
+					TreeItem<String> ballisticItems = new TreeItem<>("Ballistic");
+					TreeItem<String> antiPersonnelItems = new TreeItem<>("AntiPersonnel");
+					TreeItem<String> meleeItems = new TreeItem<>("Melee");
+					rootItem.getChildren().addAll(energyItems, missileItems, ballisticItems, antiPersonnelItems,
+							meleeItems);
+
+					for (JSONObject weapon : weaponList) {
+						if (weapon.get("Category") == "Missile") {
+							JSONObject description = (JSONObject) weapon.get("Description");
+							String itemName = description.getString("Name");
+							TreeItem<String> thisWeapon = new TreeItem<>(itemName);
+							missileItems.getChildren().add(thisWeapon);
+						}
+						if (weapon.get("Category") == "AntiPersonnel") {
+							JSONObject description = (JSONObject) weapon.get("Description");
+							String itemName = description.getString("Name");
+							TreeItem<String> thisWeapon = new TreeItem<>(itemName);
+							antiPersonnelItems.getChildren().add(thisWeapon);
+						}
+						if (weapon.get("Category") == "Energy") {
+							JSONObject description = (JSONObject) weapon.get("Description");
+							String itemName = description.getString("Name");
+							TreeItem<String> thisWeapon = new TreeItem<>(itemName);
+							energyItems.getChildren().add(thisWeapon);
+						}
+						if (weapon.get("Category") == "Ballistic") {
+							JSONObject description = (JSONObject) weapon.get("Description");
+							String itemName = description.getString("Name");
+							TreeItem<String> thisWeapon = new TreeItem<>(itemName);
+							ballisticItems.getChildren().add(thisWeapon);
+						}
+						if (weapon.get("Category") == "Melee") {
+							JSONObject description = (JSONObject) weapon.get("Description");
+							String itemName = description.getString("Name");
+							TreeItem<String> thisWeapon = new TreeItem<>(itemName);
+							meleeItems.getChildren().add(thisWeapon);
+						}
+					}
+					
+//					treeView.getChildrenUnmodifiable();
+					this.treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			// TODO
 		} catch (NullPointerException npe) {
