@@ -1,17 +1,15 @@
 package com.battletech.modder.view;
 
 import java.io.File;
-import java.util.Properties;
+//import java.util.Properties;
 
 import com.battletech.modder.BTModderMain;
-import com.battletech.modder.control.utils.SimpleLogger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.stage.DirectoryChooser;
 
 /**
@@ -95,8 +93,8 @@ public class RootLayoutController {
 	@FXML
 	private void handleOpenDirectory(ActionEvent e) throws NullPointerException {
 		DirectoryChooser dirChooser = new DirectoryChooser();
-		Properties props = System.getProperties();
-		props.list(System.out);
+		// Properties props = System.getProperties();
+		// props.list(System.out);
 		dirChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		// String selectedTabName = "";
 		try {
