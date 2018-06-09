@@ -33,7 +33,7 @@ git status
 ### Download
 **Jarfiles**
 - [dev build](https://github.com/gcurrier/BattletechModder/raw/dev/build/dist/BattletechModder.jar) _Nightly build with newest additions_
-- [release build](https://github.com/gcurrier/BattletechModder/raw/dev/build/dist/BattletechModder.jar) _Weekly build for release and user testing_
+- [release build](https://github.com/gcurrier/BattletechModder/raw/master/build/dist/BattletechModder.jar) _Weekly build for release and user testing_
 
 ### Build
 
