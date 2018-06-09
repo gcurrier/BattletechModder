@@ -1,12 +1,3 @@
-<!--<h1 align="center">
-  <br>
-  <a href="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png">
-    <img src="https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png" alt="BattletechModder" width="200">
-  </a>
-  <br>
-  BattletechModder
-  <br>
-</h1>-->
 # BattletechModder
 ![logo](https://github.com/gcurrier/BattletechModder/blob/master/resources/Battletech-Mercs-Logo.png)
 
@@ -29,7 +20,7 @@ Windows 7,10
 
 ## Project
 
-### Download
+### git Clone
 
 The BattletechModder repository maybe either be downloaded by clicking [here](https://github.com/gcurrier/BattletechModder/archive/master.zip) or by cloning the repository like so:
 ```
@@ -38,6 +29,11 @@ git clone https://github.com/gcurrier/BattletechModder.git
 cd BattletechModder
 git status
 ```
+
+### Download
+**Jarfiles**
+- [dev build](https://github.com/gcurrier/BattletechModder/raw/dev/build/dist/BattletechModder.jar) _Nightly build with newest additions_
+- [release build](https://github.com/gcurrier/BattletechModder/raw/dev/build/dist/BattletechModder.jar) _Weekly build for release and user testing_
 
 ### Build
 
@@ -63,6 +59,11 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 * Acknowledgement to the imagery used from the  Steam Community
-* Harebrained schemes (for the game)
+* Harebrained Schemes (for the game)
 * Users on Reddit for the discovery/explanation of how to manipulate the files
 * me (for thinking up my own "hare-brained" scheme to do this...)
+
+## Issue tracking
+- [Click here](https://github.com/gcurrier/BattletechModder/issues/new/choose) to register a bug or request a new feature.
+- [Click here](https://github.com/gcurrier/BattletechModder/projects/1) to view the current TODO list.
+

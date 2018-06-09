@@ -59,7 +59,7 @@
 			</classpath>
 		</javac>
 	
-		<!-- Copy over none Java-Files -->
+		<!-- Copy over non-Java-Files -->
 		<copy todir="build/classes">
 		<fileset dir="project/src">
 			<exclude name="**/*.java"/>
@@ -86,12 +86,13 @@
 			<fx:fileset dir="dist" includes="BattletechModder.jar"/>
 			<fx:fileset dir="dist" includes="libs/*"/>
 			<fx:fileset dir="dist" includes="resources/**"/>
+			<fx:fileset dir="dist" includes="resources/files/**"/>
 		</fx:resources>
 	
 		<fx:application id="fxApplication"
 			name="BattletechModder"
 			mainClass="com.battletech.modder.BTModderMain"
-			version="0.2a"
+			version="0.3.0a"
 		/>
 	
 		<mkdir dir="build/classes/META-INF" />

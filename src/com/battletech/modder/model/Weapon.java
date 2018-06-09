@@ -1,6 +1,140 @@
 package com.battletech.modder.model;
 
-import javafx.beans.property.StringProperty;
+import java.util.ArrayList;
+
+//import javafx.beans.property.StringProperty;
+
+// String category = "";
+// String type = "";
+// String minRange = "";
+// String maxRange = "";
+// String rangeSplit = "";
+// String ammoCategory = "";
+// String startingAmmoCapacity = "";
+// String heatGenerated = "";
+// String damage = "";
+// String overheatedDamageMultiplier = "";
+// String evasiveDamageMultiplier = "";
+// String damageVariance = "";
+// String heatDamage = "";
+// String accuracyModifier = "";
+// String criticalChanceMultiplier = "";
+// String aoeCapable = "";
+// String indirectFireCapable = "";
+// String refireModifier = "";
+// String shotsWhenFired = "";
+// String projectilesPerShot = "";
+// String attackRecoil = "";
+// String instability = "";
+// String weaponEffectID = "";
+// String id = "";
+// String name = "";
+// String details = "";
+// String icon = "";
+// String cost = "";
+// String rarity = "";
+// String purchasable = "";
+// String manufacturer = "";
+// String model = "";
+// String uiName = "";
+// String bonusValueA = "";
+// String bonusValueB = "";
+// String componentType = "";
+// String componentSubType = "";
+// String prefabIdentifier = "";
+// String battleValue = "";
+// String inventorySize = "";
+// String tonnage = "";
+// String allowedLocations = "";
+// String disallowedLocations = "";
+// String criticalComponent = "";
+
+//category = ;  
+//type = ;  
+//minRange = ;  
+//maxRange = ;
+//rangeSplit = ;
+//ammoCategory = ;
+//startingAmmoCapacity = ;
+//heatGenerated = ;damage = ;
+//overheatedDamageMultiplier = ;
+//evasiveDamageMultiplier = ;
+//damageVariance = ;heatDamage = ;
+//accuracyModifier = ;
+//criticalChanceMultiplier = ;
+//aoeCapable = ;
+//indirectFireCapable = ;
+//refireModifier = ;
+//shotsWhenFired = ;
+//projectilesPerShot = ;
+//attackRecoil = ;
+//instability = ;
+//weaponEffectID = ;
+//id = ;
+//name = ;
+//details = ;
+//icon = ;
+//cost = ;
+//rarity = ;
+//purchasable = ;
+//manufacturer = ;
+//model = ;
+//uiName = ;
+//bonusValueA = ;
+//bonusValueB = ;
+//componentType = ;
+//componentSubType = ;
+//prefabIdentifier = ;
+//battleValue = ;
+//inventorySize = ;
+//tonnage = ;
+//allowedLocations = ;
+//disallowedLocations = ;
+//criticalComponent = ;
+//Weapon weapon = new Weapon(
+//		category,  
+//		type,  
+//		minRange,  
+//		maxRange,
+//		rangeSplit,
+//		ammoCategory,
+//		startingAmmoCapacity,
+//		heatGenerated,damage,
+//		overheatedDamageMultiplier,
+//		evasiveDamageMultiplier,
+//		damageVariance,heatDamage,
+//		accuracyModifier,
+//		criticalChanceMultiplier,
+//		aoeCapable,
+//		indirectFireCapable,
+//		refireModifier,
+//		shotsWhenFired,
+//		projectilesPerShot,
+//		attackRecoil,
+//		instability,
+//		weaponEffectID,
+//		id,
+//		name,
+//		details,
+//		icon,
+//		cost,
+//		rarity,
+//		purchasable,
+//		manufacturer,
+//		model,
+//		uiName,
+//		bonusValueA,
+//		bonusValueB,
+//		componentType,
+//		componentSubType,
+//		prefabIdentifier,
+//		battleValue,
+//		inventorySize,
+//		tonnage,
+//		allowedLocations,
+//		disallowedLocations,
+//		criticalComponent
+//		);
 
 /**
  * Model class for a Weapon object
@@ -8,125 +142,143 @@ import javafx.beans.property.StringProperty;
  *
  */
 public class Weapon {
-	private StringProperty category;
-	private StringProperty type;
-	private StringProperty minRange;
-	private StringProperty maxRange;
-	private StringProperty rangeSplit;
-	private StringProperty ammoCategory;
-	private StringProperty startingAmmoCapacity;
-	private StringProperty heatGenerated;
-	private StringProperty damage;
-	private StringProperty overheatedDamageMultiplier;
-	private StringProperty evasiveDamageMultiplier;
-	private StringProperty damageVariance;
-	private StringProperty heatDamage;
-	private StringProperty accuracyModifier;
-	private StringProperty criticalChanceMultiplier;
-	private StringProperty aoeCapable;
-	private StringProperty indirectFireCapable;
-	private StringProperty refireModifier;
-	private StringProperty shotsWhenFired;
-	private StringProperty projectilesPerShot;
-	private StringProperty attackRecoil;
-	private StringProperty instability;
-	private StringProperty weaponEffectID;
+	private String category;
+	private String type;
+	private String minRange;
+	private String maxRange;
+	private String rangeSplit;
+	private String ammoCategory;
+	private String startingAmmoCapacity;
+	private String heatGenerated;
+	private String damage;
+	private String overheatedDamageMultiplier;
+	private String evasiveDamageMultiplier;
+	private String damageVariance;
+	private String heatDamage;
+	private String accuracyModifier;
+	private String criticalChanceMultiplier;
+	private String aoeCapable;
+	private String indirectFireCapable;
+	private String refireModifier;
+	private String shotsWhenFired;
+	private String projectilesPerShot;
+	private String attackRecoil;
+	private String instability;
+	private String weaponEffectID;
 	// begin nested object "Description"
-	private StringProperty id;
-	private StringProperty name;
-	private StringProperty details;
-	private StringProperty icon;
-	private StringProperty cost;
-	private StringProperty rarity;
-	private StringProperty purchasable;
-	private StringProperty manufacturer;
-	private StringProperty model;
-	private StringProperty uiName;
+	private String id;
+	private String name;
+	private String details;
+	private String icon;
+	private String cost;
+	private String rarity;
+	private String purchasable;
+	private String manufacturer;
+	private String model;
+	private String uiName;
 	// end nested object "Description"
-	private StringProperty bonusValueA;
-	private StringProperty bonusValueB;
-	private StringProperty componentType;
-	private StringProperty componentSubType;
-	private StringProperty prefabIdentifier;
-	private StringProperty battleValue;
-	private StringProperty inventorySize;
-	private StringProperty tonnage;
-	private StringProperty allowedLocations;
-	private StringProperty disallowedLocations;
-	private StringProperty criticalComponent;
+	private String bonusValueA;
+	private String bonusValueB;
+	private String componentType;
+	private String componentSubType;
+	private String prefabIdentifier;
+	private String battleValue;
+	private String inventorySize;
+	private String tonnage;
+	private String allowedLocations;
+	private String disallowedLocations;
+	private String criticalComponent;
+	
+	private ArrayList<Weapon> weaponList;
 
+//	/**
+//	 * Default Weapon Constructor
+//	 */
+//	public Weapon() {
+//		this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+//				null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+//				null, null, null, null, null, null, null, null, null);
+//	}
+//
+//	/**
+//	 * Initialized Constructor with data
+//	 * @param category
+//	 * @param type
+//	 * @param minRange
+//	 * @param maxRange
+//	 * @param rangeSplit
+//	 * @param ammoCategory
+//	 * @param startingAmmoCapacity
+//	 * @param heatGenerated
+//	 * @param damage
+//	 * @param overheatedDamageMultiplier
+//	 * @param evasiveDamageMultiplier
+//	 * @param damageVariance
+//	 * @param heatDamage
+//	 * @param accuracyModifier
+//	 * @param criticalChanceMultiplier
+//	 * @param aoeCapable
+//	 * @param indirectFireCapable
+//	 * @param refireModifier
+//	 * @param shotsWhenFired
+//	 * @param projectilesPerShot
+//	 * @param attackRecoil
+//	 * @param instability
+//	 * @param weaponEffectID
+//	 * @param id
+//	 * @param name
+//	 * @param details
+//	 * @param icon
+//	 * @param cost
+//	 * @param rarity
+//	 * @param purchasable
+//	 * @param manufacturer
+//	 * @param model
+//	 * @param uiName
+//	 * @param bonusValueA
+//	 * @param bonusValueB
+//	 * @param componentType
+//	 * @param componentSubType
+//	 * @param prefabIdentifier
+//	 * @param battleValue
+//	 * @param inventorySize
+//	 * @param tonnage
+//	 * @param allowedLocations
+//	 * @param disallowedLocations
+//	 * @param criticalComponent
+//	 */
+//	public Weapon(String category, String type, String minRange, String maxRange, String rangeSplit,
+//			String ammoCategory, String startingAmmoCapacity, String heatGenerated, String damage,
+//			String overheatedDamageMultiplier, String evasiveDamageMultiplier, String damageVariance, String heatDamage,
+//			String accuracyModifier, String criticalChanceMultiplier, String aoeCapable, String indirectFireCapable,
+//			String refireModifier, String shotsWhenFired, String projectilesPerShot, String attackRecoil,
+//			String instability, String weaponEffectID, String id, String name, String details, String icon, String cost,
+//			String rarity, String purchasable, String manufacturer, String model, String uiName, String bonusValueA,
+//			String bonusValueB, String componentType, String componentSubType, String prefabIdentifier,
+//			String battleValue, String inventorySize, String tonnage, String allowedLocations,
+//			String disallowedLocations, String criticalComponent) {
+//	}
+	
 	/**
-	 * Default Weapon Constructor
+	 * Creates an ArrayList of weapon objects
+	 * @param weaponList
 	 */
-	public Weapon() {
-		this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null, null, null);
+	public void setWeaponList (ArrayList<Weapon> weaponList){
+		this.weaponList = weaponList;
 	}
-
+	
 	/**
-	 * Initialized Constructor with data
-	 * @param category
-	 * @param type
-	 * @param minRange
-	 * @param maxRange
-	 * @param rangeSplit
-	 * @param ammoCategory
-	 * @param startingAmmoCapacity
-	 * @param heatGenerated
-	 * @param damage
-	 * @param overheatedDamageMultiplier
-	 * @param evasiveDamageMultiplier
-	 * @param damageVariance
-	 * @param heatDamage
-	 * @param accuracyModifier
-	 * @param criticalChanceMultiplier
-	 * @param aoeCapable
-	 * @param indirectFireCapable
-	 * @param refireModifier
-	 * @param shotsWhenFired
-	 * @param projectilesPerShot
-	 * @param attackRecoil
-	 * @param instability
-	 * @param weaponEffectID
-	 * @param id
-	 * @param name
-	 * @param details
-	 * @param icon
-	 * @param cost
-	 * @param rarity
-	 * @param purchasable
-	 * @param manufacturer
-	 * @param model
-	 * @param uiName
-	 * @param bonusValueA
-	 * @param bonusValueB
-	 * @param componentType
-	 * @param componentSubType
-	 * @param prefabIdentifier
-	 * @param battleValue
-	 * @param inventorySize
-	 * @param tonnage
-	 * @param allowedLocations
-	 * @param disallowedLocations
-	 * @param criticalComponent
+	 * Returns an ArrayList of Weapon objects
+	 * @return
 	 */
-	public Weapon(String category, String type, String minRange, String maxRange, String rangeSplit,
-			String ammoCategory, String startingAmmoCapacity, String heatGenerated, String damage,
-			String overheatedDamageMultiplier, String evasiveDamageMultiplier, String damageVariance, String heatDamage,
-			String accuracyModifier, String criticalChanceMultiplier, String aoeCapable, String indirectFireCapable,
-			String refireModifier, String shotsWhenFired, String projectilesPerShot, String attackRecoil,
-			String instability, String weaponEffectID, String id, String name, String details, String icon, String cost,
-			String rarity, String purchasable, String manufacturer, String model, String uiName, String bonusValueA,
-			String bonusValueB, String componentType, String componentSubType, String prefabIdentifier,
-			String battleValue, String inventorySize, String tonnage, String allowedLocations,
-			String disallowedLocations, String criticalComponent) {
+	public ArrayList<Weapon> getWeaponList (){
+		return this.weaponList;
 	}
 
 	/**
 	 * @return the category
 	 */
-	public StringProperty getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
@@ -134,14 +286,14 @@ public class Weapon {
 	 * @param category
 	 *            the category to set
 	 */
-	public void setCategory(StringProperty category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
 	/**
 	 * @return the type
 	 */
-	public StringProperty getType() {
+	public String getType() {
 		return type;
 	}
 
@@ -149,14 +301,14 @@ public class Weapon {
 	 * @param type
 	 *            the type to set
 	 */
-	public void setType(StringProperty type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
 	/**
 	 * @return the minRange
 	 */
-	public StringProperty getMinRange() {
+	public String getMinRange() {
 		return minRange;
 	}
 
@@ -164,14 +316,14 @@ public class Weapon {
 	 * @param minRange
 	 *            the minRange to set
 	 */
-	public void setMinRange(StringProperty minRange) {
+	public void setMinRange(String minRange) {
 		this.minRange = minRange;
 	}
 
 	/**
 	 * @return the maxRange
 	 */
-	public StringProperty getMaxRange() {
+	public String getMaxRange() {
 		return maxRange;
 	}
 
@@ -179,14 +331,14 @@ public class Weapon {
 	 * @param maxRange
 	 *            the maxRange to set
 	 */
-	public void setMaxRange(StringProperty maxRange) {
+	public void setMaxRange(String maxRange) {
 		this.maxRange = maxRange;
 	}
 
 	/**
 	 * @return the rangeSplit
 	 */
-	public StringProperty getRangeSplit() {
+	public String getRangeSplit() {
 		return rangeSplit;
 	}
 
@@ -194,14 +346,14 @@ public class Weapon {
 	 * @param rangeSplit
 	 *            the rangeSplit to set
 	 */
-	public void setRangeSplit(StringProperty rangeSplit) {
+	public void setRangeSplit(String rangeSplit) {
 		this.rangeSplit = rangeSplit;
 	}
 
 	/**
 	 * @return the ammoCategory
 	 */
-	public StringProperty getAmmoCategory() {
+	public String getAmmoCategory() {
 		return ammoCategory;
 	}
 
@@ -209,14 +361,14 @@ public class Weapon {
 	 * @param ammoCategory
 	 *            the ammoCategory to set
 	 */
-	public void setAmmoCategory(StringProperty ammoCategory) {
+	public void setAmmoCategory(String ammoCategory) {
 		this.ammoCategory = ammoCategory;
 	}
 
 	/**
 	 * @return the startingAmmoCapacity
 	 */
-	public StringProperty getStartingAmmoCapacity() {
+	public String getStartingAmmoCapacity() {
 		return startingAmmoCapacity;
 	}
 
@@ -224,14 +376,14 @@ public class Weapon {
 	 * @param startingAmmoCapacity
 	 *            the startingAmmoCapacity to set
 	 */
-	public void setStartingAmmoCapacity(StringProperty startingAmmoCapacity) {
+	public void setStartingAmmoCapacity(String startingAmmoCapacity) {
 		this.startingAmmoCapacity = startingAmmoCapacity;
 	}
 
 	/**
 	 * @return the heatGenerated
 	 */
-	public StringProperty getHeatGenerated() {
+	public String getHeatGenerated() {
 		return heatGenerated;
 	}
 
@@ -239,14 +391,14 @@ public class Weapon {
 	 * @param heatGenerated
 	 *            the heatGenerated to set
 	 */
-	public void setHeatGenerated(StringProperty heatGenerated) {
+	public void setHeatGenerated(String heatGenerated) {
 		this.heatGenerated = heatGenerated;
 	}
 
 	/**
 	 * @return the damage
 	 */
-	public StringProperty getDamage() {
+	public String getDamage() {
 		return damage;
 	}
 
@@ -254,14 +406,14 @@ public class Weapon {
 	 * @param damage
 	 *            the damage to set
 	 */
-	public void setDamage(StringProperty damage) {
+	public void setDamage(String damage) {
 		this.damage = damage;
 	}
 
 	/**
 	 * @return the overheatedDamageMultiplier
 	 */
-	public StringProperty getOverheatedDamageMultiplier() {
+	public String getOverheatedDamageMultiplier() {
 		return overheatedDamageMultiplier;
 	}
 
@@ -269,14 +421,14 @@ public class Weapon {
 	 * @param overheatedDamageMultiplier
 	 *            the overheatedDamageMultiplier to set
 	 */
-	public void setOverheatedDamageMultiplier(StringProperty overheatedDamageMultiplier) {
+	public void setOverheatedDamageMultiplier(String overheatedDamageMultiplier) {
 		this.overheatedDamageMultiplier = overheatedDamageMultiplier;
 	}
 
 	/**
 	 * @return the evasiveDamageMultiplier
 	 */
-	public StringProperty getEvasiveDamageMultiplier() {
+	public String getEvasiveDamageMultiplier() {
 		return evasiveDamageMultiplier;
 	}
 
@@ -284,14 +436,14 @@ public class Weapon {
 	 * @param evasiveDamageMultiplier
 	 *            the evasiveDamageMultiplier to set
 	 */
-	public void setEvasiveDamageMultiplier(StringProperty evasiveDamageMultiplier) {
+	public void setEvasiveDamageMultiplier(String evasiveDamageMultiplier) {
 		this.evasiveDamageMultiplier = evasiveDamageMultiplier;
 	}
 
 	/**
 	 * @return the damageVariance
 	 */
-	public StringProperty getDamageVariance() {
+	public String getDamageVariance() {
 		return damageVariance;
 	}
 
@@ -299,14 +451,14 @@ public class Weapon {
 	 * @param damageVariance
 	 *            the damageVariance to set
 	 */
-	public void setDamageVariance(StringProperty damageVariance) {
+	public void setDamageVariance(String damageVariance) {
 		this.damageVariance = damageVariance;
 	}
 
 	/**
 	 * @return the heatDamage
 	 */
-	public StringProperty getHeatDamage() {
+	public String getHeatDamage() {
 		return heatDamage;
 	}
 
@@ -314,14 +466,14 @@ public class Weapon {
 	 * @param heatDamage
 	 *            the heatDamage to set
 	 */
-	public void setHeatDamage(StringProperty heatDamage) {
+	public void setHeatDamage(String heatDamage) {
 		this.heatDamage = heatDamage;
 	}
 
 	/**
 	 * @return the accuracyModifier
 	 */
-	public StringProperty getAccuracyModifier() {
+	public String getAccuracyModifier() {
 		return accuracyModifier;
 	}
 
@@ -329,14 +481,14 @@ public class Weapon {
 	 * @param accuracyModifier
 	 *            the accuracyModifier to set
 	 */
-	public void setAccuracyModifier(StringProperty accuracyModifier) {
+	public void setAccuracyModifier(String accuracyModifier) {
 		this.accuracyModifier = accuracyModifier;
 	}
 
 	/**
 	 * @return the criticalChanceMultiplier
 	 */
-	public StringProperty getCriticalChanceMultiplier() {
+	public String getCriticalChanceMultiplier() {
 		return criticalChanceMultiplier;
 	}
 
@@ -344,14 +496,14 @@ public class Weapon {
 	 * @param criticalChanceMultiplier
 	 *            the criticalChanceMultiplier to set
 	 */
-	public void setCriticalChanceMultiplier(StringProperty criticalChanceMultiplier) {
+	public void setCriticalChanceMultiplier(String criticalChanceMultiplier) {
 		this.criticalChanceMultiplier = criticalChanceMultiplier;
 	}
 
 	/**
 	 * @return the aoeCapable
 	 */
-	public StringProperty getAoeCapable() {
+	public String getAoeCapable() {
 		return aoeCapable;
 	}
 
@@ -359,14 +511,14 @@ public class Weapon {
 	 * @param aoeCapable
 	 *            the aoeCapable to set
 	 */
-	public void setAoeCapable(StringProperty aoeCapable) {
+	public void setAoeCapable(String aoeCapable) {
 		this.aoeCapable = aoeCapable;
 	}
 
 	/**
 	 * @return the indirectFireCapable
 	 */
-	public StringProperty getIndirectFireCapable() {
+	public String getIndirectFireCapable() {
 		return indirectFireCapable;
 	}
 
@@ -374,14 +526,14 @@ public class Weapon {
 	 * @param indirectFireCapable
 	 *            the indirectFireCapable to set
 	 */
-	public void setIndirectFireCapable(StringProperty indirectFireCapable) {
+	public void setIndirectFireCapable(String indirectFireCapable) {
 		this.indirectFireCapable = indirectFireCapable;
 	}
 
 	/**
 	 * @return the refireModifier
 	 */
-	public StringProperty getRefireModifier() {
+	public String getRefireModifier() {
 		return refireModifier;
 	}
 
@@ -389,14 +541,14 @@ public class Weapon {
 	 * @param refireModifier
 	 *            the refireModifier to set
 	 */
-	public void setRefireModifier(StringProperty refireModifier) {
+	public void setRefireModifier(String refireModifier) {
 		this.refireModifier = refireModifier;
 	}
 
 	/**
 	 * @return the shotsWhenFired
 	 */
-	public StringProperty getShotsWhenFired() {
+	public String getShotsWhenFired() {
 		return shotsWhenFired;
 	}
 
@@ -404,14 +556,14 @@ public class Weapon {
 	 * @param shotsWhenFired
 	 *            the shotsWhenFired to set
 	 */
-	public void setShotsWhenFired(StringProperty shotsWhenFired) {
+	public void setShotsWhenFired(String shotsWhenFired) {
 		this.shotsWhenFired = shotsWhenFired;
 	}
 
 	/**
 	 * @return the projectilesPerShot
 	 */
-	public StringProperty getProjectilesPerShot() {
+	public String getProjectilesPerShot() {
 		return projectilesPerShot;
 	}
 
@@ -419,14 +571,14 @@ public class Weapon {
 	 * @param projectilesPerShot
 	 *            the projectilesPerShot to set
 	 */
-	public void setProjectilesPerShot(StringProperty projectilesPerShot) {
+	public void setProjectilesPerShot(String projectilesPerShot) {
 		this.projectilesPerShot = projectilesPerShot;
 	}
 
 	/**
 	 * @return the attackRecoil
 	 */
-	public StringProperty getAttackRecoil() {
+	public String getAttackRecoil() {
 		return attackRecoil;
 	}
 
@@ -434,14 +586,14 @@ public class Weapon {
 	 * @param attackRecoil
 	 *            the attackRecoil to set
 	 */
-	public void setAttackRecoil(StringProperty attackRecoil) {
+	public void setAttackRecoil(String attackRecoil) {
 		this.attackRecoil = attackRecoil;
 	}
 
 	/**
 	 * @return the instability
 	 */
-	public StringProperty getInstability() {
+	public String getInstability() {
 		return instability;
 	}
 
@@ -449,14 +601,14 @@ public class Weapon {
 	 * @param instability
 	 *            the instability to set
 	 */
-	public void setInstability(StringProperty instability) {
+	public void setInstability(String instability) {
 		this.instability = instability;
 	}
 
 	/**
 	 * @return the weaponEffectID
 	 */
-	public StringProperty getWeaponEffectID() {
+	public String getWeaponEffectID() {
 		return weaponEffectID;
 	}
 
@@ -464,14 +616,14 @@ public class Weapon {
 	 * @param weaponEffectID
 	 *            the weaponEffectID to set
 	 */
-	public void setWeaponEffectID(StringProperty weaponEffectID) {
+	public void setWeaponEffectID(String weaponEffectID) {
 		this.weaponEffectID = weaponEffectID;
 	}
 
 	/**
 	 * @return the id
 	 */
-	public StringProperty getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -479,14 +631,14 @@ public class Weapon {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(StringProperty id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the name
 	 */
-	public StringProperty getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -494,14 +646,14 @@ public class Weapon {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(StringProperty name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
 	 * @return the details
 	 */
-	public StringProperty getDetails() {
+	public String getDetails() {
 		return details;
 	}
 
@@ -509,14 +661,14 @@ public class Weapon {
 	 * @param details
 	 *            the details to set
 	 */
-	public void setDetails(StringProperty details) {
+	public void setDetails(String details) {
 		this.details = details;
 	}
 
 	/**
 	 * @return the icon
 	 */
-	public StringProperty getIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
@@ -524,14 +676,14 @@ public class Weapon {
 	 * @param icon
 	 *            the icon to set
 	 */
-	public void setIcon(StringProperty icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
 	/**
 	 * @return the cost
 	 */
-	public StringProperty getCost() {
+	public String getCost() {
 		return cost;
 	}
 
@@ -539,14 +691,14 @@ public class Weapon {
 	 * @param cost
 	 *            the cost to set
 	 */
-	public void setCost(StringProperty cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
 	}
 
 	/**
 	 * @return the rarity
 	 */
-	public StringProperty getRarity() {
+	public String getRarity() {
 		return rarity;
 	}
 
@@ -554,14 +706,14 @@ public class Weapon {
 	 * @param rarity
 	 *            the rarity to set
 	 */
-	public void setRarity(StringProperty rarity) {
+	public void setRarity(String rarity) {
 		this.rarity = rarity;
 	}
 
 	/**
 	 * @return the purchasable
 	 */
-	public StringProperty getPurchasable() {
+	public String getPurchasable() {
 		return purchasable;
 	}
 
@@ -569,14 +721,14 @@ public class Weapon {
 	 * @param purchasable
 	 *            the purchasable to set
 	 */
-	public void setPurchasable(StringProperty purchasable) {
+	public void setPurchasable(String purchasable) {
 		this.purchasable = purchasable;
 	}
 
 	/**
 	 * @return the manufacturer
 	 */
-	public StringProperty getManufacturer() {
+	public String getManufacturer() {
 		return manufacturer;
 	}
 
@@ -584,14 +736,14 @@ public class Weapon {
 	 * @param manufacturer
 	 *            the manufacturer to set
 	 */
-	public void setManufacturer(StringProperty manufacturer) {
+	public void setManufacturer(String manufacturer) {
 		this.manufacturer = manufacturer;
 	}
 
 	/**
 	 * @return the model
 	 */
-	public StringProperty getModel() {
+	public String getModel() {
 		return model;
 	}
 
@@ -599,14 +751,14 @@ public class Weapon {
 	 * @param model
 	 *            the model to set
 	 */
-	public void setModel(StringProperty model) {
+	public void setModel(String model) {
 		this.model = model;
 	}
 
 	/**
 	 * @return the uiName
 	 */
-	public StringProperty getUiName() {
+	public String getUiName() {
 		return uiName;
 	}
 
@@ -614,14 +766,14 @@ public class Weapon {
 	 * @param uiName
 	 *            the uiName to set
 	 */
-	public void setUiName(StringProperty uiName) {
+	public void setUiName(String uiName) {
 		this.uiName = uiName;
 	}
 
 	/**
 	 * @return the bonusValueA
 	 */
-	public StringProperty getBonusValueA() {
+	public String getBonusValueA() {
 		return bonusValueA;
 	}
 
@@ -629,14 +781,14 @@ public class Weapon {
 	 * @param bonusValueA
 	 *            the bonusValueA to set
 	 */
-	public void setBonusValueA(StringProperty bonusValueA) {
+	public void setBonusValueA(String bonusValueA) {
 		this.bonusValueA = bonusValueA;
 	}
 
 	/**
 	 * @return the bonusValueB
 	 */
-	public StringProperty getBonusValueB() {
+	public String getBonusValueB() {
 		return bonusValueB;
 	}
 
@@ -644,14 +796,14 @@ public class Weapon {
 	 * @param bonusValueB
 	 *            the bonusValueB to set
 	 */
-	public void setBonusValueB(StringProperty bonusValueB) {
+	public void setBonusValueB(String bonusValueB) {
 		this.bonusValueB = bonusValueB;
 	}
 
 	/**
 	 * @return the componentType
 	 */
-	public StringProperty getComponentType() {
+	public String getComponentType() {
 		return componentType;
 	}
 
@@ -659,14 +811,14 @@ public class Weapon {
 	 * @param componentType
 	 *            the componentType to set
 	 */
-	public void setComponentType(StringProperty componentType) {
+	public void setComponentType(String componentType) {
 		this.componentType = componentType;
 	}
 
 	/**
 	 * @return the componentSubType
 	 */
-	public StringProperty getComponentSubType() {
+	public String getComponentSubType() {
 		return componentSubType;
 	}
 
@@ -674,14 +826,14 @@ public class Weapon {
 	 * @param componentSubType
 	 *            the componentSubType to set
 	 */
-	public void setComponentSubType(StringProperty componentSubType) {
+	public void setComponentSubType(String componentSubType) {
 		this.componentSubType = componentSubType;
 	}
 
 	/**
 	 * @return the prefabIdentifier
 	 */
-	public StringProperty getPrefabIdentifier() {
+	public String getPrefabIdentifier() {
 		return prefabIdentifier;
 	}
 
@@ -689,14 +841,14 @@ public class Weapon {
 	 * @param prefabIdentifier
 	 *            the prefabIdentifier to set
 	 */
-	public void setPrefabIdentifier(StringProperty prefabIdentifier) {
+	public void setPrefabIdentifier(String prefabIdentifier) {
 		this.prefabIdentifier = prefabIdentifier;
 	}
 
 	/**
 	 * @return the battleValue
 	 */
-	public StringProperty getBattleValue() {
+	public String getBattleValue() {
 		return battleValue;
 	}
 
@@ -704,14 +856,14 @@ public class Weapon {
 	 * @param battleValue
 	 *            the battleValue to set
 	 */
-	public void setBattleValue(StringProperty battleValue) {
+	public void setBattleValue(String battleValue) {
 		this.battleValue = battleValue;
 	}
 
 	/**
 	 * @return the inventorySize
 	 */
-	public StringProperty getInventorySize() {
+	public String getInventorySize() {
 		return inventorySize;
 	}
 
@@ -719,14 +871,14 @@ public class Weapon {
 	 * @param inventorySize
 	 *            the inventorySize to set
 	 */
-	public void setInventorySize(StringProperty inventorySize) {
+	public void setInventorySize(String inventorySize) {
 		this.inventorySize = inventorySize;
 	}
 
 	/**
 	 * @return the tonnage
 	 */
-	public StringProperty getTonnage() {
+	public String getTonnage() {
 		return tonnage;
 	}
 
@@ -734,14 +886,14 @@ public class Weapon {
 	 * @param tonnage
 	 *            the tonnage to set
 	 */
-	public void setTonnage(StringProperty tonnage) {
+	public void setTonnage(String tonnage) {
 		this.tonnage = tonnage;
 	}
 
 	/**
 	 * @return the allowedLocations
 	 */
-	public StringProperty getAllowedLocations() {
+	public String getAllowedLocations() {
 		return allowedLocations;
 	}
 
@@ -749,14 +901,14 @@ public class Weapon {
 	 * @param allowedLocations
 	 *            the allowedLocations to set
 	 */
-	public void setAllowedLocations(StringProperty allowedLocations) {
+	public void setAllowedLocations(String allowedLocations) {
 		this.allowedLocations = allowedLocations;
 	}
 
 	/**
 	 * @return the disallowedLocations
 	 */
-	public StringProperty getDisallowedLocations() {
+	public String getDisallowedLocations() {
 		return disallowedLocations;
 	}
 
@@ -764,14 +916,14 @@ public class Weapon {
 	 * @param disallowedLocations
 	 *            the disallowedLocations to set
 	 */
-	public void setDisallowedLocations(StringProperty disallowedLocations) {
+	public void setDisallowedLocations(String disallowedLocations) {
 		this.disallowedLocations = disallowedLocations;
 	}
 
 	/**
 	 * @return the criticalComponent
 	 */
-	public StringProperty getCriticalComponent() {
+	public String getCriticalComponent() {
 		return criticalComponent;
 	}
 
@@ -779,7 +931,7 @@ public class Weapon {
 	 * @param criticalComponent
 	 *            the criticalComponent to set
 	 */
-	public void setCriticalComponent(StringProperty criticalComponent) {
+	public void setCriticalComponent(String criticalComponent) {
 		this.criticalComponent = criticalComponent;
 	}
 
