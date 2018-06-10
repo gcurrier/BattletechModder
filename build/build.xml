@@ -115,7 +115,7 @@
 			<manifest>
 				<attribute name="Implementation-Vendor" value="Glen Currier" />
 				<attribute name="Implementation-Title" value="BattletechModder" />
-				<attribute name="Implementation-Version" value="0.3.0a" />
+				<attribute name="Implementation-Version" value="0.3.1a" />
 				<attribute name="JavaFX-Feature-Proxy" value="None" />
 			</manifest>
 		</fx:jar>
