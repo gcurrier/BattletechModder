@@ -2,146 +2,12 @@ package com.battletech.modder.model;
 
 import java.util.ArrayList;
 
-//import javafx.beans.property.StringProperty;
-
-// String category = "";
-// String type = "";
-// String minRange = "";
-// String maxRange = "";
-// String rangeSplit = "";
-// String ammoCategory = "";
-// String startingAmmoCapacity = "";
-// String heatGenerated = "";
-// String damage = "";
-// String overheatedDamageMultiplier = "";
-// String evasiveDamageMultiplier = "";
-// String damageVariance = "";
-// String heatDamage = "";
-// String accuracyModifier = "";
-// String criticalChanceMultiplier = "";
-// String aoeCapable = "";
-// String indirectFireCapable = "";
-// String refireModifier = "";
-// String shotsWhenFired = "";
-// String projectilesPerShot = "";
-// String attackRecoil = "";
-// String instability = "";
-// String weaponEffectID = "";
-// String id = "";
-// String name = "";
-// String details = "";
-// String icon = "";
-// String cost = "";
-// String rarity = "";
-// String purchasable = "";
-// String manufacturer = "";
-// String model = "";
-// String uiName = "";
-// String bonusValueA = "";
-// String bonusValueB = "";
-// String componentType = "";
-// String componentSubType = "";
-// String prefabIdentifier = "";
-// String battleValue = "";
-// String inventorySize = "";
-// String tonnage = "";
-// String allowedLocations = "";
-// String disallowedLocations = "";
-// String criticalComponent = "";
-
-//category = ;  
-//type = ;  
-//minRange = ;  
-//maxRange = ;
-//rangeSplit = ;
-//ammoCategory = ;
-//startingAmmoCapacity = ;
-//heatGenerated = ;damage = ;
-//overheatedDamageMultiplier = ;
-//evasiveDamageMultiplier = ;
-//damageVariance = ;heatDamage = ;
-//accuracyModifier = ;
-//criticalChanceMultiplier = ;
-//aoeCapable = ;
-//indirectFireCapable = ;
-//refireModifier = ;
-//shotsWhenFired = ;
-//projectilesPerShot = ;
-//attackRecoil = ;
-//instability = ;
-//weaponEffectID = ;
-//id = ;
-//name = ;
-//details = ;
-//icon = ;
-//cost = ;
-//rarity = ;
-//purchasable = ;
-//manufacturer = ;
-//model = ;
-//uiName = ;
-//bonusValueA = ;
-//bonusValueB = ;
-//componentType = ;
-//componentSubType = ;
-//prefabIdentifier = ;
-//battleValue = ;
-//inventorySize = ;
-//tonnage = ;
-//allowedLocations = ;
-//disallowedLocations = ;
-//criticalComponent = ;
-//Weapon weapon = new Weapon(
-//		category,  
-//		type,  
-//		minRange,  
-//		maxRange,
-//		rangeSplit,
-//		ammoCategory,
-//		startingAmmoCapacity,
-//		heatGenerated,damage,
-//		overheatedDamageMultiplier,
-//		evasiveDamageMultiplier,
-//		damageVariance,heatDamage,
-//		accuracyModifier,
-//		criticalChanceMultiplier,
-//		aoeCapable,
-//		indirectFireCapable,
-//		refireModifier,
-//		shotsWhenFired,
-//		projectilesPerShot,
-//		attackRecoil,
-//		instability,
-//		weaponEffectID,
-//		id,
-//		name,
-//		details,
-//		icon,
-//		cost,
-//		rarity,
-//		purchasable,
-//		manufacturer,
-//		model,
-//		uiName,
-//		bonusValueA,
-//		bonusValueB,
-//		componentType,
-//		componentSubType,
-//		prefabIdentifier,
-//		battleValue,
-//		inventorySize,
-//		tonnage,
-//		allowedLocations,
-//		disallowedLocations,
-//		criticalComponent
-//		);
-
 /**
  * Model class for a Weapon object
  * @author jinx3y
  *
  */
-public class Weapon {
+public class Weapon implements IWeapon {
 	private String category;
 	private String type;
 	private String minRange;
@@ -191,746 +57,782 @@ public class Weapon {
 	
 	private ArrayList<Weapon> weaponList;
 
-//	/**
-//	 * Default Weapon Constructor
-//	 */
-//	public Weapon() {
-//		this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-//				null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-//				null, null, null, null, null, null, null, null, null);
-//	}
-//
-//	/**
-//	 * Initialized Constructor with data
-//	 * @param category
-//	 * @param type
-//	 * @param minRange
-//	 * @param maxRange
-//	 * @param rangeSplit
-//	 * @param ammoCategory
-//	 * @param startingAmmoCapacity
-//	 * @param heatGenerated
-//	 * @param damage
-//	 * @param overheatedDamageMultiplier
-//	 * @param evasiveDamageMultiplier
-//	 * @param damageVariance
-//	 * @param heatDamage
-//	 * @param accuracyModifier
-//	 * @param criticalChanceMultiplier
-//	 * @param aoeCapable
-//	 * @param indirectFireCapable
-//	 * @param refireModifier
-//	 * @param shotsWhenFired
-//	 * @param projectilesPerShot
-//	 * @param attackRecoil
-//	 * @param instability
-//	 * @param weaponEffectID
-//	 * @param id
-//	 * @param name
-//	 * @param details
-//	 * @param icon
-//	 * @param cost
-//	 * @param rarity
-//	 * @param purchasable
-//	 * @param manufacturer
-//	 * @param model
-//	 * @param uiName
-//	 * @param bonusValueA
-//	 * @param bonusValueB
-//	 * @param componentType
-//	 * @param componentSubType
-//	 * @param prefabIdentifier
-//	 * @param battleValue
-//	 * @param inventorySize
-//	 * @param tonnage
-//	 * @param allowedLocations
-//	 * @param disallowedLocations
-//	 * @param criticalComponent
-//	 */
-//	public Weapon(String category, String type, String minRange, String maxRange, String rangeSplit,
-//			String ammoCategory, String startingAmmoCapacity, String heatGenerated, String damage,
-//			String overheatedDamageMultiplier, String evasiveDamageMultiplier, String damageVariance, String heatDamage,
-//			String accuracyModifier, String criticalChanceMultiplier, String aoeCapable, String indirectFireCapable,
-//			String refireModifier, String shotsWhenFired, String projectilesPerShot, String attackRecoil,
-//			String instability, String weaponEffectID, String id, String name, String details, String icon, String cost,
-//			String rarity, String purchasable, String manufacturer, String model, String uiName, String bonusValueA,
-//			String bonusValueB, String componentType, String componentSubType, String prefabIdentifier,
-//			String battleValue, String inventorySize, String tonnage, String allowedLocations,
-//			String disallowedLocations, String criticalComponent) {
-//	}
-	
-	/**
-	 * Creates an ArrayList of weapon objects
-	 * @param weaponList
+	public Weapon() {}
+
+	public Weapon(String category, String type, String minRange, String maxRange, String rangeSplit,
+			String ammoCategory, String startingAmmoCapacity, String heatGenerated, String damage,
+			String overheatedDamageMultiplier, String evasiveDamageMultiplier, String damageVariance, String heatDamage,
+			String accuracyModifier, String criticalChanceMultiplier, String aoeCapable, String indirectFireCapable,
+			String refireModifier, String shotsWhenFired, String projectilesPerShot, String attackRecoil,
+			String instability, String weaponEffectID, String id, String name, String details, String icon, String cost,
+			String rarity, String purchasable, String manufacturer, String model, String uiName, String bonusValueA,
+			String bonusValueB, String componentType, String componentSubType, String prefabIdentifier,
+			String battleValue, String inventorySize, String tonnage, String allowedLocations,
+			String disallowedLocations, String criticalComponent, ArrayList<Weapon> weaponList) {
+		super();
+		this.category = category;
+		this.type = type;
+		this.minRange = minRange;
+		this.maxRange = maxRange;
+		this.rangeSplit = rangeSplit;
+		this.ammoCategory = ammoCategory;
+		this.startingAmmoCapacity = startingAmmoCapacity;
+		this.heatGenerated = heatGenerated;
+		this.damage = damage;
+		this.overheatedDamageMultiplier = overheatedDamageMultiplier;
+		this.evasiveDamageMultiplier = evasiveDamageMultiplier;
+		this.damageVariance = damageVariance;
+		this.heatDamage = heatDamage;
+		this.accuracyModifier = accuracyModifier;
+		this.criticalChanceMultiplier = criticalChanceMultiplier;
+		this.aoeCapable = aoeCapable;
+		this.indirectFireCapable = indirectFireCapable;
+		this.refireModifier = refireModifier;
+		this.shotsWhenFired = shotsWhenFired;
+		this.projectilesPerShot = projectilesPerShot;
+		this.attackRecoil = attackRecoil;
+		this.instability = instability;
+		this.weaponEffectID = weaponEffectID;
+		this.id = id;
+		this.name = name;
+		this.details = details;
+		this.icon = icon;
+		this.cost = cost;
+		this.rarity = rarity;
+		this.purchasable = purchasable;
+		this.manufacturer = manufacturer;
+		this.model = model;
+		this.uiName = uiName;
+		this.bonusValueA = bonusValueA;
+		this.bonusValueB = bonusValueB;
+		this.componentType = componentType;
+		this.componentSubType = componentSubType;
+		this.prefabIdentifier = prefabIdentifier;
+		this.battleValue = battleValue;
+		this.inventorySize = inventorySize;
+		this.tonnage = tonnage;
+		this.allowedLocations = allowedLocations;
+		this.disallowedLocations = disallowedLocations;
+		this.criticalComponent = criticalComponent;
+		this.weaponList = weaponList;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setWeaponList(java.util.ArrayList)
 	 */
+	@Override
 	public void setWeaponList (ArrayList<Weapon> weaponList){
 		this.weaponList = weaponList;
 	}
 	
-	/**
-	 * Returns an ArrayList of Weapon objects
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getWeaponList()
 	 */
+	@Override
 	public ArrayList<Weapon> getWeaponList (){
 		return this.weaponList;
 	}
 
-	/**
-	 * @return the category
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getCategory()
 	 */
+	@Override
 	public String getCategory() {
 		return category;
 	}
 
-	/**
-	 * @param category
-	 *            the category to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setCategory(java.lang.String)
 	 */
+	@Override
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	/**
-	 * @return the type
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getType()
 	 */
+	@Override
 	public String getType() {
 		return type;
 	}
 
-	/**
-	 * @param type
-	 *            the type to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setType(java.lang.String)
 	 */
+	@Override
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	/**
-	 * @return the minRange
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getMinRange()
 	 */
+	@Override
 	public String getMinRange() {
 		return minRange;
 	}
 
-	/**
-	 * @param minRange
-	 *            the minRange to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setMinRange(java.lang.String)
 	 */
+	@Override
 	public void setMinRange(String minRange) {
 		this.minRange = minRange;
 	}
 
-	/**
-	 * @return the maxRange
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getMaxRange()
 	 */
+	@Override
 	public String getMaxRange() {
 		return maxRange;
 	}
 
-	/**
-	 * @param maxRange
-	 *            the maxRange to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setMaxRange(java.lang.String)
 	 */
+	@Override
 	public void setMaxRange(String maxRange) {
 		this.maxRange = maxRange;
 	}
 
-	/**
-	 * @return the rangeSplit
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getRangeSplit()
 	 */
+	@Override
 	public String getRangeSplit() {
 		return rangeSplit;
 	}
 
-	/**
-	 * @param rangeSplit
-	 *            the rangeSplit to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setRangeSplit(java.lang.String)
 	 */
+	@Override
 	public void setRangeSplit(String rangeSplit) {
 		this.rangeSplit = rangeSplit;
 	}
 
-	/**
-	 * @return the ammoCategory
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getAmmoCategory()
 	 */
+	@Override
 	public String getAmmoCategory() {
 		return ammoCategory;
 	}
 
-	/**
-	 * @param ammoCategory
-	 *            the ammoCategory to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setAmmoCategory(java.lang.String)
 	 */
+	@Override
 	public void setAmmoCategory(String ammoCategory) {
 		this.ammoCategory = ammoCategory;
 	}
 
-	/**
-	 * @return the startingAmmoCapacity
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getStartingAmmoCapacity()
 	 */
+	@Override
 	public String getStartingAmmoCapacity() {
 		return startingAmmoCapacity;
 	}
 
-	/**
-	 * @param startingAmmoCapacity
-	 *            the startingAmmoCapacity to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setStartingAmmoCapacity(java.lang.String)
 	 */
+	@Override
 	public void setStartingAmmoCapacity(String startingAmmoCapacity) {
 		this.startingAmmoCapacity = startingAmmoCapacity;
 	}
 
-	/**
-	 * @return the heatGenerated
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getHeatGenerated()
 	 */
+	@Override
 	public String getHeatGenerated() {
 		return heatGenerated;
 	}
 
-	/**
-	 * @param heatGenerated
-	 *            the heatGenerated to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setHeatGenerated(java.lang.String)
 	 */
+	@Override
 	public void setHeatGenerated(String heatGenerated) {
 		this.heatGenerated = heatGenerated;
 	}
 
-	/**
-	 * @return the damage
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getDamage()
 	 */
+	@Override
 	public String getDamage() {
 		return damage;
 	}
 
-	/**
-	 * @param damage
-	 *            the damage to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setDamage(java.lang.String)
 	 */
+	@Override
 	public void setDamage(String damage) {
 		this.damage = damage;
 	}
 
-	/**
-	 * @return the overheatedDamageMultiplier
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getOverheatedDamageMultiplier()
 	 */
+	@Override
 	public String getOverheatedDamageMultiplier() {
 		return overheatedDamageMultiplier;
 	}
 
-	/**
-	 * @param overheatedDamageMultiplier
-	 *            the overheatedDamageMultiplier to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setOverheatedDamageMultiplier(java.lang.String)
 	 */
+	@Override
 	public void setOverheatedDamageMultiplier(String overheatedDamageMultiplier) {
 		this.overheatedDamageMultiplier = overheatedDamageMultiplier;
 	}
 
-	/**
-	 * @return the evasiveDamageMultiplier
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getEvasiveDamageMultiplier()
 	 */
+	@Override
 	public String getEvasiveDamageMultiplier() {
 		return evasiveDamageMultiplier;
 	}
 
-	/**
-	 * @param evasiveDamageMultiplier
-	 *            the evasiveDamageMultiplier to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setEvasiveDamageMultiplier(java.lang.String)
 	 */
+	@Override
 	public void setEvasiveDamageMultiplier(String evasiveDamageMultiplier) {
 		this.evasiveDamageMultiplier = evasiveDamageMultiplier;
 	}
 
-	/**
-	 * @return the damageVariance
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getDamageVariance()
 	 */
+	@Override
 	public String getDamageVariance() {
 		return damageVariance;
 	}
 
-	/**
-	 * @param damageVariance
-	 *            the damageVariance to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setDamageVariance(java.lang.String)
 	 */
+	@Override
 	public void setDamageVariance(String damageVariance) {
 		this.damageVariance = damageVariance;
 	}
 
-	/**
-	 * @return the heatDamage
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getHeatDamage()
 	 */
+	@Override
 	public String getHeatDamage() {
 		return heatDamage;
 	}
 
-	/**
-	 * @param heatDamage
-	 *            the heatDamage to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setHeatDamage(java.lang.String)
 	 */
+	@Override
 	public void setHeatDamage(String heatDamage) {
 		this.heatDamage = heatDamage;
 	}
 
-	/**
-	 * @return the accuracyModifier
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getAccuracyModifier()
 	 */
+	@Override
 	public String getAccuracyModifier() {
 		return accuracyModifier;
 	}
 
-	/**
-	 * @param accuracyModifier
-	 *            the accuracyModifier to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setAccuracyModifier(java.lang.String)
 	 */
+	@Override
 	public void setAccuracyModifier(String accuracyModifier) {
 		this.accuracyModifier = accuracyModifier;
 	}
 
-	/**
-	 * @return the criticalChanceMultiplier
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getCriticalChanceMultiplier()
 	 */
+	@Override
 	public String getCriticalChanceMultiplier() {
 		return criticalChanceMultiplier;
 	}
 
-	/**
-	 * @param criticalChanceMultiplier
-	 *            the criticalChanceMultiplier to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setCriticalChanceMultiplier(java.lang.String)
 	 */
+	@Override
 	public void setCriticalChanceMultiplier(String criticalChanceMultiplier) {
 		this.criticalChanceMultiplier = criticalChanceMultiplier;
 	}
 
-	/**
-	 * @return the aoeCapable
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getAoeCapable()
 	 */
+	@Override
 	public String getAoeCapable() {
 		return aoeCapable;
 	}
 
-	/**
-	 * @param aoeCapable
-	 *            the aoeCapable to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setAoeCapable(java.lang.String)
 	 */
+	@Override
 	public void setAoeCapable(String aoeCapable) {
 		this.aoeCapable = aoeCapable;
 	}
 
-	/**
-	 * @return the indirectFireCapable
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getIndirectFireCapable()
 	 */
+	@Override
 	public String getIndirectFireCapable() {
 		return indirectFireCapable;
 	}
 
-	/**
-	 * @param indirectFireCapable
-	 *            the indirectFireCapable to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setIndirectFireCapable(java.lang.String)
 	 */
+	@Override
 	public void setIndirectFireCapable(String indirectFireCapable) {
 		this.indirectFireCapable = indirectFireCapable;
 	}
 
-	/**
-	 * @return the refireModifier
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getRefireModifier()
 	 */
+	@Override
 	public String getRefireModifier() {
 		return refireModifier;
 	}
 
-	/**
-	 * @param refireModifier
-	 *            the refireModifier to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setRefireModifier(java.lang.String)
 	 */
+	@Override
 	public void setRefireModifier(String refireModifier) {
 		this.refireModifier = refireModifier;
 	}
 
-	/**
-	 * @return the shotsWhenFired
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getShotsWhenFired()
 	 */
+	@Override
 	public String getShotsWhenFired() {
 		return shotsWhenFired;
 	}
 
-	/**
-	 * @param shotsWhenFired
-	 *            the shotsWhenFired to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setShotsWhenFired(java.lang.String)
 	 */
+	@Override
 	public void setShotsWhenFired(String shotsWhenFired) {
 		this.shotsWhenFired = shotsWhenFired;
 	}
 
-	/**
-	 * @return the projectilesPerShot
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getProjectilesPerShot()
 	 */
+	@Override
 	public String getProjectilesPerShot() {
 		return projectilesPerShot;
 	}
 
-	/**
-	 * @param projectilesPerShot
-	 *            the projectilesPerShot to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setProjectilesPerShot(java.lang.String)
 	 */
+	@Override
 	public void setProjectilesPerShot(String projectilesPerShot) {
 		this.projectilesPerShot = projectilesPerShot;
 	}
 
-	/**
-	 * @return the attackRecoil
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getAttackRecoil()
 	 */
+	@Override
 	public String getAttackRecoil() {
 		return attackRecoil;
 	}
 
-	/**
-	 * @param attackRecoil
-	 *            the attackRecoil to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setAttackRecoil(java.lang.String)
 	 */
+	@Override
 	public void setAttackRecoil(String attackRecoil) {
 		this.attackRecoil = attackRecoil;
 	}
 
-	/**
-	 * @return the instability
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getInstability()
 	 */
+	@Override
 	public String getInstability() {
 		return instability;
 	}
 
-	/**
-	 * @param instability
-	 *            the instability to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setInstability(java.lang.String)
 	 */
+	@Override
 	public void setInstability(String instability) {
 		this.instability = instability;
 	}
 
-	/**
-	 * @return the weaponEffectID
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getWeaponEffectID()
 	 */
+	@Override
 	public String getWeaponEffectID() {
 		return weaponEffectID;
 	}
 
-	/**
-	 * @param weaponEffectID
-	 *            the weaponEffectID to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setWeaponEffectID(java.lang.String)
 	 */
+	@Override
 	public void setWeaponEffectID(String weaponEffectID) {
 		this.weaponEffectID = weaponEffectID;
 	}
 
-	/**
-	 * @return the id
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getId()
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * @param id
-	 *            the id to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setId(java.lang.String)
 	 */
+	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the name
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getName()
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name
-	 *            the name to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setName(java.lang.String)
 	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the details
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getDetails()
 	 */
+	@Override
 	public String getDetails() {
 		return details;
 	}
 
-	/**
-	 * @param details
-	 *            the details to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setDetails(java.lang.String)
 	 */
+	@Override
 	public void setDetails(String details) {
 		this.details = details;
 	}
 
-	/**
-	 * @return the icon
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getIcon()
 	 */
+	@Override
 	public String getIcon() {
 		return icon;
 	}
 
-	/**
-	 * @param icon
-	 *            the icon to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setIcon(java.lang.String)
 	 */
+	@Override
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
-	/**
-	 * @return the cost
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getCost()
 	 */
+	@Override
 	public String getCost() {
 		return cost;
 	}
 
-	/**
-	 * @param cost
-	 *            the cost to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setCost(java.lang.String)
 	 */
+	@Override
 	public void setCost(String cost) {
 		this.cost = cost;
 	}
 
-	/**
-	 * @return the rarity
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getRarity()
 	 */
+	@Override
 	public String getRarity() {
 		return rarity;
 	}
 
-	/**
-	 * @param rarity
-	 *            the rarity to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setRarity(java.lang.String)
 	 */
+	@Override
 	public void setRarity(String rarity) {
 		this.rarity = rarity;
 	}
 
-	/**
-	 * @return the purchasable
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getPurchasable()
 	 */
+	@Override
 	public String getPurchasable() {
 		return purchasable;
 	}
 
-	/**
-	 * @param purchasable
-	 *            the purchasable to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setPurchasable(java.lang.String)
 	 */
+	@Override
 	public void setPurchasable(String purchasable) {
 		this.purchasable = purchasable;
 	}
 
-	/**
-	 * @return the manufacturer
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getManufacturer()
 	 */
+	@Override
 	public String getManufacturer() {
 		return manufacturer;
 	}
 
-	/**
-	 * @param manufacturer
-	 *            the manufacturer to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setManufacturer(java.lang.String)
 	 */
+	@Override
 	public void setManufacturer(String manufacturer) {
 		this.manufacturer = manufacturer;
 	}
 
-	/**
-	 * @return the model
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getModel()
 	 */
+	@Override
 	public String getModel() {
 		return model;
 	}
 
-	/**
-	 * @param model
-	 *            the model to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setModel(java.lang.String)
 	 */
+	@Override
 	public void setModel(String model) {
 		this.model = model;
 	}
 
-	/**
-	 * @return the uiName
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getUiName()
 	 */
+	@Override
 	public String getUiName() {
 		return uiName;
 	}
 
-	/**
-	 * @param uiName
-	 *            the uiName to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setUiName(java.lang.String)
 	 */
+	@Override
 	public void setUiName(String uiName) {
 		this.uiName = uiName;
 	}
 
-	/**
-	 * @return the bonusValueA
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getBonusValueA()
 	 */
+	@Override
 	public String getBonusValueA() {
 		return bonusValueA;
 	}
 
-	/**
-	 * @param bonusValueA
-	 *            the bonusValueA to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setBonusValueA(java.lang.String)
 	 */
+	@Override
 	public void setBonusValueA(String bonusValueA) {
 		this.bonusValueA = bonusValueA;
 	}
 
-	/**
-	 * @return the bonusValueB
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getBonusValueB()
 	 */
+	@Override
 	public String getBonusValueB() {
 		return bonusValueB;
 	}
 
-	/**
-	 * @param bonusValueB
-	 *            the bonusValueB to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setBonusValueB(java.lang.String)
 	 */
+	@Override
 	public void setBonusValueB(String bonusValueB) {
 		this.bonusValueB = bonusValueB;
 	}
 
-	/**
-	 * @return the componentType
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getComponentType()
 	 */
+	@Override
 	public String getComponentType() {
 		return componentType;
 	}
 
-	/**
-	 * @param componentType
-	 *            the componentType to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setComponentType(java.lang.String)
 	 */
+	@Override
 	public void setComponentType(String componentType) {
 		this.componentType = componentType;
 	}
 
-	/**
-	 * @return the componentSubType
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getComponentSubType()
 	 */
+	@Override
 	public String getComponentSubType() {
 		return componentSubType;
 	}
 
-	/**
-	 * @param componentSubType
-	 *            the componentSubType to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setComponentSubType(java.lang.String)
 	 */
+	@Override
 	public void setComponentSubType(String componentSubType) {
 		this.componentSubType = componentSubType;
 	}
 
-	/**
-	 * @return the prefabIdentifier
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getPrefabIdentifier()
 	 */
+	@Override
 	public String getPrefabIdentifier() {
 		return prefabIdentifier;
 	}
 
-	/**
-	 * @param prefabIdentifier
-	 *            the prefabIdentifier to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setPrefabIdentifier(java.lang.String)
 	 */
+	@Override
 	public void setPrefabIdentifier(String prefabIdentifier) {
 		this.prefabIdentifier = prefabIdentifier;
 	}
 
-	/**
-	 * @return the battleValue
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getBattleValue()
 	 */
+	@Override
 	public String getBattleValue() {
 		return battleValue;
 	}
 
-	/**
-	 * @param battleValue
-	 *            the battleValue to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setBattleValue(java.lang.String)
 	 */
+	@Override
 	public void setBattleValue(String battleValue) {
 		this.battleValue = battleValue;
 	}
 
-	/**
-	 * @return the inventorySize
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getInventorySize()
 	 */
+	@Override
 	public String getInventorySize() {
 		return inventorySize;
 	}
 
-	/**
-	 * @param inventorySize
-	 *            the inventorySize to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setInventorySize(java.lang.String)
 	 */
+	@Override
 	public void setInventorySize(String inventorySize) {
 		this.inventorySize = inventorySize;
 	}
 
-	/**
-	 * @return the tonnage
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getTonnage()
 	 */
+	@Override
 	public String getTonnage() {
 		return tonnage;
 	}
 
-	/**
-	 * @param tonnage
-	 *            the tonnage to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setTonnage(java.lang.String)
 	 */
+	@Override
 	public void setTonnage(String tonnage) {
 		this.tonnage = tonnage;
 	}
 
-	/**
-	 * @return the allowedLocations
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getAllowedLocations()
 	 */
+	@Override
 	public String getAllowedLocations() {
 		return allowedLocations;
 	}
 
-	/**
-	 * @param allowedLocations
-	 *            the allowedLocations to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setAllowedLocations(java.lang.String)
 	 */
+	@Override
 	public void setAllowedLocations(String allowedLocations) {
 		this.allowedLocations = allowedLocations;
 	}
 
-	/**
-	 * @return the disallowedLocations
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getDisallowedLocations()
 	 */
+	@Override
 	public String getDisallowedLocations() {
 		return disallowedLocations;
 	}
 
-	/**
-	 * @param disallowedLocations
-	 *            the disallowedLocations to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setDisallowedLocations(java.lang.String)
 	 */
+	@Override
 	public void setDisallowedLocations(String disallowedLocations) {
 		this.disallowedLocations = disallowedLocations;
 	}
 
-	/**
-	 * @return the criticalComponent
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#getCriticalComponent()
 	 */
+	@Override
 	public String getCriticalComponent() {
 		return criticalComponent;
 	}
 
-	/**
-	 * @param criticalComponent
-	 *            the criticalComponent to set
+	/* (non-Javadoc)
+	 * @see com.battletech.modder.model.IWeapon#setCriticalComponent(java.lang.String)
 	 */
+	@Override
 	public void setCriticalComponent(String criticalComponent) {
 		this.criticalComponent = criticalComponent;
 	}

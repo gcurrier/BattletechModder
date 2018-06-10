@@ -1,6 +1,8 @@
 package com.battletech.modder.control.utils;
 
 import java.io.File;
+import java.nio.file.FileVisitor;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class DirectoryAndFileUtility {
@@ -9,7 +11,6 @@ public class DirectoryAndFileUtility {
 	public String fileName;
 	public SimpleLogger log;
 	private ArrayList<File> fileNameArray;
-	
 
 	public ArrayList<File> getFileArray() {
 		return this.fileNameArray;
@@ -38,4 +39,18 @@ public class DirectoryAndFileUtility {
 			System.out.println(x);
 		}
 	}
+	
+//	public void listDirectories(String directoryName, List<File> files) {
+//	    File directory = new File(directoryName);
+//
+//	    // Get all the files from a directory.
+//	    File[] fList = directory.listFiles();
+//	    for (File file : fList) {
+//	        if (file.isFile()) {
+//	            files.add(file);
+//	        } else if (file.isDirectory()) {
+//	            listf(file.getAbsolutePath(), files);
+//	        }
+//	    }
+//	}
 }
