@@ -107,8 +107,9 @@ public class BTModderMain extends Application {
 			loader.setLocation(BTModderMain.class.getResource("view/RootLayout.fxml"));
 			setRootLayout((BorderPane) loader.load());
 			// Show the scene containing the root layout.
-			Scene scene = new Scene(getRootLayout(), 950, 600);
+			Scene scene = new Scene(getRootLayout(), 950, 660);
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			// Give the RootLayoutController access to the main app.
 			setRootController(loader.getController());
 			getRootController().setMainApp(this);
