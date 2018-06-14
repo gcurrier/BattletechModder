@@ -19,7 +19,7 @@ public class TreeViewBuilder {
 	 * ArrayList.
 	 * 
 	 * @param componentFolderPath
-	 *            The absolutePath string
+	 *          The absolutePath string
 	 * @return ArrayList<JSONObject>
 	 */
 	public static ArrayList<JSONObject> getItemList(String componentFolderPath) {
@@ -34,8 +34,7 @@ public class TreeViewBuilder {
 				List<String> files;
 				try {
 					files = Files.readAllLines(path);
-					String thisFile = files.toString().replaceAll(",,", ",").replaceAll("^\\[", "")
-							.replaceAll("\\]$", "").replaceAll("\\{,", "\\{");
+					String thisFile = files.toString().replaceAll(",,", ",").replaceAll("^\\[", "").replaceAll("\\]$", "").replaceAll("\\{,", "\\{");
 					JSONObject item;
 					item = new JSONObject(thisFile);
 					itemList.add(item);
@@ -54,11 +53,11 @@ public class TreeViewBuilder {
 	 * building category-specific nested TreeItems.
 	 * 
 	 * @param category
-	 *            The name of the TreeView branch (used to determine which
-	 *            subsequent TreeItem builder to call)
+	 *          The name of the TreeView branch (used to determine which subsequent
+	 *          TreeItem builder to call)
 	 * @param description
-	 *            The JSONObject representing the Description nested object (assumed
-	 *            to be present) within the file currently being "read".
+	 *          The JSONObject representing the Description nested object (assumed
+	 *          to be present) within the file currently being "read".
 	 * @return TreeItem
 	 */
 	@SuppressWarnings("null")
@@ -80,10 +79,25 @@ public class TreeViewBuilder {
 		case "melee":
 			thisItem = getWeaponTreeItem(description);
 			break;
-		case "not set":
-			break;
 		case "heatsinks":
 			thisItem = getHeatsinkTreeItem(description);
+			break;
+		case "gyros":
+			thisItem = getUpgradeTreeItem(description);
+			break;
+		case "actuators":
+			thisItem = getUpgradeTreeItem(description);
+			break;
+		case "cockpitmods":
+			thisItem = getUpgradeTreeItem(description);
+			break;
+		case "targettrackingsystem":
+			thisItem = getUpgradeTreeItem(description);
+			break;
+		case "not set":
+			break;
+		case "":
+			break;
 		default:
 			break;
 		}
@@ -155,11 +169,30 @@ public class TreeViewBuilder {
 		}
 		return thisItem;
 	}
-	
+
 	private static TreeItem<String> getUpgradeTreeItem(JSONObject description) {
 		TreeItem<String> thisItem = null;
 		TreeItem<String> fileNameItem;
-		
+		String manufacturer, itemName, fileName, thisLeafName;
+		try {
+			manufacturer = (description).get("Manufacturer").toString();
+		} catch (JSONException je) {
+			manufacturer = " ";
+		}
+		try {
+			itemName = (description).get("Name").toString();
+		} catch (JSONException je) {
+			itemName = " ";
+		}
+		try {
+			fileName = (description).get("Id").toString() + ".json";
+		} catch (JSONException je) {
+			fileName = " ";
+		}
+		thisLeafName = "(" + manufacturer + ") " + itemName;
+		thisItem = new TreeItem<>(thisLeafName);
+		fileNameItem = new TreeItem<String>(fileName);
+		thisItem.getChildren().add(fileNameItem);
 		return thisItem;
 	}
 }

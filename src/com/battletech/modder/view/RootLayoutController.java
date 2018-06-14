@@ -22,11 +22,11 @@ import javafx.stage.DirectoryChooser;
 public class RootLayoutController {
 
 	@FXML
-	private Label labelConfigDir;
-	
-	private BTModderMain btModder;
-	
-	public File selectedDirectory;
+	private Label					labelConfigDir;
+
+	private BTModderMain	btModder;
+
+	public File						selectedDirectory;
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
@@ -46,7 +46,7 @@ public class RootLayoutController {
 
 	/**
 	 * @param btModder
-	 *            the btModder to set
+	 *          the btModder to set
 	 */
 	public void setBtModder(BTModderMain btModder) {
 		this.btModder = btModder;
@@ -61,7 +61,7 @@ public class RootLayoutController {
 
 	/**
 	 * @param selectedDirectory
-	 *            the selectedDirectory to set
+	 *          the selectedDirectory to set
 	 */
 	public void setSelectedDirectory(File selectedDirectory) throws NullPointerException {
 		try {
@@ -80,7 +80,7 @@ public class RootLayoutController {
 
 	/**
 	 * @param labelConfigDir
-	 *            the labelConfigDir to set
+	 *          the labelConfigDir to set
 	 */
 	public void setLabelConfigDirText(String absolutePath) {
 		// this.labelConfigDir.setText("");
@@ -105,16 +105,16 @@ public class RootLayoutController {
 			System.out.println("No Directory Selected");
 		}
 
-//		if (getSelectedDirectory() != null) {			
-//			getBtModder().categoryController.setInitialView();
-			// TODO original directory needs to be copied to app folder or to
-			// System.property location. /BattletechModderBackups...
-			// TODO from here the subdirectory needs to be opened and all files therein
-			// parsed into an array.
-			// TODO pass parsed data back to categoryController and set the LHS tree view.
-			// TODO clicking on element in tree view opens up the data and displays it for
-			// edit in the RHS pane
-//		}
+		// if (getSelectedDirectory() != null) {
+		// getBtModder().categoryController.setInitialView();
+		// TODO original directory needs to be copied to app folder or to
+		// System.property location. /BattletechModderBackups...
+		// TODO from here the subdirectory needs to be opened and all files therein
+		// parsed into an array.
+		// TODO pass parsed data back to categoryController and set the LHS tree view.
+		// TODO clicking on element in tree view opens up the data and displays it for
+		// edit in the RHS pane
+		// }
 	}
 
 	@FXML

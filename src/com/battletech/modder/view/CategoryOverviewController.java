@@ -4,9 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -38,84 +45,84 @@ public class CategoryOverviewController {
 
 	// Components belonging to the Parent Tab Pane
 	@FXML
-	private TabPane tabPane;
+	private TabPane							tabPane;
 
 	// Weapons Tab components and children
 	@FXML
-	private Tab weaponTab;
+	private Tab									weaponTab;
 	@FXML
-	private SplitPane weaponSplitPane;
+	private SplitPane						weaponSplitPane;
 	@FXML
-	private AnchorPane weaponsLHSAnchorPane;
+	private AnchorPane					weaponsLHSAnchorPane;
 	@FXML
-	private TreeView<String> weaponTreeView;
+	private TreeView<String>		weaponTreeView;
 	@FXML
-	private Label weaponsTabLabel;
+	private Label								weaponsTabLabel;
 
 	// Heatsinks Tab components and children
 	// @FXML
 	// private TreeTableView<Heatsink> heatsinksTreeTableView;
 	@FXML
-	private Tab heatsinksTab;
+	private Tab									heatsinksTab;
 	@FXML
-	private SplitPane heatsinksSplitPane;
+	private SplitPane						heatsinksSplitPane;
 	@FXML
-	private AnchorPane heatsinksLHSAnchorPane;
+	private AnchorPane					heatsinksLHSAnchorPane;
 	@FXML
-	private TreeView<String> heatsinksTreeView;
+	private TreeView<String>		heatsinksTreeView;
 	@FXML
-	private Label heatsinksTabLabel;
+	private Label								heatsinksTabLabel;
 
 	// Upgrades Tab components and children
 	@FXML
-	private Tab upgradesTab;
+	private Tab									upgradesTab;
 	@FXML
-	private SplitPane upgradesSplitPane;
+	private SplitPane						upgradesSplitPane;
 	@FXML
-	private AnchorPane upgradesLHSAnchorPane;
+	private AnchorPane					upgradesLHSAnchorPane;
 	@FXML
-	private TreeView<String> upgradesTreeView;
+	private TreeView<String>		upgradesTreeView;
 	@FXML
-	private Label upgradesTabLabel;
+	private Label								upgradesTabLabel;
 
 	// Shops Tab components and children
 	@FXML
-	private Tab shopsTab;
+	private Tab									shopsTab;
 	@FXML
-	private SplitPane shopsSplitPane;
+	private SplitPane						shopsSplitPane;
 	@FXML
-	private AnchorPane shopsLHSAnchorPane;
+	private AnchorPane					shopsLHSAnchorPane;
 	@FXML
-	private TreeView<String> shopsTreeView;
+	private TreeView<String>		shopsTreeView;
 	@FXML
-	private Label shopsTabLabel;	
-	
+	private Label								shopsTabLabel;
+
 	// Mech Tab components and children
 	@FXML
-	private Tab mechTab;
+	private Tab									mechTab;
 	@FXML
-	private SplitPane mechSplitPane;
+	private SplitPane						mechSplitPane;
 	@FXML
-	private AnchorPane mechLHSAnchorPane;
+	private AnchorPane					mechLHSAnchorPane;
 	@FXML
-	private TreeView<String> mechTreeView;
+	private TreeView<String>		mechTreeView;
 	@FXML
-	private Label mechsTabLabel;
-	
-	@FXML
-	private Button editBtn;
-	@FXML
-	private Button saveBtn;
-	@FXML
-	private Button cancelBtn;
+	private Label								mechsTabLabel;
 
-	private ObservableList<Tab> allTabs;
-	private Node selectedTabContent;
-	private BTModderMain btModder;
+	@FXML
+	private Button							editBtn;
+	@FXML
+	private Button							saveBtn;
+	@FXML
+	private Button							cancelBtn;
 
-	public static String activeTabText;
-	public static String componentFullPath;
-	public static int selectedTabIdx = 0;
+	private ObservableList<Tab>	allTabs;
+	private Node								selectedTabContent;
+	private BTModderMain				btModder;
+
+	public static String				activeTabText;
+	public static String				componentFullPath;
+	public static int						selectedTabIdx	= 0;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -177,7 +184,7 @@ public class CategoryOverviewController {
 
 	/**
 	 * @param selectedDirectory
-	 *            the selectedDirectory to set
+	 *          the selectedDirectory to set
 	 */
 	public void setComponentFullPath(String componetFullPath) throws NullPointerException {
 		try {
@@ -263,28 +270,23 @@ public class CategoryOverviewController {
 						TreeItem<String> thisItem;
 						switch (category.toLowerCase()) {
 						case "missile":
-							thisItem = TreeViewBuilder.getTreeViewBranch(category,
-									(JSONObject) weaponList.get(i).get("Description"));
+							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							missileItems.getChildren().add(thisItem);
 							break;
 						case "energy":
-							thisItem = TreeViewBuilder.getTreeViewBranch(category,
-									(JSONObject) weaponList.get(i).get("Description"));
+							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							energyItems.getChildren().add(thisItem);
 							break;
 						case "ballistic":
-							thisItem = TreeViewBuilder.getTreeViewBranch(category,
-									(JSONObject) weaponList.get(i).get("Description"));
+							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							ballisticItems.getChildren().add(thisItem);
 							break;
 						case "antipersonnel":
-							thisItem = TreeViewBuilder.getTreeViewBranch(category,
-									(JSONObject) weaponList.get(i).get("Description"));
+							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							antiPersonnelItems.getChildren().add(thisItem);
 							break;
 						case "melee":
-							thisItem = TreeViewBuilder.getTreeViewBranch(category,
-									(JSONObject) weaponList.get(i).get("Description"));
+							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							meleeItems.getChildren().add(thisItem);
 							break;
 						case "not set":
@@ -293,8 +295,7 @@ public class CategoryOverviewController {
 							break;
 						}
 					}
-					rootItem.getChildren().addAll(energyItems, missileItems, ballisticItems, antiPersonnelItems,
-							meleeItems);
+					rootItem.getChildren().addAll(energyItems, missileItems, ballisticItems, antiPersonnelItems, meleeItems);
 					this.weaponTreeView.setRoot(rootItem);
 					this.weaponTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				} catch (Exception e) {
@@ -332,8 +333,7 @@ public class CategoryOverviewController {
 				try {
 					for (int i = 0; i < heatsinksList.size(); i++) {
 						TreeItem<String> thisItem;
-						thisItem = TreeViewBuilder.getTreeViewBranch("heatsinks",
-								(JSONObject) heatsinksList.get(i).get("Description"));
+						thisItem = TreeViewBuilder.getTreeViewBranch("heatsinks", (JSONObject) heatsinksList.get(i).get("Description"));
 						rootItem.getChildren().add(thisItem);
 					}
 					this.heatsinksTreeView.setRoot(rootItem);
@@ -347,28 +347,95 @@ public class CategoryOverviewController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
 	private void setUpgradesTreeView() throws NullPointerException {
-		ArrayList<JSONObject> upgradesList;
+		Map<String, String> subDirList = new HashMap<String, String>();
 		TreeItem<String> rootItem = new TreeItem<>("Upgrade Items");
+		TreeItem<String> gyrosItems = new TreeItem<>("Gyros");
+		TreeItem<String> actuatorsItems = new TreeItem<>("Actuators");
+		TreeItem<String> cockpitModItems = new TreeItem<>("Cockpit Mods");
+		TreeItem<String> ttsItems = new TreeItem<>("Target Tracking");
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
-				File subDir = new File(getComponentFullPath());
-//				try {
-//					FileSystem fs = FileSystems.getDefault();
-//					Path rootPath = fs.getPath(getComponentFullPath());
-//					Files.walkFileTree(rootPath, visitor)
-//					
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+				try {
+					FileSystem fs = FileSystems.getDefault();
+					Path rootPath = fs.getPath(getComponentFullPath());
+					Files.walkFileTree(rootPath, EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, new SimpleFileVisitor<Path>() {
+						@Override
+						public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+							String filePath = file.getParent().toAbsolutePath().toString();
+							String fileName = file.getFileName().toString();
+							if (attrs.isDirectory()) {
+								subDirList.put(fileName, filePath + "\\" + fileName);
+							}
+							return FileVisitResult.CONTINUE;
+						}
+					});
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-			// TODO
+			for (Map.Entry<String, String> dir : subDirList.entrySet()) {
+				// TreeItem<String> branchItem = new TreeItem<String>(dir.getKey());
+				System.out.println("key: " + dir.getKey() + "\n" + "value: " + dir.getValue());
+				ArrayList<JSONObject> thisFileList = null;
+				thisFileList = TreeViewBuilder.getItemList(dir.getValue());
+				try {
+					for (int i = 0; i < thisFileList.size(); i++) {
+						String category = dir.getKey().toLowerCase();
+						TreeItem<String> thisItem;
+						if (((JSONObject) thisFileList.get(i).get("Description")).get("Name") != null) {
+							switch (category) {
+							case "gyros":
+								thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) thisFileList.get(i).get("Description"));
+								gyrosItems.getChildren().add(thisItem);
+								break;
+							case "actuators":
+								thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) thisFileList.get(i).get("Description"));
+								actuatorsItems.getChildren().add(thisItem);
+								break;
+							case "cockpitmods":
+								thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) thisFileList.get(i).get("Description"));
+								cockpitModItems.getChildren().add(thisItem);
+								break;
+							case "targettrackingsystem":
+								thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) thisFileList.get(i).get("Description"));
+								ttsItems.getChildren().add(thisItem);
+								break;
+							case "not set":
+								break;
+							default:
+								break;
+							}
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			rootItem.getChildren().addAll(gyrosItems, actuatorsItems, cockpitModItems, ttsItems);
+			this.upgradesTreeView.setRoot(rootItem);
+			this.upgradesTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		} catch (NullPointerException npe) {
 			System.out.println("[setUpgradesTreeView]: No directory selected");
 		}
+	}
+
+	// @Override
+	public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
+		if (attr.isSymbolicLink()) {
+			System.out.format("Symbolic link: %s ", file);
+		} else if (attr.isRegularFile()) {
+			System.out.format("Regular file: %s ", file);
+		} else if (attr.isDirectory()) {
+			System.out.format("Regular directory: %s ", file);
+		} else {
+			System.out.format("Other: %s ", file);
+		}
+		System.out.println("(" + attr.size() + "bytes)");
+		return FileVisitResult.CONTINUE;
 	}
 
 	@FXML
@@ -416,7 +483,7 @@ public class CategoryOverviewController {
 
 	/**
 	 * @param btModder
-	 *            the btModder to set
+	 *          the btModder to set
 	 */
 	public void setBtModder(BTModderMain btModder) {
 		this.btModder = btModder;
@@ -431,7 +498,7 @@ public class CategoryOverviewController {
 
 	/**
 	 * @param activeTabText
-	 *            the activeTabText to set
+	 *          the activeTabText to set
 	 */
 	public void setActiveTabText(String activeTabText) {
 		CategoryOverviewController.activeTabText = activeTabText.toLowerCase();

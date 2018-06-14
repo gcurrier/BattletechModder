@@ -15,7 +15,7 @@
 		</path>
 		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpathref="fxant" />
 	</target>
-
+	
 	<target name="setup-staging-area">
 		<delete dir="externalLibs" />
 		<delete dir="project" />
@@ -39,13 +39,13 @@
 			</fileset>
 		</copy>
 	</target>
-
+	
 	<target name='do-compile'>
 		<delete dir="build" />
 		<mkdir dir="build/src" />
 		<mkdir dir="build/libs" />
 		<mkdir dir="build/classes" />
-
+		
 
 		<!-- Copy project-libs references -->
 		<copy todir="build/libs">
@@ -78,7 +78,7 @@
 			</fileset>
 		</copy>
 	</target>
-
+	
 	<target name="do-deploy" depends="setup-staging-area, do-compile, init-fx-tasks">
 		<delete file="dist" />
 		<delete file="deploy" />
@@ -96,7 +96,7 @@
 				<include name="*" />
 			</fileset>
 		</copy>
-
+		
 		<fx:resources id="appRes">
 			<fx:fileset dir="dist" includes="BattletechModder.jar" />
 			<fx:fileset dir="dist" includes="libs/*" />
