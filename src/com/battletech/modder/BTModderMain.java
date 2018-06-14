@@ -16,12 +16,12 @@ import javafx.stage.Stage;
 
 public class BTModderMain extends Application {
 
-	private Stage primaryStage;
-	public BorderPane rootLayout;
-	public AnchorPane categoryLayout;
-	public String tabName;
-	public CategoryOverviewController categoryController;
-	public RootLayoutController rootController;
+	private Stage											primaryStage;
+	public BorderPane									rootLayout;
+	public AnchorPane									categoryLayout;
+	public String											tabName;
+	public CategoryOverviewController	categoryController;
+	public RootLayoutController				rootController;
 
 	public BTModderMain() {
 	}
@@ -31,9 +31,6 @@ public class BTModderMain extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Battletech Modder");
 		this.primaryStage.getIcons().add(new Image("file:resources/BattletechModder.png"));
-		// Set the application icon (for dev).
-		// this.primaryStage.getIcons().add(new
-		// Image("file:resources/images/AddressApp.png"));
 
 		initRootLayout();
 		showCategoryOverview();
@@ -47,7 +44,8 @@ public class BTModderMain extends Application {
 	}
 
 	/**
-	 * @param categoryController the categoryController to set
+	 * @param categoryController
+	 *          the categoryController to set
 	 */
 	public void setCategoryController(CategoryOverviewController categoryController) {
 		this.categoryController = categoryController;
@@ -61,7 +59,8 @@ public class BTModderMain extends Application {
 	}
 
 	/**
-	 * @param rootController the rootController to set
+	 * @param rootController
+	 *          the rootController to set
 	 */
 	public void setRootController(RootLayoutController rootController) {
 		this.rootController = rootController;
@@ -76,7 +75,7 @@ public class BTModderMain extends Application {
 
 	/**
 	 * @param rootLayout
-	 *            the rootLayout to set
+	 *          the rootLayout to set
 	 */
 	public void setRootLayout(BorderPane rootLayout) {
 		this.rootLayout = rootLayout;
@@ -91,7 +90,7 @@ public class BTModderMain extends Application {
 
 	/**
 	 * @param categoryLayout
-	 *            the categoryLayout to set
+	 *          the categoryLayout to set
 	 */
 	public void setCategoryLayout(AnchorPane categoryLayout) {
 		this.categoryLayout = categoryLayout;
