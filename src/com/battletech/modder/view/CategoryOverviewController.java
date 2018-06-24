@@ -15,10 +15,17 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.battletech.modder.BTModderMain;
 import com.battletech.modder.control.utils.TreeViewBuilder;
+import com.battletech.modder.model.Description;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 
 //TreeTableView imports
 //import com.battletech.modder.model.Heatsink;
@@ -37,92 +44,116 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 public class CategoryOverviewController {
 
 	// Components belonging to the Parent Tab Pane
 	@FXML
-	private TabPane							tabPane;
+	private TabPane														tabPane;
 
 	// Weapons Tab components and children
 	@FXML
-	private Tab									weaponTab;
+	private Tab																weaponTab;
 	@FXML
-	private SplitPane						weaponSplitPane;
+	private SplitPane													weaponSplitPane;
 	@FXML
-	private AnchorPane					weaponsLHSAnchorPane;
+	private AnchorPane												weaponsLHSAnchorPane;
 	@FXML
-	private TreeView<String>		weaponTreeView;
+	private AnchorPane												weaponsRHSAnchorPane;
 	@FXML
-	private Label								weaponsTabLabel;
+	private TableView<Description>						weaponDescTable;
+	@FXML
+	private TextArea													weaponDetailText;
+	@FXML
+	private TreeView<String>									weaponTreeView;
+	@FXML
+	private Label															weaponsTabLabel;
+	@FXML
+	private Button														weaponEdit;
+	@FXML
+	private Button														weaponSave;
+	@FXML
+	private Button														weaponCancel;
+	@FXML
+	private TableColumn<Description, String>	weaponCategoryCol;
+	@FXML
+	private TableColumn<Description, String>	weaponDetailCol;
 
 	// Heatsinks Tab components and children
 	// @FXML
 	// private TreeTableView<Heatsink> heatsinksTreeTableView;
 	@FXML
-	private Tab									heatsinksTab;
+	private Tab																heatsinksTab;
 	@FXML
-	private SplitPane						heatsinksSplitPane;
+	private SplitPane													heatsinksSplitPane;
 	@FXML
-	private AnchorPane					heatsinksLHSAnchorPane;
+	private AnchorPane												heatsinksLHSAnchorPane;
 	@FXML
-	private TreeView<String>		heatsinksTreeView;
+	private TreeView<String>									heatsinksTreeView;
 	@FXML
-	private Label								heatsinksTabLabel;
+	private Label															heatsinksTabLabel;
 
 	// Upgrades Tab components and children
 	@FXML
-	private Tab									upgradesTab;
+	private Tab																upgradesTab;
 	@FXML
-	private SplitPane						upgradesSplitPane;
+	private SplitPane													upgradesSplitPane;
 	@FXML
-	private AnchorPane					upgradesLHSAnchorPane;
+	private AnchorPane												upgradesLHSAnchorPane;
 	@FXML
-	private TreeView<String>		upgradesTreeView;
+	private TreeView<String>									upgradesTreeView;
 	@FXML
-	private Label								upgradesTabLabel;
+	private Label															upgradesTabLabel;
 
 	// Shops Tab components and children
 	@FXML
-	private Tab									shopsTab;
+	private Tab																shopsTab;
 	@FXML
-	private SplitPane						shopsSplitPane;
+	private SplitPane													shopsSplitPane;
 	@FXML
-	private AnchorPane					shopsLHSAnchorPane;
+	private AnchorPane												shopsLHSAnchorPane;
 	@FXML
-	private TreeView<String>		shopsTreeView;
+	private TreeView<String>									shopsTreeView;
 	@FXML
-	private Label								shopsTabLabel;
+	private Label															shopsTabLabel;
 
 	// Mech Tab components and children
 	@FXML
-	private Tab									mechTab;
+	private Tab																mechTab;
 	@FXML
-	private SplitPane						mechSplitPane;
+	private SplitPane													mechSplitPane;
 	@FXML
-	private AnchorPane					mechLHSAnchorPane;
+	private AnchorPane												mechLHSAnchorPane;
 	@FXML
-	private TreeView<String>		mechTreeView;
+	private TreeView<String>									mechTreeView;
 	@FXML
-	private Label								mechsTabLabel;
+	private Label															mechsTabLabel;
 
 	@FXML
-	private Button							editBtn;
+	private Button														editBtn;
 	@FXML
-	private Button							saveBtn;
+	private Button														saveBtn;
 	@FXML
-	private Button							cancelBtn;
+	private Button														cancelBtn;
 
-	private ObservableList<Tab>	allTabs;
-	private Node								selectedTabContent;
-	private BTModderMain				btModder;
+	private ObservableList<Tab>								allTabs;
+	private Node															selectedTabContent;
+	private BTModderMain											btModder;
+	/**
+	 * Observable list of Descriptions
+	 */
+	public static ObservableList<Description>				descriptionListData	= FXCollections.observableArrayList();
 
-	public static String				activeTabText;
-	public static String				componentFullPath;
-	public static int						selectedTabIdx	= 0;
+	public static String											activeTabText;
+	public static String											componentFullPath;
+	public static int													selectedTabIdx			= 0;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -234,6 +265,10 @@ public class CategoryOverviewController {
 		this.allTabs = allTabs;
 	}
 
+	public ObservableList<Description> getDescriptionListData() {
+		return descriptionListData;
+	}
+
 	/**
 	 * Update the parent view directory label with the selected tab's component
 	 * folder path or set an instructional message
@@ -250,7 +285,13 @@ public class CategoryOverviewController {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked" })
+	/**
+	 * Populates the Update tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/weapons directory
+	 * 
+	 * @throws NullPointerException
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	private void setWeaponTreeView() throws NullPointerException {
 		ArrayList<JSONObject> weaponList;
@@ -288,6 +329,7 @@ public class CategoryOverviewController {
 						case "melee":
 							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							meleeItems.getChildren().add(thisItem);
+							// missileItems.set
 							break;
 						case "not set":
 							break;
@@ -296,8 +338,52 @@ public class CategoryOverviewController {
 						}
 					}
 					rootItem.getChildren().addAll(energyItems, missileItems, ballisticItems, antiPersonnelItems, meleeItems);
+					rootItem.setExpanded(true);
 					this.weaponTreeView.setRoot(rootItem);
 					this.weaponTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+					this.weaponTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+						/**
+						 * Retrieve selected weapon data when a leaf item in the weapon tree view is
+						 * clicked
+						 * 
+						 * @param item
+						 */
+						@Override
+						public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+							TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+							boolean hasParent = selectedItem.getParent() != null;
+							boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+							String fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+
+							if (hasParent && !hasChildren) {
+								JSONObject weaponData = WeaponDataController.getWeaponData(fileFullPath);
+								try {
+									JSONObject description = (JSONObject) weaponData.get("Description");
+									JSONArray descArr = description.names();
+									for (int i = 0; i < descArr.length(); i++) {
+										String descKey = descArr.getString(i);
+										String descVal = description.getString(descKey);
+										if (descKey.equals("Details")) {
+											weaponDetailText.setText(descVal);
+											weaponDetailText.setWrapText(true);
+											weaponDetailText.setEditable(false);
+										} else if(descKey.equals("Name")) {
+											weaponsTabLabel.setText(descVal);
+										} else {
+											descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+										}
+										System.out.println(descKey + ": " + descVal);
+									}
+									weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("Category"));
+									weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("Detail"));
+									weaponDescTable.setItems(getDescriptionListData());
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+								System.out.println("retrieved");
+							}
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -319,6 +405,8 @@ public class CategoryOverviewController {
 	}
 
 	/**
+	 * Populates the Update tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/heatsinks directory
 	 * 
 	 * @throws NullPointerException
 	 */
@@ -347,6 +435,12 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Populates the Update tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/upgrades directory
+	 * 
+	 * @throws NullPointerException
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	private void setUpgradesTreeView() throws NullPointerException {
@@ -423,7 +517,6 @@ public class CategoryOverviewController {
 		}
 	}
 
-	// @Override
 	public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
 		if (attr.isSymbolicLink()) {
 			System.out.format("Symbolic link: %s ", file);
