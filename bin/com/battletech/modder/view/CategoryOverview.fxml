@@ -7,7 +7,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeView?>
@@ -38,13 +37,8 @@
                                       </buttons>
                                     </ButtonBar>
                                     <Label fx:id="weaponsTabLabel" layoutX="14.0" layoutY="14.0" text="Label" />
-                                    <TableView fx:id="weaponDescTable" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="631.0">
-                                      <columns>
-                                        <TableColumn fx:id="weaponCategoryCol" prefWidth="189.0" text="Category" />
-                                        <TableColumn fx:id="weaponDetailCol" prefWidth="441.0" text="Detail" />
-                                      </columns>
-                                    </TableView>
-                                    <TextArea fx:id="weaponDetailText" layoutX="14.0" layoutY="239.0" prefHeight="59.0" prefWidth="632.0" />
+                                    <TableView fx:id="weaponDescTable" layoutX="14.0" layoutY="31.0" prefHeight="226.0" prefWidth="631.0" />
+                                    <TextArea fx:id="weaponDetailText" layoutX="14.0" layoutY="263.0" prefHeight="59.0" prefWidth="632.0" />
                                  </children>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />

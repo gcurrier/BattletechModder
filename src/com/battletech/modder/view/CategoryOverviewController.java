@@ -146,10 +146,8 @@ public class CategoryOverviewController {
 	private ObservableList<Tab>								allTabs;
 	private Node															selectedTabContent;
 	private BTModderMain											btModder;
-	/**
-	 * Observable list of Descriptions
-	 */
-	public static ObservableList<Description>				descriptionListData	= FXCollections.observableArrayList();
+
+	private final ObservableList<Description>	descriptionListData	= FXCollections.observableArrayList();
 
 	public static String											activeTabText;
 	public static String											componentFullPath;
@@ -209,13 +207,20 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Retrieves the string value of the selected directory path combined with the
+	 * tab-representative component sub-directory.
+	 * 
+	 * @return String
+	 */
 	public String getComponentFullPath() {
 		return getSelectedDirectoryPath() + "\\" + getActiveTabText();
 	}
 
 	/**
+	 * Sets the string value of the selected componet's representative file path
+	 * 
 	 * @param selectedDirectory
-	 *          the selectedDirectory to set
 	 */
 	public void setComponentFullPath(String componetFullPath) throws NullPointerException {
 		try {
@@ -225,10 +230,20 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Returns the selected tab's content
+	 * 
+	 * @return
+	 */
 	public Node getSelectedTabContent() {
 		return this.selectedTabContent;
 	}
 
+	/**
+	 * Sets the selectedTabContent variable with the given tab's content
+	 * 
+	 * @param tabName
+	 */
 	public void setSelectedTabContent(String tabName) {
 		for (int i = 0; i < this.allTabs.size(); i++) {
 			String arrTabName = "";
@@ -257,16 +272,22 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Retrieves an ObservableList of Tab objects
+	 * 
+	 * @return
+	 */
 	public ObservableList<Tab> getAllTabs() {
 		return allTabs;
 	}
 
+	/**
+	 * Sets the allTabs ObservableList
+	 * 
+	 * @param allTabs
+	 */
 	public void setAllTabs(ObservableList<Tab> allTabs) {
 		this.allTabs = allTabs;
-	}
-
-	public ObservableList<Description> getDescriptionListData() {
-		return descriptionListData;
 	}
 
 	/**
@@ -286,8 +307,10 @@ public class CategoryOverviewController {
 	}
 
 	/**
-	 * Populates the Update tab TreeView based on the file list from the
-	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/weapons directory
+	 * Populates the Weapon tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/weapons directory.
+	 * Additionally adds a listener for click events on TreeView items, which
+	 * populates the associated TableView with data.
 	 * 
 	 * @throws NullPointerException
 	 */
@@ -360,6 +383,10 @@ public class CategoryOverviewController {
 								try {
 									JSONObject description = (JSONObject) weaponData.get("Description");
 									JSONArray descArr = description.names();
+									// clear the list before refilling it with new data
+									descriptionListData.removeAll(descriptionListData);
+									// remove columns
+									weaponDescTable.getColumns().clear();
 									for (int i = 0; i < descArr.length(); i++) {
 										String descKey = descArr.getString(i);
 										String descVal = description.getString(descKey);
@@ -367,20 +394,29 @@ public class CategoryOverviewController {
 											weaponDetailText.setText(descVal);
 											weaponDetailText.setWrapText(true);
 											weaponDetailText.setEditable(false);
-										} else if(descKey.equals("Name")) {
+										} else if (descKey.equals("Name")) {
 											weaponsTabLabel.setText(descVal);
 										} else {
+											// populate Observable list with Description data
 											descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
 										}
-										System.out.println(descKey + ": " + descVal);
+										// System.out.println(descKey + ": " + descVal);
 									}
-									weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("Category"));
-									weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("Detail"));
-									weaponDescTable.setItems(getDescriptionListData());
+									// re establish columns
+									weaponCategoryCol = new TableColumn("Category");
+									weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+
+									weaponDetailCol = new TableColumn("Detail");
+									weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+
+									weaponDescTable.setItems(descriptionListData);
+									weaponDescTable.getColumns().addAll(weaponCategoryCol, weaponDetailCol);
+									weaponDescTable.setEditable(true);
+
 								} catch (JSONException e) {
 									e.printStackTrace();
 								}
-								System.out.println("retrieved");
+								// System.out.println("retrieved");
 							}
 						}
 					});
@@ -393,6 +429,12 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Populates the Shops tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/shops directory *
+	 * 
+	 * @throws NullPointerException
+	 */
 	@FXML
 	private void setShopsTreeView() throws NullPointerException {
 		try {
@@ -405,7 +447,7 @@ public class CategoryOverviewController {
 	}
 
 	/**
-	 * Populates the Update tab TreeView based on the file list from the
+	 * Populates the Heatsink tab TreeView based on the file list from the
 	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/heatsinks directory
 	 * 
 	 * @throws NullPointerException
@@ -531,6 +573,12 @@ public class CategoryOverviewController {
 		return FileVisitResult.CONTINUE;
 	}
 
+	/**
+	 * Populates the Mech tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/mechs directory
+	 * 
+	 * @throws NullPointerException
+	 */
 	@FXML
 	private void setMechsTreeView() throws NullPointerException {
 		try {
