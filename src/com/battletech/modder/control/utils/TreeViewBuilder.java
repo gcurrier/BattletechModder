@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import org.json.JSONException;
@@ -65,34 +66,34 @@ public class TreeViewBuilder {
 		TreeItem<String> thisItem = null;
 		switch (category.toLowerCase()) {
 		case "missile":
-			thisItem = getWeaponTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "energy":
-			thisItem = getWeaponTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "ballistic":
-			thisItem = getWeaponTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "antipersonnel":
-			thisItem = getWeaponTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "melee":
-			thisItem = getWeaponTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "heatsinks":
-			thisItem = getHeatsinkTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "gyros":
-			thisItem = getUpgradeTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "actuators":
-			thisItem = getUpgradeTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "cockpitmods":
-			thisItem = getUpgradeTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "targettrackingsystem":
-			thisItem = getUpgradeTreeItem(description);
+			thisItem = getGenericTreeItem(description);
 			break;
 		case "not set":
 			break;
@@ -105,94 +106,57 @@ public class TreeViewBuilder {
 	}
 
 	/**
-	 * Method to return weapon-specific tree items.
+	 * Generic method to return a Tree Item Leaf. Accepts a JSON object as a parameter. 
 	 * 
-	 * @param description
-	 * @return TreeItem
+	 * @param {JSONObject} description
+	 * @return TreeItem<String>
 	 */
-	private static TreeItem<String> getWeaponTreeItem(JSONObject description) {
+	private static TreeItem<String> getGenericTreeItem(JSONObject description){
 		TreeItem<String> thisItem = null;
 		TreeItem<String> fileNameItem;
-		String itemName, manufacturer, thisLeafName, fileName;
+		String manufacturer = null, itemName = null, fileName, thisLeafName = null;
 		try {
-			manufacturer = (description).get("Manufacturer").toString();
-		} catch (org.json.JSONException oje) {
-			manufacturer = " ";
+			if (!((description).get("Manufacturer").equals(null))) {
+				manufacturer = "(" + (description).get("Manufacturer").toString() + ")";
+			} else {
+				manufacturer = null;
+			}
+		} catch (JSONException je) {
+			manufacturer = null;
+		}
+		try {
+			if (!((description).get("Name").equals(null))) {
+				itemName = (description).get("Name").toString();
+			} else {
+				itemName = null;
+			}
+		} catch (JSONException je) {
+			itemName = null;
 		}
 		try {
 			fileName = (description).get("Id").toString() + ".json";
-			itemName = (description).get("Name").toString();
-			thisLeafName = "(" + manufacturer + ") " + itemName;
-			thisItem = new TreeItem<String>(thisLeafName);
-			fileNameItem = new TreeItem<String>(fileName);
-			thisItem.getChildren().add(fileNameItem);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return thisItem;
-	}
-
-	/**
-	 * Method to return heatsink-specific tree items.
-	 * 
-	 * @param description
-	 * @return TreeItem
-	 */
-	private static TreeItem<String> getHeatsinkTreeItem(JSONObject description) {
-		TreeItem<String> thisItem = null;
-		TreeItem<String> fileNameItem;
-		String manufacturer, itemName, fileName, thisLeafName;
-		try {
-			manufacturer = (description).get("Manufacturer").toString();
-		} catch (JSONException je) {
-			manufacturer = " ";
-		}
-		try {
-			itemName = (description).get("Name").toString();
-		} catch (JSONException je) {
-			itemName = " ";
-		}
-		try {
-			fileName = (description).get("Id").toString();
 		} catch (JSONException je) {
 			fileName = " ";
 		}
-		try {
-			fileName = (description).get("Id").toString() + ".json";
-			itemName = (description).get("Name").toString();
-			thisLeafName = "(" + manufacturer + ") " + itemName;
+		if (manufacturer != null && itemName == null) {
+			thisLeafName = manufacturer;
+		}
+		if (manufacturer == null && itemName != null) {
+			thisLeafName = itemName;
+		}
+		if (manufacturer == null && itemName == null) {
+			thisLeafName = null;
+		}
+		if (manufacturer != null && itemName != null) {
+			thisLeafName = manufacturer + " " + itemName;
+		}
+		if (thisLeafName != null) {
 			thisItem = new TreeItem<>(thisLeafName);
 			fileNameItem = new TreeItem<String>(fileName);
 			thisItem.getChildren().add(fileNameItem);
-		} catch (JSONException e) {
-			e.printStackTrace();
+		} else {
+			thisItem = new TreeItem<>("-");
 		}
-		return thisItem;
-	}
-
-	private static TreeItem<String> getUpgradeTreeItem(JSONObject description) {
-		TreeItem<String> thisItem = null;
-		TreeItem<String> fileNameItem;
-		String manufacturer, itemName, fileName, thisLeafName;
-		try {
-			manufacturer = (description).get("Manufacturer").toString();
-		} catch (JSONException je) {
-			manufacturer = " ";
-		}
-		try {
-			itemName = (description).get("Name").toString();
-		} catch (JSONException je) {
-			itemName = " ";
-		}
-		try {
-			fileName = (description).get("Id").toString() + ".json";
-		} catch (JSONException je) {
-			fileName = " ";
-		}
-		thisLeafName = "(" + manufacturer + ") " + itemName;
-		thisItem = new TreeItem<>(thisLeafName);
-		fileNameItem = new TreeItem<String>(fileName);
-		thisItem.getChildren().add(fileNameItem);
 		return thisItem;
 	}
 }

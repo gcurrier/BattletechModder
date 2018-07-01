@@ -15,10 +15,17 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.battletech.modder.BTModderMain;
 import com.battletech.modder.control.utils.TreeViewBuilder;
+import com.battletech.modder.model.Description;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 
 //TreeTableView imports
 //import com.battletech.modder.model.Heatsink;
@@ -37,92 +44,134 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 public class CategoryOverviewController {
 
 	// Components belonging to the Parent Tab Pane
 	@FXML
-	private TabPane							tabPane;
+	private TabPane														tabPane;
 
 	// Weapons Tab components and children
 	@FXML
-	private Tab									weaponTab;
+	private Tab																weaponTab;
 	@FXML
-	private SplitPane						weaponSplitPane;
+	private SplitPane													weaponSplitPane;
 	@FXML
-	private AnchorPane					weaponsLHSAnchorPane;
+	private AnchorPane												weaponsLHSAnchorPane;
 	@FXML
-	private TreeView<String>		weaponTreeView;
+	private AnchorPane												weaponsRHSAnchorPane;
 	@FXML
-	private Label								weaponsTabLabel;
+	private TableView<Description>						weaponDescTable;
+	@FXML
+	private TextArea													weaponDetailText;
+	@FXML
+	private TreeView<String>									weaponTreeView;
+	@FXML
+	private Label															weaponsTabLabel;
+	@FXML
+	private Button														weaponEdit;
+	@FXML
+	private Button														weaponSave;
+	@FXML
+	private Button														weaponCancel;
+	@FXML
+	private TableColumn<Description, String>	weaponCategoryCol;
+	@FXML
+	private TableColumn<Description, String>	weaponDetailCol;
 
 	// Heatsinks Tab components and children
 	// @FXML
 	// private TreeTableView<Heatsink> heatsinksTreeTableView;
 	@FXML
-	private Tab									heatsinksTab;
+	private Tab																heatsinksTab;
 	@FXML
-	private SplitPane						heatsinksSplitPane;
+	private SplitPane													heatsinksSplitPane;
 	@FXML
-	private AnchorPane					heatsinksLHSAnchorPane;
+	private AnchorPane												heatsinksLHSAnchorPane;
 	@FXML
-	private TreeView<String>		heatsinksTreeView;
+	private AnchorPane												heatsinksRHSAnchorPane;
 	@FXML
-	private Label								heatsinksTabLabel;
+	private TableView<Description>						heatsinksDescTable;
+	@FXML
+	private TextArea													heatsinksDetailText;
+	@FXML
+	private TreeView<String>									heatsinksTreeView;
+	@FXML
+	private Label															heatsinksTabLabel;
+	@FXML
+	private TableColumn<Description, String>	heatsinksCategoryCol;
+	@FXML
+	private TableColumn<Description, String>	heatsinksDetailCol;
 
 	// Upgrades Tab components and children
 	@FXML
-	private Tab									upgradesTab;
+	private Tab																upgradesTab;
 	@FXML
-	private SplitPane						upgradesSplitPane;
+	private SplitPane													upgradesSplitPane;
 	@FXML
-	private AnchorPane					upgradesLHSAnchorPane;
+	private AnchorPane												upgradesLHSAnchorPane;
 	@FXML
-	private TreeView<String>		upgradesTreeView;
+	private AnchorPane												upgradesRHSAnchorPane;
 	@FXML
-	private Label								upgradesTabLabel;
+	private TableView<Description>						upgradesDescTable;
+	@FXML
+	private TextArea													upgradesDetailText;
+	@FXML
+	private TreeView<String>									upgradesTreeView;
+	@FXML
+	private Label															upgradesTabLabel;
+	@FXML
+	private TableColumn<Description, String>	upgradesCategoryCol;
+	@FXML
+	private TableColumn<Description, String>	upgradesDetailCol;
 
 	// Shops Tab components and children
 	@FXML
-	private Tab									shopsTab;
+	private Tab																shopsTab;
 	@FXML
-	private SplitPane						shopsSplitPane;
+	private SplitPane													shopsSplitPane;
 	@FXML
-	private AnchorPane					shopsLHSAnchorPane;
+	private AnchorPane												shopsLHSAnchorPane;
 	@FXML
-	private TreeView<String>		shopsTreeView;
+	private TreeView<String>									shopsTreeView;
 	@FXML
-	private Label								shopsTabLabel;
+	private Label															shopsTabLabel;
 
 	// Mech Tab components and children
 	@FXML
-	private Tab									mechTab;
+	private Tab																mechTab;
 	@FXML
-	private SplitPane						mechSplitPane;
+	private SplitPane													mechSplitPane;
 	@FXML
-	private AnchorPane					mechLHSAnchorPane;
+	private AnchorPane												mechLHSAnchorPane;
 	@FXML
-	private TreeView<String>		mechTreeView;
+	private TreeView<String>									mechTreeView;
 	@FXML
-	private Label								mechsTabLabel;
+	private Label															mechsTabLabel;
 
 	@FXML
-	private Button							editBtn;
+	private Button														editBtn;
 	@FXML
-	private Button							saveBtn;
+	private Button														saveBtn;
 	@FXML
-	private Button							cancelBtn;
+	private Button														cancelBtn;
 
-	private ObservableList<Tab>	allTabs;
-	private Node								selectedTabContent;
-	private BTModderMain				btModder;
+	private ObservableList<Tab>								allTabs;
+	private Node															selectedTabContent;
+	private BTModderMain											btModder;
 
-	public static String				activeTabText;
-	public static String				componentFullPath;
-	public static int						selectedTabIdx	= 0;
+	private final ObservableList<Description>	descriptionListData	= FXCollections.observableArrayList();
+
+	public static String											activeTabText;
+	public static String											componentFullPath;
+	public static int													selectedTabIdx			= 0;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -178,13 +227,20 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Retrieves the string value of the selected directory path combined with the
+	 * tab-representative component sub-directory.
+	 * 
+	 * @return String
+	 */
 	public String getComponentFullPath() {
 		return getSelectedDirectoryPath() + "\\" + getActiveTabText();
 	}
 
 	/**
+	 * Sets the string value of the selected componet's representative file path
+	 * 
 	 * @param selectedDirectory
-	 *          the selectedDirectory to set
 	 */
 	public void setComponentFullPath(String componetFullPath) throws NullPointerException {
 		try {
@@ -194,10 +250,20 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Returns the selected tab's content
+	 * 
+	 * @return
+	 */
 	public Node getSelectedTabContent() {
 		return this.selectedTabContent;
 	}
 
+	/**
+	 * Sets the selectedTabContent variable with the given tab's content
+	 * 
+	 * @param tabName
+	 */
 	public void setSelectedTabContent(String tabName) {
 		for (int i = 0; i < this.allTabs.size(); i++) {
 			String arrTabName = "";
@@ -226,10 +292,20 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Retrieves an ObservableList of Tab objects
+	 * 
+	 * @return
+	 */
 	public ObservableList<Tab> getAllTabs() {
 		return allTabs;
 	}
 
+	/**
+	 * Sets the allTabs ObservableList
+	 * 
+	 * @param allTabs
+	 */
 	public void setAllTabs(ObservableList<Tab> allTabs) {
 		this.allTabs = allTabs;
 	}
@@ -250,7 +326,15 @@ public class CategoryOverviewController {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked" })
+	/**
+	 * Populates the Weapon tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/weapons directory.
+	 * Additionally adds a listener for click events on TreeView items, which
+	 * populates the associated TableView with data.
+	 * 
+	 * @throws NullPointerException
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	private void setWeaponTreeView() throws NullPointerException {
 		ArrayList<JSONObject> weaponList;
@@ -260,6 +344,7 @@ public class CategoryOverviewController {
 		TreeItem<String> ballisticItems = new TreeItem<>("Ballistic");
 		TreeItem<String> antiPersonnelItems = new TreeItem<>("AntiPersonnel");
 		TreeItem<String> meleeItems = new TreeItem<>("Melee");
+		String tabType = "weapon";
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
@@ -288,6 +373,7 @@ public class CategoryOverviewController {
 						case "melee":
 							thisItem = TreeViewBuilder.getTreeViewBranch(category, (JSONObject) weaponList.get(i).get("Description"));
 							meleeItems.getChildren().add(thisItem);
+							// missileItems.set
 							break;
 						case "not set":
 							break;
@@ -296,8 +382,77 @@ public class CategoryOverviewController {
 						}
 					}
 					rootItem.getChildren().addAll(energyItems, missileItems, ballisticItems, antiPersonnelItems, meleeItems);
+					rootItem.setExpanded(true);
 					this.weaponTreeView.setRoot(rootItem);
 					this.weaponTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+					this.weaponTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+						/**
+						 * Retrieve selected weapon data when a leaf item in the weapon tree view is
+						 * clicked
+						 * 
+						 * @param item
+						 */
+						@Override
+						public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+							//IN setItemTable((TreeItem<String>) obs.getValue(),String tabType,String getComponentFullPath()) OUT (ObservableList<Description>,TableColumn<Description, String>,TableColumn<Description, String>)
+							try {
+								TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+								boolean hasParent = selectedItem.getParent() == null ? false : true;
+								boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+								boolean selItemIsLeaf = selectedItem.isLeaf();
+								String fileFullPath = "";
+								
+								if (hasParent && !hasChildren) {
+									if(tabType != "upgrades") {
+										fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+									} else {
+										fileFullPath = selItemIsLeaf ? 
+												getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
+													getComponentFullPath() + "\\" + selectedItem.getValue();
+									}
+									JSONObject weaponData = ItemDataDescriptionController.getItemData(fileFullPath);
+									try {
+										JSONObject description = (JSONObject) weaponData.get("Description");
+										JSONArray descArr = description.names();
+										// clear the list before refilling it with new data
+										descriptionListData.removeAll(descriptionListData);
+										// remove columns
+										weaponDescTable.getColumns().clear();
+										for (int i = 0; i < descArr.length(); i++) {
+											String descKey = descArr.getString(i);
+											String descVal = description.getString(descKey);
+											if (descKey.equals("Details")) {
+												weaponDetailText.setText(descVal);
+												weaponDetailText.setWrapText(true);
+												weaponDetailText.setEditable(false);
+											} else if (descKey.equals("Name")) {
+												weaponsTabLabel.setText(descVal);
+											} else {
+												// populate Observable list with Description data
+												descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+											}
+											// System.out.println(descKey + ": " + descVal);
+										}
+										// re establish columns
+										weaponCategoryCol = new TableColumn("Category");
+										weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+
+										weaponDetailCol = new TableColumn("Detail");
+										weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+
+										weaponDescTable.setItems(descriptionListData);
+										weaponDescTable.getColumns().addAll(weaponCategoryCol, weaponDetailCol);
+										weaponDescTable.setEditable(true);
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
+									// System.out.println("retrieved");
+								}
+							} catch (NullPointerException npe) {
+								System.out.println("Opening " + tabType + " at root level.");
+							}
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -307,6 +462,12 @@ public class CategoryOverviewController {
 		}
 	}
 
+	/**
+	 * Populates the Shops tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/shops directory *
+	 * 
+	 * @throws NullPointerException
+	 */
 	@FXML
 	private void setShopsTreeView() throws NullPointerException {
 		try {
@@ -319,13 +480,17 @@ public class CategoryOverviewController {
 	}
 
 	/**
+	 * Populates the Heatsink tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/heatsinks directory
 	 * 
 	 * @throws NullPointerException
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	private void setHeatsinksTreeView() throws NullPointerException {
 		ArrayList<JSONObject> heatsinksList;
 		TreeItem<String> rootItem = new TreeItem<>("Heat Management");
+		String tabType = "heatsinks";
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
@@ -335,9 +500,77 @@ public class CategoryOverviewController {
 						TreeItem<String> thisItem;
 						thisItem = TreeViewBuilder.getTreeViewBranch("heatsinks", (JSONObject) heatsinksList.get(i).get("Description"));
 						rootItem.getChildren().add(thisItem);
+						rootItem.setExpanded(true);
 					}
 					this.heatsinksTreeView.setRoot(rootItem);
 					this.heatsinksTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+					this.heatsinksTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+						/**
+						 * Retrieve selected heatsink data when a leaf item in the heatsinks tree view
+						 * is clicked
+						 * 
+						 * @param item
+						 */
+						@Override
+						public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+							try {
+								TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+								boolean hasParent = selectedItem.getParent() == null ? false : true;
+								boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+								boolean selItemIsLeaf = selectedItem.isLeaf();
+								String fileFullPath = "";
+								
+								if (hasParent && !hasChildren) {
+									if(tabType != "upgrades") {
+										fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+									} else {
+										fileFullPath = selItemIsLeaf ? 
+												getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
+													getComponentFullPath() + "\\" + selectedItem.getValue();
+									}
+									JSONObject objectData = ItemDataDescriptionController.getItemData(fileFullPath);
+									try {
+										JSONObject description = (JSONObject) objectData.get("Description");
+										JSONArray descArr = description.names();
+										// clear the list before refilling it with new data
+										descriptionListData.removeAll(descriptionListData);
+										// remove columns
+										heatsinksDescTable.getColumns().clear();
+										for (int i = 0; i < descArr.length(); i++) {
+											String descKey = descArr.getString(i);
+											String descVal = description.getString(descKey);
+											if (descKey.equals("Details")) {
+												heatsinksDetailText.setText(descVal);
+												heatsinksDetailText.setWrapText(true);
+												heatsinksDetailText.setEditable(false);
+											} else if (descKey.equals("Name")) {
+												heatsinksTabLabel.setText(descVal);
+											} else {
+												// populate Observable list with Description data
+												descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+											}
+											// System.out.println(descKey + ": " + descVal);
+										}
+										// re establish columns
+										heatsinksCategoryCol = new TableColumn("Category");
+										heatsinksCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+
+										heatsinksDetailCol = new TableColumn("Detail");
+										heatsinksDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+
+										heatsinksDescTable.setItems(descriptionListData);
+										heatsinksDescTable.getColumns().addAll(heatsinksCategoryCol, heatsinksDetailCol);
+										heatsinksDescTable.setEditable(true);
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
+									// System.out.println("retrieved");
+								}
+							} catch (NullPointerException npe) {
+								System.out.println("Opening " + tabType + " at root level.");
+							}
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -347,7 +580,13 @@ public class CategoryOverviewController {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * Populates the Update tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/upgrades directory
+	 * 
+	 * @throws NullPointerException
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	private void setUpgradesTreeView() throws NullPointerException {
 		Map<String, String> subDirList = new HashMap<String, String>();
@@ -356,6 +595,8 @@ public class CategoryOverviewController {
 		TreeItem<String> actuatorsItems = new TreeItem<>("Actuators");
 		TreeItem<String> cockpitModItems = new TreeItem<>("Cockpit Mods");
 		TreeItem<String> ttsItems = new TreeItem<>("Target Tracking");
+		ArrayList<JSONObject> thisFileList = null;
+		String tabType = "upgrades";
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
@@ -379,8 +620,8 @@ public class CategoryOverviewController {
 			}
 			for (Map.Entry<String, String> dir : subDirList.entrySet()) {
 				// TreeItem<String> branchItem = new TreeItem<String>(dir.getKey());
-				System.out.println("key: " + dir.getKey() + "\n" + "value: " + dir.getValue());
-				ArrayList<JSONObject> thisFileList = null;
+				// System.out.println("key: " + dir.getKey() + "\n" + "value: " + dir.getValue());
+				//ArrayList<JSONObject> thisFileList = null;
 				thisFileList = TreeViewBuilder.getItemList(dir.getValue());
 				try {
 					for (int i = 0; i < thisFileList.size(); i++) {
@@ -418,12 +659,78 @@ public class CategoryOverviewController {
 			rootItem.getChildren().addAll(gyrosItems, actuatorsItems, cockpitModItems, ttsItems);
 			this.upgradesTreeView.setRoot(rootItem);
 			this.upgradesTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			this.upgradesTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+				/**
+				 * Retrieve selected heatsink data when a leaf item in the heatsinks tree view
+				 * is clicked
+				 * 
+				 * @param item
+				 */
+				@Override
+				public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+					try {
+						TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+						boolean hasParent = selectedItem.getParent() == null ? false : true;
+						boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+						boolean selItemIsLeaf = selectedItem.isLeaf();
+						String fileFullPath = "";
+						
+						if (hasParent && !hasChildren) {
+							if(tabType != "upgrades") {
+								fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+							} else {
+								fileFullPath = selItemIsLeaf ? 
+										getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
+											getComponentFullPath() + "\\" + selectedItem.getValue();
+							}
+							JSONObject objectData = ItemDataDescriptionController.getItemData(fileFullPath);
+							try {
+								JSONObject description = (JSONObject) objectData.get("Description");
+								JSONArray descArr = description.names();
+								// clear the list before refilling it with new data
+								descriptionListData.removeAll(descriptionListData);
+								// remove columns
+								upgradesDescTable.getColumns().clear();
+								for (int i = 0; i < descArr.length(); i++) {
+									String descKey = descArr.getString(i);
+									String descVal = description.getString(descKey);
+									if (descKey.equals("Details")) {
+										upgradesDetailText.setText(descVal);
+										upgradesDetailText.setWrapText(true);
+										upgradesDetailText.setEditable(false);
+									} else if (descKey.equals("Name")) {
+										upgradesTabLabel.setText(descVal);
+									} else {
+										// populate Observable list with Description data
+										descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+									}
+									// System.out.println(descKey + ": " + descVal);
+								}
+								// re establish columns
+								upgradesCategoryCol = new TableColumn("Category");
+								upgradesCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+
+								upgradesDetailCol = new TableColumn("Detail");
+								upgradesDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+
+								upgradesDescTable.setItems(descriptionListData);
+								upgradesDescTable.getColumns().addAll(upgradesCategoryCol, upgradesDetailCol);
+								upgradesDescTable.setEditable(true);
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+							// System.out.println("retrieved");
+						}
+					} catch (NullPointerException npe) {
+						System.out.println("Opening " + tabType + " at root level.");
+					}
+				}
+			});
 		} catch (NullPointerException npe) {
 			System.out.println("[setUpgradesTreeView]: No directory selected");
 		}
 	}
 
-	// @Override
 	public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
 		if (attr.isSymbolicLink()) {
 			System.out.format("Symbolic link: %s ", file);
@@ -438,6 +745,12 @@ public class CategoryOverviewController {
 		return FileVisitResult.CONTINUE;
 	}
 
+	/**
+	 * Populates the Mech tab TreeView based on the file list from the
+	 * ...BATTLETECH/BattleTech_Data/StreamingAssets/data/mechs directory
+	 * 
+	 * @throws NullPointerException
+	 */
 	@FXML
 	private void setMechsTreeView() throws NullPointerException {
 		try {
