@@ -5,7 +5,7 @@
 A Desktop tool written in Java, using JavaFX, to make modifying Battletech configuration files easier and more controlled, thereby preventing accidental breaking of the Mulitplayer mode with a "bad" config.
 
 ## Current Version
-- 0.3.2a
+- 0.3.3a
 
 ## Supported Platforms
 
@@ -58,10 +58,10 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
+* TAW MWO Family for their support
 * Acknowledgement to the imagery used from the Steam Community
 * Harebrained Schemes (for the game)
 * Users on Reddit for the discovery/explanation of how to manipulate the files
-* me (for thinking up my own "hare-brained" scheme to do this...)
 
 ## Issue tracking
 - [Click here](https://github.com/gcurrier/BattletechModder/issues/new/choose) to register a bug or request a new feature.
