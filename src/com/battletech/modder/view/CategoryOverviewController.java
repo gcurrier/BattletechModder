@@ -96,9 +96,19 @@ public class CategoryOverviewController {
 	@FXML
 	private AnchorPane												heatsinksLHSAnchorPane;
 	@FXML
+	private AnchorPane												heatsinksRHSAnchorPane;
+	@FXML
+	private TableView<Description>						heatsinksDescTable;
+	@FXML
+	private TextArea													heatsinksDetailText;
+	@FXML
 	private TreeView<String>									heatsinksTreeView;
 	@FXML
 	private Label															heatsinksTabLabel;
+	@FXML
+	private TableColumn<Description, String>	heatsinksCategoryCol;
+	@FXML
+	private TableColumn<Description, String>	heatsinksDetailCol;
 
 	// Upgrades Tab components and children
 	@FXML
@@ -108,9 +118,19 @@ public class CategoryOverviewController {
 	@FXML
 	private AnchorPane												upgradesLHSAnchorPane;
 	@FXML
+	private AnchorPane												upgradesRHSAnchorPane;
+	@FXML
+	private TableView<Description>						upgradesDescTable;
+	@FXML
+	private TextArea													upgradesDetailText;
+	@FXML
 	private TreeView<String>									upgradesTreeView;
 	@FXML
 	private Label															upgradesTabLabel;
+	@FXML
+	private TableColumn<Description, String>	upgradesCategoryCol;
+	@FXML
+	private TableColumn<Description, String>	upgradesDetailCol;
 
 	// Shops Tab components and children
 	@FXML
@@ -324,6 +344,7 @@ public class CategoryOverviewController {
 		TreeItem<String> ballisticItems = new TreeItem<>("Ballistic");
 		TreeItem<String> antiPersonnelItems = new TreeItem<>("AntiPersonnel");
 		TreeItem<String> meleeItems = new TreeItem<>("Melee");
+		String tabType = "weapon";
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
@@ -373,50 +394,62 @@ public class CategoryOverviewController {
 						 */
 						@Override
 						public void changed(ObservableValue obs, Object oldVal, Object newVal) {
-							TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
-							boolean hasParent = selectedItem.getParent() != null;
-							boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
-							String fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
-
-							if (hasParent && !hasChildren) {
-								JSONObject weaponData = WeaponDataController.getWeaponData(fileFullPath);
-								try {
-									JSONObject description = (JSONObject) weaponData.get("Description");
-									JSONArray descArr = description.names();
-									// clear the list before refilling it with new data
-									descriptionListData.removeAll(descriptionListData);
-									// remove columns
-									weaponDescTable.getColumns().clear();
-									for (int i = 0; i < descArr.length(); i++) {
-										String descKey = descArr.getString(i);
-										String descVal = description.getString(descKey);
-										if (descKey.equals("Details")) {
-											weaponDetailText.setText(descVal);
-											weaponDetailText.setWrapText(true);
-											weaponDetailText.setEditable(false);
-										} else if (descKey.equals("Name")) {
-											weaponsTabLabel.setText(descVal);
-										} else {
-											// populate Observable list with Description data
-											descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
-										}
-										// System.out.println(descKey + ": " + descVal);
+							//IN setItemTable((TreeItem<String>) obs.getValue(),String tabType,String getComponentFullPath()) OUT (ObservableList<Description>,TableColumn<Description, String>,TableColumn<Description, String>)
+							try {
+								TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+								boolean hasParent = selectedItem.getParent() == null ? false : true;
+								boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+								boolean selItemIsLeaf = selectedItem.isLeaf();
+								String fileFullPath = "";
+								
+								if (hasParent && !hasChildren) {
+									if(tabType != "upgrades") {
+										fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+									} else {
+										fileFullPath = selItemIsLeaf ? 
+												getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
+													getComponentFullPath() + "\\" + selectedItem.getValue();
 									}
-									// re establish columns
-									weaponCategoryCol = new TableColumn("Category");
-									weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+									JSONObject weaponData = ItemDataDescriptionController.getItemData(fileFullPath);
+									try {
+										JSONObject description = (JSONObject) weaponData.get("Description");
+										JSONArray descArr = description.names();
+										// clear the list before refilling it with new data
+										descriptionListData.removeAll(descriptionListData);
+										// remove columns
+										weaponDescTable.getColumns().clear();
+										for (int i = 0; i < descArr.length(); i++) {
+											String descKey = descArr.getString(i);
+											String descVal = description.getString(descKey);
+											if (descKey.equals("Details")) {
+												weaponDetailText.setText(descVal);
+												weaponDetailText.setWrapText(true);
+												weaponDetailText.setEditable(false);
+											} else if (descKey.equals("Name")) {
+												weaponsTabLabel.setText(descVal);
+											} else {
+												// populate Observable list with Description data
+												descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+											}
+											// System.out.println(descKey + ": " + descVal);
+										}
+										// re establish columns
+										weaponCategoryCol = new TableColumn("Category");
+										weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
 
-									weaponDetailCol = new TableColumn("Detail");
-									weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+										weaponDetailCol = new TableColumn("Detail");
+										weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
 
-									weaponDescTable.setItems(descriptionListData);
-									weaponDescTable.getColumns().addAll(weaponCategoryCol, weaponDetailCol);
-									weaponDescTable.setEditable(true);
-
-								} catch (JSONException e) {
-									e.printStackTrace();
+										weaponDescTable.setItems(descriptionListData);
+										weaponDescTable.getColumns().addAll(weaponCategoryCol, weaponDetailCol);
+										weaponDescTable.setEditable(true);
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
+									// System.out.println("retrieved");
 								}
-								// System.out.println("retrieved");
+							} catch (NullPointerException npe) {
+								System.out.println("Opening " + tabType + " at root level.");
 							}
 						}
 					});
@@ -452,10 +485,12 @@ public class CategoryOverviewController {
 	 * 
 	 * @throws NullPointerException
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	private void setHeatsinksTreeView() throws NullPointerException {
 		ArrayList<JSONObject> heatsinksList;
 		TreeItem<String> rootItem = new TreeItem<>("Heat Management");
+		String tabType = "heatsinks";
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
@@ -465,9 +500,77 @@ public class CategoryOverviewController {
 						TreeItem<String> thisItem;
 						thisItem = TreeViewBuilder.getTreeViewBranch("heatsinks", (JSONObject) heatsinksList.get(i).get("Description"));
 						rootItem.getChildren().add(thisItem);
+						rootItem.setExpanded(true);
 					}
 					this.heatsinksTreeView.setRoot(rootItem);
 					this.heatsinksTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+					this.heatsinksTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+						/**
+						 * Retrieve selected heatsink data when a leaf item in the heatsinks tree view
+						 * is clicked
+						 * 
+						 * @param item
+						 */
+						@Override
+						public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+							try {
+								TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+								boolean hasParent = selectedItem.getParent() == null ? false : true;
+								boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+								boolean selItemIsLeaf = selectedItem.isLeaf();
+								String fileFullPath = "";
+								
+								if (hasParent && !hasChildren) {
+									if(tabType != "upgrades") {
+										fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+									} else {
+										fileFullPath = selItemIsLeaf ? 
+												getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
+													getComponentFullPath() + "\\" + selectedItem.getValue();
+									}
+									JSONObject objectData = ItemDataDescriptionController.getItemData(fileFullPath);
+									try {
+										JSONObject description = (JSONObject) objectData.get("Description");
+										JSONArray descArr = description.names();
+										// clear the list before refilling it with new data
+										descriptionListData.removeAll(descriptionListData);
+										// remove columns
+										heatsinksDescTable.getColumns().clear();
+										for (int i = 0; i < descArr.length(); i++) {
+											String descKey = descArr.getString(i);
+											String descVal = description.getString(descKey);
+											if (descKey.equals("Details")) {
+												heatsinksDetailText.setText(descVal);
+												heatsinksDetailText.setWrapText(true);
+												heatsinksDetailText.setEditable(false);
+											} else if (descKey.equals("Name")) {
+												heatsinksTabLabel.setText(descVal);
+											} else {
+												// populate Observable list with Description data
+												descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+											}
+											// System.out.println(descKey + ": " + descVal);
+										}
+										// re establish columns
+										heatsinksCategoryCol = new TableColumn("Category");
+										heatsinksCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+
+										heatsinksDetailCol = new TableColumn("Detail");
+										heatsinksDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+
+										heatsinksDescTable.setItems(descriptionListData);
+										heatsinksDescTable.getColumns().addAll(heatsinksCategoryCol, heatsinksDetailCol);
+										heatsinksDescTable.setEditable(true);
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
+									// System.out.println("retrieved");
+								}
+							} catch (NullPointerException npe) {
+								System.out.println("Opening " + tabType + " at root level.");
+							}
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -483,7 +586,7 @@ public class CategoryOverviewController {
 	 * 
 	 * @throws NullPointerException
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	private void setUpgradesTreeView() throws NullPointerException {
 		Map<String, String> subDirList = new HashMap<String, String>();
@@ -492,6 +595,8 @@ public class CategoryOverviewController {
 		TreeItem<String> actuatorsItems = new TreeItem<>("Actuators");
 		TreeItem<String> cockpitModItems = new TreeItem<>("Cockpit Mods");
 		TreeItem<String> ttsItems = new TreeItem<>("Target Tracking");
+		ArrayList<JSONObject> thisFileList = null;
+		String tabType = "upgrades";
 		try {
 			if (getBtModder().rootController.selectedDirectory.exists()) {
 				System.out.println(getComponentFullPath());
@@ -515,8 +620,8 @@ public class CategoryOverviewController {
 			}
 			for (Map.Entry<String, String> dir : subDirList.entrySet()) {
 				// TreeItem<String> branchItem = new TreeItem<String>(dir.getKey());
-				System.out.println("key: " + dir.getKey() + "\n" + "value: " + dir.getValue());
-				ArrayList<JSONObject> thisFileList = null;
+				// System.out.println("key: " + dir.getKey() + "\n" + "value: " + dir.getValue());
+				//ArrayList<JSONObject> thisFileList = null;
 				thisFileList = TreeViewBuilder.getItemList(dir.getValue());
 				try {
 					for (int i = 0; i < thisFileList.size(); i++) {
@@ -554,6 +659,73 @@ public class CategoryOverviewController {
 			rootItem.getChildren().addAll(gyrosItems, actuatorsItems, cockpitModItems, ttsItems);
 			this.upgradesTreeView.setRoot(rootItem);
 			this.upgradesTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			this.upgradesTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+				/**
+				 * Retrieve selected heatsink data when a leaf item in the heatsinks tree view
+				 * is clicked
+				 * 
+				 * @param item
+				 */
+				@Override
+				public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+					try {
+						TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
+						boolean hasParent = selectedItem.getParent() == null ? false : true;
+						boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
+						boolean selItemIsLeaf = selectedItem.isLeaf();
+						String fileFullPath = "";
+						
+						if (hasParent && !hasChildren) {
+							if(tabType != "upgrades") {
+								fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
+							} else {
+								fileFullPath = selItemIsLeaf ? 
+										getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
+											getComponentFullPath() + "\\" + selectedItem.getValue();
+							}
+							JSONObject objectData = ItemDataDescriptionController.getItemData(fileFullPath);
+							try {
+								JSONObject description = (JSONObject) objectData.get("Description");
+								JSONArray descArr = description.names();
+								// clear the list before refilling it with new data
+								descriptionListData.removeAll(descriptionListData);
+								// remove columns
+								upgradesDescTable.getColumns().clear();
+								for (int i = 0; i < descArr.length(); i++) {
+									String descKey = descArr.getString(i);
+									String descVal = description.getString(descKey);
+									if (descKey.equals("Details")) {
+										upgradesDetailText.setText(descVal);
+										upgradesDetailText.setWrapText(true);
+										upgradesDetailText.setEditable(false);
+									} else if (descKey.equals("Name")) {
+										upgradesTabLabel.setText(descVal);
+									} else {
+										// populate Observable list with Description data
+										descriptionListData.add(new Description(descKey.toString(), descVal.toString()));
+									}
+									// System.out.println(descKey + ": " + descVal);
+								}
+								// re establish columns
+								upgradesCategoryCol = new TableColumn("Category");
+								upgradesCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
+
+								upgradesDetailCol = new TableColumn("Detail");
+								upgradesDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
+
+								upgradesDescTable.setItems(descriptionListData);
+								upgradesDescTable.getColumns().addAll(upgradesCategoryCol, upgradesDetailCol);
+								upgradesDescTable.setEditable(true);
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+							// System.out.println("retrieved");
+						}
+					} catch (NullPointerException npe) {
+						System.out.println("Opening " + tabType + " at root level.");
+					}
+				}
+			});
 		} catch (NullPointerException npe) {
 			System.out.println("[setUpgradesTreeView]: No directory selected");
 		}
