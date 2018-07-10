@@ -1,7 +1,9 @@
 package com.battletech.modder.view;
 
 import java.io.File;
-//import java.util.Properties;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import com.battletech.modder.BTModderMain;
 
@@ -63,9 +65,12 @@ public class RootLayoutController {
 	 * @param selectedDirectory
 	 *          the selectedDirectory to set
 	 */
+	@SuppressWarnings("unused")
 	public void setSelectedDirectory(File selectedDirectory) throws NullPointerException {
-		try {
+		//Preferences prefs = Preferences.userNodeForPackage(BTModderMain.class);
+		try {			
 			this.selectedDirectory = selectedDirectory;
+			//prefs.put("filePath",selectedDirectory.getPath());			
 		} catch (NullPointerException npe) {
 			System.out.println("No Directory Selected");
 		}
@@ -135,9 +140,22 @@ public class RootLayoutController {
 	@FXML
 	private void handleAbout() {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Battletech Modder Tool (version 0.2.1a)");
+		alert.setTitle("Battletech Modder Tool (version 0.3.3a)");
 		alert.setHeaderText("About");
-		alert.setContentText("Author: Glen Currier\nBuildDate: TBD\nWebsite: forthcoming");
+		alert.setContentText("Author: Glen Currier\nLatest Build Date: 2017.07.01\n\nA tool for modifying Battletech data files safely.");
 		alert.showAndWait();
+	}
+	
+	@FXML 
+	private void handleWiki() {
+		URI u;
+		try {
+			u = new URI("https://github.com/gcurrier/BattletechModder/wiki");
+	    java.awt.Desktop.getDesktop().browse(u);
+		} catch (URISyntaxException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
