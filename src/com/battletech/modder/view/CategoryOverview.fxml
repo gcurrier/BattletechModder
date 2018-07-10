@@ -37,8 +37,8 @@
                                       </buttons>
                                     </ButtonBar>
                                     <Label fx:id="weaponsTabLabel" layoutX="14.0" layoutY="14.0" text="Label" />
-                                    <TableView fx:id="weaponDescTable" layoutX="14.0" layoutY="31.0" prefHeight="221.0" prefWidth="631.0" />
-                                    <TextArea fx:id="weaponDetailText" layoutX="14.0" layoutY="255.0" prefHeight="59.0" prefWidth="632.0" />
+                                    <TableView fx:id="weaponDescTable" layoutX="14.0" layoutY="31.0" prefHeight="220.0" prefWidth="387.0" />
+                                    <TextArea fx:id="weaponDetailText" layoutX="409.0" layoutY="31.0" prefHeight="220.0" prefWidth="240.0" />
                                  </children>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -65,14 +65,14 @@
                                  <children>
                                     <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <buttons>
-                                          <Button mnemonicParsing="false" onAction="#handleEdit" text="Edit" />
-                                          <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
-                                          <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                                          <Button fx:id="heatsinkEdit" mnemonicParsing="false" onAction="#handleEdit" text="Edit" />
+                                          <Button fx:id="heatsinkSave" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+                                          <Button fx:id="heatsinkCancel" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
                                        </buttons>
                                     </ButtonBar>
                                     <Label fx:id="heatsinksTabLabel" layoutX="14.0" layoutY="14.0" text="Label" />
-                                    <TableView fx:id="heatsinksDescTable" layoutX="14.0" layoutY="31.0" prefHeight="221.0" prefWidth="631.0" />
-                                    <TextArea fx:id="heatsinksDetailText" layoutX="14.0" layoutY="255.0" prefHeight="59.0" prefWidth="632.0" />
+                                    <TableView fx:id="heatsinksDescTable" layoutX="14.0" layoutY="31.0" prefHeight="220.0" prefWidth="387.0" />
+                                    <TextArea fx:id="heatsinksDetailText" layoutX="409.0" layoutY="31.0" prefHeight="220.0" prefWidth="240.0" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -96,14 +96,14 @@
                                  <children>
                                     <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <buttons>
-                                          <Button mnemonicParsing="false" onAction="#handleEdit" text="Edit" />
-                                          <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
-                                          <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                                          <Button fx:id="upgradeEdit" mnemonicParsing="false" onAction="#handleEdit" text="Edit" />
+                                          <Button fx:id="upgradeSave" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+                                          <Button fx:id="upgradeCancel" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
                                        </buttons>
                                     </ButtonBar>
                                     <Label fx:id="upgradesTabLabel" layoutX="14.0" layoutY="14.0" text="Label" />
-                                    <TableView fx:id="upgradesDescTable" layoutX="14.0" layoutY="31.0" prefHeight="221.0" prefWidth="631.0" />
-                                    <TextArea fx:id="upgradesDetailText" layoutX="14.0" layoutY="255.0" prefHeight="59.0" prefWidth="632.0" />
+                                    <TableView fx:id="upgradesDescTable" layoutX="14.0" layoutY="31.0" prefHeight="220.0" prefWidth="387.0" />
+                                    <TextArea fx:id="upgradesDetailText" layoutX="409.0" layoutY="31.0" prefHeight="220.0" prefWidth="240.0" />
                                  </children>
                               </AnchorPane>
                            </items>

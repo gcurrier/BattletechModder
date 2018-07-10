@@ -36,6 +36,8 @@ import javafx.collections.FXCollections;
 //import java.util.Arrays;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -45,11 +47,14 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 
 public class CategoryOverviewController {
@@ -106,6 +111,12 @@ public class CategoryOverviewController {
 	@FXML
 	private Label															heatsinksTabLabel;
 	@FXML
+	private Button														heatsinkEdit;
+	@FXML
+	private Button														heatsinkSave;
+	@FXML
+	private Button														heatsinkCancel;
+	@FXML
 	private TableColumn<Description, String>	heatsinksCategoryCol;
 	@FXML
 	private TableColumn<Description, String>	heatsinksDetailCol;
@@ -127,6 +138,12 @@ public class CategoryOverviewController {
 	private TreeView<String>									upgradesTreeView;
 	@FXML
 	private Label															upgradesTabLabel;
+	@FXML
+	private Button														upgradeEdit;
+	@FXML
+	private Button														upgradeSave;
+	@FXML
+	private Button														upgradeCancel;
 	@FXML
 	private TableColumn<Description, String>	upgradesCategoryCol;
 	@FXML
@@ -155,13 +172,6 @@ public class CategoryOverviewController {
 	private TreeView<String>									mechTreeView;
 	@FXML
 	private Label															mechsTabLabel;
-
-	@FXML
-	private Button														editBtn;
-	@FXML
-	private Button														saveBtn;
-	@FXML
-	private Button														cancelBtn;
 
 	private ObservableList<Tab>								allTabs;
 	private Node															selectedTabContent;
@@ -392,23 +402,27 @@ public class CategoryOverviewController {
 						 * 
 						 * @param item
 						 */
+						@SuppressWarnings("unused")
 						@Override
 						public void changed(ObservableValue obs, Object oldVal, Object newVal) {
-							//IN setItemTable((TreeItem<String>) obs.getValue(),String tabType,String getComponentFullPath()) OUT (ObservableList<Description>,TableColumn<Description, String>,TableColumn<Description, String>)
+							// IN setItemTable((TreeItem<String>) obs.getValue(),String tabType,String
+							// getComponentFullPath()) OUT
+							// (ObservableList<Description>,TableColumn<Description,
+							// String>,TableColumn<Description, String>)
 							try {
 								TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
 								boolean hasParent = selectedItem.getParent() == null ? false : true;
 								boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
 								boolean selItemIsLeaf = selectedItem.isLeaf();
 								String fileFullPath = "";
-								
+
 								if (hasParent && !hasChildren) {
-									if(tabType != "upgrades") {
+									if (tabType != "upgrades") {
 										fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
 									} else {
-										fileFullPath = selItemIsLeaf ? 
-												getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
-													getComponentFullPath() + "\\" + selectedItem.getValue();
+										fileFullPath = selItemIsLeaf
+												? getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue()
+												: getComponentFullPath() + "\\" + selectedItem.getValue();
 									}
 									JSONObject weaponData = ItemDataDescriptionController.getItemData(fileFullPath);
 									try {
@@ -435,9 +449,15 @@ public class CategoryOverviewController {
 										}
 										// re establish columns
 										weaponCategoryCol = new TableColumn("Category");
+										//weaponCategoryCol.prefWidthProperty().bind(weaponDescTable.widthProperty().divide(2));
+										//weaponCategoryCol.setPrefWidth(1f * Integer.MAX_VALUE * 40);
+										weaponCategoryCol.setPrefWidth(100);
 										weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
 
 										weaponDetailCol = new TableColumn("Detail");
+										//weaponDetailCol.prefWidthProperty().bind(weaponDescTable.widthProperty().divide(2));
+										//weaponDetailCol.setPrefWidth(1f * Integer.MAX_VALUE * 60);
+										weaponDetailCol.setPrefWidth(280);
 										weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
 
 										weaponDescTable.setItems(descriptionListData);
@@ -519,14 +539,14 @@ public class CategoryOverviewController {
 								boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
 								boolean selItemIsLeaf = selectedItem.isLeaf();
 								String fileFullPath = "";
-								
+
 								if (hasParent && !hasChildren) {
-									if(tabType != "upgrades") {
+									if (tabType != "upgrades") {
 										fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
 									} else {
-										fileFullPath = selItemIsLeaf ? 
-												getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
-													getComponentFullPath() + "\\" + selectedItem.getValue();
+										fileFullPath = selItemIsLeaf
+												? getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue()
+												: getComponentFullPath() + "\\" + selectedItem.getValue();
 									}
 									JSONObject objectData = ItemDataDescriptionController.getItemData(fileFullPath);
 									try {
@@ -620,8 +640,9 @@ public class CategoryOverviewController {
 			}
 			for (Map.Entry<String, String> dir : subDirList.entrySet()) {
 				// TreeItem<String> branchItem = new TreeItem<String>(dir.getKey());
-				// System.out.println("key: " + dir.getKey() + "\n" + "value: " + dir.getValue());
-				//ArrayList<JSONObject> thisFileList = null;
+				// System.out.println("key: " + dir.getKey() + "\n" + "value: " +
+				// dir.getValue());
+				// ArrayList<JSONObject> thisFileList = null;
 				thisFileList = TreeViewBuilder.getItemList(dir.getValue());
 				try {
 					for (int i = 0; i < thisFileList.size(); i++) {
@@ -668,20 +689,32 @@ public class CategoryOverviewController {
 				 */
 				@Override
 				public void changed(ObservableValue obs, Object oldVal, Object newVal) {
+					String directoryName = "";
 					try {
 						TreeItem<String> selectedItem = (TreeItem<String>) obs.getValue();
 						boolean hasParent = selectedItem.getParent() == null ? false : true;
 						boolean hasChildren = selectedItem.getChildren().isEmpty() ? false : true;
 						boolean selItemIsLeaf = selectedItem.isLeaf();
 						String fileFullPath = "";
-						
+
 						if (hasParent && !hasChildren) {
-							if(tabType != "upgrades") {
+							if (tabType != "upgrades") {
 								fileFullPath = getComponentFullPath() + "\\" + selectedItem.getValue();
 							} else {
-								fileFullPath = selItemIsLeaf ? 
-										getComponentFullPath() + "\\" + selectedItem.getParent().getParent().getValue() + "\\" + selectedItem.getValue() : 
-											getComponentFullPath() + "\\" + selectedItem.getValue();
+								// special handling because the tree item name does not match the actual
+								// directory name
+								switch (selectedItem.getParent().getParent().getValue()) {
+								case "Cockpit Mods":
+									directoryName = "cockpitMods";
+									break;
+								case "Target Tracking":
+									directoryName = "targetTrackingSystem";
+									break;
+								default:
+									directoryName = selectedItem.getParent().getParent().getValue();
+								}
+								fileFullPath = selItemIsLeaf ? getComponentFullPath() + "\\" + directoryName + "\\" + selectedItem.getValue()
+										: getComponentFullPath() + "\\" + selectedItem.getValue();
 							}
 							JSONObject objectData = ItemDataDescriptionController.getItemData(fileFullPath);
 							try {
@@ -764,10 +797,46 @@ public class CategoryOverviewController {
 	}
 
 	@FXML
-	private void handleEdit() {
-		System.out.println("Edit Button Clicked");
+	private void handleEdit(ActionEvent event) {
+		Button btn = (Button) event.getSource();
+		ObservableList<TableColumn<Description,?>> tabCols = null;
+		TableView<Description> tab = null;
+		switch (btn.getId()) {
+		case "weaponEdit":
+			System.out.println("Editing weapon: ");
+			tab = this.weaponDescTable;
+			tabCols = weaponDescTable.getColumns();
+			this.weaponDetailText.setEditable(true);
+			break;
+		case "heatsinkEdit":
+			System.out.println("Editing heatsink: ");
+			tab = this.heatsinksDescTable;
+			tabCols = heatsinksDescTable.getColumns();
+			this.heatsinksDetailText.setEditable(true);
+			break;
+		case "upgradeEdit":
+			System.out.println("Editing upgrade: ");
+			tab = this.upgradesDescTable;
+			tabCols = upgradesDescTable.getColumns();
+			this.upgradesDetailText.setEditable(true);
+			break;
+		default:
+			break;
+		}
+		setDescTabEditListener(tab,tabCols.get(1));
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void setDescTabEditListener(TableView<Description> tab,TableColumn tabCol) {
+		tabCol.setCellFactory(TextFieldTableCell.forTableColumn());
+		tabCol.setOnEditCommit(new EventHandler<CellEditEvent<Description, String>>() {
+			@Override
+			public void handle(CellEditEvent<Description, String> ce) {
+				((Description) ce.getTableView().getItems().get(ce.getTablePosition().getRow())).setValue(ce.getNewValue());
+			}
+		});
+	}
+	
 	@FXML
 	private void handleSave() {
 		System.out.println("Save Button Clicked");
