@@ -109,17 +109,6 @@ public class RootLayoutController {
 			setLabelConfigDirText("No Directory selected");
 			System.out.println("No Directory Selected");
 		}
-
-		// if (getSelectedDirectory() != null) {
-		// getBtModder().categoryController.setInitialView();
-		// TODO original directory needs to be copied to app folder or to
-		// System.property location. /BattletechModderBackups...
-		// TODO from here the subdirectory needs to be opened and all files therein
-		// parsed into an array.
-		// TODO pass parsed data back to categoryController and set the LHS tree view.
-		// TODO clicking on element in tree view opens up the data and displays it for
-		// edit in the RHS pane
-		// }
 	}
 
 	@FXML

@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import com.battletech.modder.BTModderMain;
 import com.battletech.modder.control.utils.TreeViewBuilder;
 import com.battletech.modder.model.Description;
+import com.battletech.modder.control.utils.DirectoryAndFileUtility;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -48,7 +49,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
@@ -182,6 +182,7 @@ public class CategoryOverviewController {
 	public static String											activeTabText;
 	public static String											componentFullPath;
 	public static int													selectedTabIdx			= 0;
+	public static Boolean											inEditMode					= false;
 
 	/**
 	 * Empty constructor. The constructor is called before the initialize() method.
@@ -321,6 +322,20 @@ public class CategoryOverviewController {
 	}
 
 	/**
+	 * @return the inEditMode
+	 */
+	public static Boolean getInEditMode() {
+		return inEditMode;
+	}
+
+	/**
+	 * @param inEditMode the inEditMode to set
+	 */
+	public static void setInEditMode(Boolean inEditMode) {
+		CategoryOverviewController.inEditMode = inEditMode;
+	}
+
+	/**
 	 * Update the parent view directory label with the selected tab's component
 	 * folder path or set an instructional message
 	 * 
@@ -449,14 +464,14 @@ public class CategoryOverviewController {
 										}
 										// re establish columns
 										weaponCategoryCol = new TableColumn("Category");
-										//weaponCategoryCol.prefWidthProperty().bind(weaponDescTable.widthProperty().divide(2));
-										//weaponCategoryCol.setPrefWidth(1f * Integer.MAX_VALUE * 40);
+										// weaponCategoryCol.prefWidthProperty().bind(weaponDescTable.widthProperty().divide(2));
+										// weaponCategoryCol.setPrefWidth(1f * Integer.MAX_VALUE * 40);
 										weaponCategoryCol.setPrefWidth(100);
 										weaponCategoryCol.setCellValueFactory(new PropertyValueFactory<Description, String>("key"));
 
 										weaponDetailCol = new TableColumn("Detail");
-										//weaponDetailCol.prefWidthProperty().bind(weaponDescTable.widthProperty().divide(2));
-										//weaponDetailCol.setPrefWidth(1f * Integer.MAX_VALUE * 60);
+										// weaponDetailCol.prefWidthProperty().bind(weaponDescTable.widthProperty().divide(2));
+										// weaponDetailCol.setPrefWidth(1f * Integer.MAX_VALUE * 60);
 										weaponDetailCol.setPrefWidth(280);
 										weaponDetailCol.setCellValueFactory(new PropertyValueFactory<Description, String>("value"));
 
@@ -799,8 +814,9 @@ public class CategoryOverviewController {
 	@FXML
 	private void handleEdit(ActionEvent event) {
 		Button btn = (Button) event.getSource();
-		ObservableList<TableColumn<Description,?>> tabCols = null;
+		ObservableList<TableColumn<Description, ?>> tabCols = null;
 		TableView<Description> tab = null;
+		setInEditMode(true);
 		switch (btn.getId()) {
 		case "weaponEdit":
 			System.out.println("Editing weapon: ");
@@ -823,11 +839,11 @@ public class CategoryOverviewController {
 		default:
 			break;
 		}
-		setDescTabEditListener(tab,tabCols.get(1));
+		setDescTabEditListener(tab, tabCols.get(1));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void setDescTabEditListener(TableView<Description> tab,TableColumn tabCol) {
+	public void setDescTabEditListener(TableView<Description> tab, TableColumn tabCol) {
 		tabCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		tabCol.setOnEditCommit(new EventHandler<CellEditEvent<Description, String>>() {
 			@Override
@@ -836,10 +852,48 @@ public class CategoryOverviewController {
 			}
 		});
 	}
-	
+
 	@FXML
-	private void handleSave() {
-		System.out.println("Save Button Clicked");
+	private void handleSave(ActionEvent event) {
+		Button btn = (Button) event.getSource();
+		ObservableList<TableColumn<Description, ?>> tabCols = null;
+		String selTreeItem = null;
+		String tableDescText = null;
+		String componentPath = this.getComponentFullPath();
+		String fullFilePath = null;
+		String itemType = null;
+		Boolean isSaved;
+		if (getInEditMode()) {
+			switch (btn.getId()) {
+			case "weaponSave":
+				itemType = "weapon";
+				selTreeItem = this.weaponTreeView.getSelectionModel().getSelectedItem().getValue();
+				fullFilePath = componentPath + "\\" + selTreeItem;
+				tabCols = this.weaponDescTable.getColumns();
+				tableDescText = this.weaponDetailText.getText();
+				break;
+			case "heatsinkSave":
+				itemType = "heatsink";
+				selTreeItem = this.heatsinksTreeView.getSelectionModel().getSelectedItem().getValue();
+				fullFilePath = componentPath + "\\" + selTreeItem;
+				tabCols = this.heatsinksDescTable.getColumns();
+				tableDescText = this.heatsinksDetailText.getText();
+				break;
+			case "upgradeSave":
+				itemType = "upgrade";
+				selTreeItem = this.upgradesTreeView.getSelectionModel().getSelectedItem().getValue();
+				fullFilePath = componentPath + "\\" + selTreeItem;
+				tabCols = this.upgradesDescTable.getColumns();
+				tableDescText = this.upgradesDetailText.getText();
+				break;
+			default:
+				break;
+			}
+		}
+		isSaved = DirectoryAndFileUtility.saveFile(itemType, fullFilePath, tabCols, tableDescText);
+		if (isSaved){
+			//TODO turn off editing for the table
+		}
 	}
 
 	@FXML
