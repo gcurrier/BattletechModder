@@ -5,7 +5,7 @@
 A Desktop tool written in Java, using JavaFX, to make modifying Battletech configuration files easier and more controlled, thereby preventing accidental breaking of the Mulitplayer mode with a "bad" config.
 
 ## Current Version
-- 0.3.3a
+- 0.3.4a
 
 ## Supported Platforms
 
