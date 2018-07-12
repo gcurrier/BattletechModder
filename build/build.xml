@@ -103,7 +103,7 @@
 			<fx:fileset dir="dist" includes="resources/*" />
 		</fx:resources>
 
-		<fx:application id="fxApplication" name="BattletechModder" mainClass="com.battletech.modder.BTModderMain" version="0.3.3a" />
+		<fx:application id="fxApplication" name="BattletechModder" mainClass="com.battletech.modder.BTModderMain" version="0.3.4a" />
 
 		<mkdir dir="build/classes/META-INF" />
 
@@ -115,7 +115,7 @@
 			<manifest>
 				<attribute name="Implementation-Vendor" value="Glen Currier" />
 				<attribute name="Implementation-Title" value="BattletechModder" />
-				<attribute name="Implementation-Version" value="0.3.3a" />
+				<attribute name="Implementation-Version" value="0.3.4a" />
 				<attribute name="JavaFX-Feature-Proxy" value="None" />
 			</manifest>
 		</fx:jar>
