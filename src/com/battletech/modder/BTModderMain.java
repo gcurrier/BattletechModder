@@ -1,6 +1,7 @@
 package com.battletech.modder;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.battletech.modder.view.CategoryOverviewController;
 import com.battletech.modder.view.RootLayoutController;
@@ -22,6 +23,7 @@ public class BTModderMain extends Application {
 	public String											tabName;
 	public CategoryOverviewController	categoryController;
 	public RootLayoutController				rootController;
+	public static final String 				sessionUID = UUID.randomUUID().toString();
 
 	public BTModderMain() {
 	}
