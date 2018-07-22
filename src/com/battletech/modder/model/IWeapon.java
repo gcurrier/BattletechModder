@@ -2,6 +2,8 @@ package com.battletech.modder.model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+
 public interface IWeapon {
 
 	/**
@@ -63,13 +65,13 @@ public interface IWeapon {
 	/**
 	 * @return the rangeSplit
 	 */
-	String getRangeSplit();
+	JSONArray getRangeSplit();
 
 	/**
 	 * @param rangeSplit
 	 *            the rangeSplit to set
 	 */
-	void setRangeSplit(String rangeSplit);
+	void setRangeSplit(JSONArray rangeSplit);
 
 	/**
 	 * @return the ammoCategory
@@ -499,4 +501,15 @@ public interface IWeapon {
 	 *            the criticalComponent to set
 	 */
 	void setCriticalComponent(String criticalComponent);
+	
+	/**
+	 * @return the statusEffects
+	 */
+	JSONArray getStatusEffects();
+
+	/**
+	 * @param statusEffects
+	 *            the statusEffects to set
+	 */
+	void setStatusEffects(JSONArray statusEffects);
 }

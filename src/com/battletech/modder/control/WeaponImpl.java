@@ -2,6 +2,8 @@ package com.battletech.modder.control;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+
 import com.battletech.modder.model.IWeapon;
 import com.battletech.modder.model.Weapon;
 
@@ -69,13 +71,13 @@ public void setMaxRange(String maxRange) {
 }
 
 @Override
-public String getRangeSplit() {
+public JSONArray getRangeSplit() {
 	// TODO Auto-generated method stub
 	return null;
 }
 
 @Override
-public void setRangeSplit(String rangeSplit) {
+public void setRangeSplit(JSONArray rangeSplit) {
 	// TODO Auto-generated method stub
 	
 }
@@ -544,6 +546,18 @@ public String getCriticalComponent() {
 
 @Override
 public void setCriticalComponent(String criticalComponent) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public JSONArray getStatusEffects() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public void setStatusEffects(JSONArray statusEffects) {
 	// TODO Auto-generated method stub
 	
 }

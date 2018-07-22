@@ -9,7 +9,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -17,6 +17,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.battletech.modder.BTModderMain;
 import com.battletech.modder.model.Description;
 import com.battletech.modder.model.Weapon;
 
@@ -68,8 +69,6 @@ public class DirectoryAndFileUtility {
 	 */
 	public static JSONObject getSourceJson(String AbsPathToFile) {
 		JSONObject json = null;
-		File f = new File(AbsPathToFile);
-		if (f.exists()) {
 			try {
 				InputStream is = new FileInputStream(AbsPathToFile);
 				String jsonTxt = IOUtils.toString(is, "UTF-8");
@@ -77,7 +76,7 @@ public class DirectoryAndFileUtility {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+
 		return json;
 	}
 
@@ -94,15 +93,15 @@ public class DirectoryAndFileUtility {
 	public static Boolean saveJsonToFile(JSONObject jsonData, String componentType, String fileName) {
 		boolean isSaved = false;
 		String username = System.getProperty("user.name");
-		String pattern = "yyyy'-'MM'-'dd'_'HHmmss";
-		LocalDate localDate = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-		String formattedDate = localDate.format(formatter);
-		Path backupPath = Paths.get("C:\\Users\\" + username + "\\AppData\\Local\\BattletechModder\\app\\backup\\data\\" + componentType);
+		String dateTimePattern = "yyyyMMdd'T'HHmm";
+		String dayPattern = "yyyyMMdd";
+		LocalDateTime localDateTime = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dayPattern);
+		String formattedDateTime = localDateTime.format(formatter);
+		String sessionUID = BTModderMain.sessionUID;
+		Path backupPath = Paths.get("C:\\Users\\" + username + "\\AppData\\Local\\BattletechModder\\app\\backup\\" + sessionUID + "\\data\\" + componentType);
 		String newFilePath = "";
 		Writer output = null;
-		// TODO use unique identifier for app session and add to "data" folder name -
-		// needs to be created when open is opened and passed through to here
 		try {
 			if (!Files.exists(backupPath)) {
 				Files.createDirectories(backupPath);
@@ -114,7 +113,7 @@ public class DirectoryAndFileUtility {
 			output.write(jsonString);
 			output.close();
 			if (file.exists()) {
-				System.out.println(formattedDate + ": Original of " + fileName + " saved to " + newFilePath);
+				System.out.println(formattedDateTime + ": Original of " + fileName + " saved to " + newFilePath);
 				isSaved = true;
 			}
 		} catch (Exception e) {
@@ -136,6 +135,7 @@ public class DirectoryAndFileUtility {
 	 * @param itemText
 	 *          Detail or description text as part of the data display.
 	 */
+	@SuppressWarnings("unused")
 	public static Boolean saveFile(String dataCategory, String fullFilePath, ObservableList<TableColumn<Description, ?>> itemTableColumns,
 			String itemText) {
 		boolean isSaved = false;
@@ -151,7 +151,7 @@ public class DirectoryAndFileUtility {
 		case "weapon":
 			//TODO get all "Description" keys from jsonData and and update with itemTableColumns
 			//TODO get all other data from jsonData and add to new Weapon
-			Weapon newWeapon = new Weapon();
+			Weapon newWeapon = new Weapon(jsonData,true);
 			break;
 		case "heatsink":
 			break;
@@ -162,10 +162,7 @@ public class DirectoryAndFileUtility {
 		}
 		// get original file and parse into json object (hold in a variable)
 		// TODO iterate through new json object and update where necessary
-		// TODO create save directory if it doesn't already exist
-		// TODO Copy original file to subfolder (with date) in save directory
 		// TODO save new json object data to new file in original directory
-		// TODO return true if successfully saved, false if not
 		isSaved = saveJsonToFile(jsonData, dataCategory, filename);
 
 		return isSaved;
