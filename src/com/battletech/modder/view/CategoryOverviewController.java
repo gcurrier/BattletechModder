@@ -862,7 +862,7 @@ public class CategoryOverviewController {
 		String componentPath = this.getComponentFullPath();
 		String fullFilePath = null;
 		String itemType = null;
-		Boolean isSaved;
+		Boolean isSaved = false;
 		if (getInEditMode()) {
 			switch (btn.getId()) {
 			case "weaponSave":
@@ -889,8 +889,9 @@ public class CategoryOverviewController {
 			default:
 				break;
 			}
+			isSaved = DirectoryAndFileUtility.saveFile(itemType, fullFilePath, tabCols, tableDescText);
 		}
-		isSaved = DirectoryAndFileUtility.saveFile(itemType, fullFilePath, tabCols, tableDescText);
+		
 		if (isSaved){
 			//TODO turn off editing for the table
 		}
