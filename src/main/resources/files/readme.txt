@@ -45,7 +45,7 @@ Batch Editing
 NOTES
 -------------------
 
-- as this is a beta release, it's encouraged to create your own manual backup of "/weapon" until you feel confident in the backup and restore functionality. Just in case.
+- as this is a beta release, it's encouraged to create your own manual backup of "/weapon" until you feel confident in the backup and restore functionality. Just in case. An emergency data folder backup is provided in the event you're like me and really know how to break stuff beyond the point of recovery. it is located in the resources/files directory.
 
 - works on mod weapons, so long as they follow the same json structure as the vanilla weapons. Just point the app to the folder containing the mod weapons.
 
