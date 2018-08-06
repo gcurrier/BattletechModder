@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BTEditor.controller.weapon.WeaponEditorController">
+  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <ComboBox fx:id="filterComboBox" onAction="#filterTypeSelected" prefHeight="21.0" prefWidth="150.0" promptText="Select Filter Type...">
+      <items>
+        <FXCollections fx:factory="observableArrayList" />
+      </items>
+    </ComboBox>
+    <CheckBox fx:id="toggleStock" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Stock Only" textAlignment="CENTER" />
+    <CheckBox fx:id="toggleBatch" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Batch Edit" textAlignment="CENTER" />
+    <ListView id="filterList" fx:id="filterListBox" onMouseClicked="#subFilterClicked" VBox.vgrow="ALWAYS" />
+  </VBox>
+  <TableView fx:id="weaponTable" editable="true" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <columns>
+      <TableColumn fx:id="colFilePath" text="FilePath" />
+      <TableColumn fx:id="colFileName" text="FileName" />
+      <TableColumn fx:id="colName" onEditCommit="#strCellCommit" text="Name" />
+      <TableColumn fx:id="colCat" onEditCommit="#strCellCommit" text="Category" />
+      <TableColumn fx:id="colType" onEditCommit="#strCellCommit" text="Type" />
+      <TableColumn fx:id="colWpnSubType" onEditCommit="#strCellCommit" text="WeaponSubType" />
+      <TableColumn fx:id="colMfr" onEditCommit="#strCellCommit" text="Manufacturer" />
+      <TableColumn fx:id="colAmmoCat" onEditCommit="#strCellCommit" text="AmmoCategory" />
+      <TableColumn fx:id="colAmmoCap" onEditCommit="#intCellCommit" text="StartingAmmoCapacity" />
+      <TableColumn fx:id="colDmg" onEditCommit="#intCellCommit" text="Damage" />
+      <TableColumn fx:id="colStb" onEditCommit="#intCellCommit" text="Instability" />
+      <TableColumn fx:id="colHeatDmg" onEditCommit="#intCellCommit" text="HeatDamage" />
+      <TableColumn fx:id="colAccMod" onEditCommit="#intCellCommit" text="AccuracyModifier" />
+      <TableColumn fx:id="colCrit" onEditCommit="#dblCellCommit" text="CriticalChanceMultiplier" />
+      <TableColumn fx:id="colDmgAdj" text="DamagePerVolley" />
+      <TableColumn fx:id="colStbAdj" text="InstabilityPerVolley" />
+      <TableColumn fx:id="colDmgPerTon" text="DmgPerTon" />
+      <TableColumn fx:id="colDmgPerHeat" text="DmgPerHeat" />
+      <TableColumn fx:id="colStbPerTon" text="StbPerTon" />
+      <TableColumn fx:id="colStbPerHeat" text="StbPerHeat" />
+      <TableColumn fx:id="colHeat" onEditCommit="#intCellCommit" text="HeatGenerated" />
+      <TableColumn fx:id="colTons" onEditCommit="#dblCellCommit" text="Tonnage" />
+      <TableColumn fx:id="colBonusA" onEditCommit="#strCellCommit" text="BonusValueA" />
+      <TableColumn fx:id="colBOnusB" onEditCommit="#strCellCommit" text="BonusValueB" />
+      <TableColumn fx:id="colOverHeatDmgMulti" onEditCommit="#intCellCommit" text="OverheatedDamageMultiplier" />
+      <TableColumn fx:id="colEvasiveDmgMulti" onEditCommit="#intCellCommit" text="EvasiveDamageMultiplier" />
+      <TableColumn fx:id="colPipsIgnored" onEditCommit="#intCellCommit" text="EvasivePipsIgnored" />
+      <TableColumn fx:id="colDmgVar" onEditCommit="#intCellCommit" text="DamageVariance" />
+      <TableColumn fx:id="colAOECapable" onEditCommit="#boolCellCommit" text="AOECapable" />
+      <TableColumn fx:id="colIndirectCapable" onEditCommit="#boolCellCommit" text="IndirectFireCapable" />
+      <TableColumn fx:id="colMinRange" onEditCommit="#intCellCommit" text="MinRange" />
+      <TableColumn fx:id="colShortRangeSplit" onEditCommit="#intCellCommit" text="ShortRangeSplit" />
+      <TableColumn fx:id="colMidRangeSplit" onEditCommit="#intCellCommit" text="MidRangeSplit" />
+      <TableColumn fx:id="colLongRangeSplit" onEditCommit="#intCellCommit" text="LongRangeSplit" />
+      <TableColumn fx:id="colMaxRange" onEditCommit="#intCellCommit" text="MaxRange" />
+      <TableColumn fx:id="colRefireMod" onEditCommit="#intCellCommit" text="RefireModifier" />
+      <TableColumn fx:id="colShotsWhenFired" onEditCommit="#intCellCommit" text="ShotsWhenFired" />
+      <TableColumn fx:id="colAttackRecoil" onEditCommit="#intCellCommit" text="AttackRecoil" />
+      <TableColumn fx:id="colProjectilesPerShot" onEditCommit="#intCellCommit" text="ProjectilesPerShot" />
+      <TableColumn fx:id="colWpnEffectId" onEditCommit="#strCellCommit" text="WeaponEffectID" />
+      <TableColumn fx:id="colCost" onEditCommit="#intCellCommit" text="Cost" />
+      <TableColumn fx:id="colRarity" onEditCommit="#intCellCommit" text="Rarity" />
+      <TableColumn fx:id="colPurchasable" onEditCommit="#boolCellCommit" text="Purchasable" />
+      <TableColumn fx:id="colModel" onEditCommit="#strCellCommit" text="Model" />
+      <TableColumn fx:id="colId" onEditCommit="#strCellCommit" text="Id" />
+      <TableColumn fx:id="colDetails" onEditCommit="#strCellCommit" text="Details" />
+      <TableColumn fx:id="colIcon" onEditCommit="#strCellCommit" text="Icon" />
+      <TableColumn fx:id="colComponentType" onEditCommit="#strCellCommit" text="ComponentType" />
+      <TableColumn fx:id="colComponentSubType" onEditCommit="#strCellCommit" text="ComponentSubType" />
+      <TableColumn fx:id="colPrefabId" onEditCommit="#strCellCommit" text="PrefabIdentifier" />
+      <TableColumn fx:id="colBattleValue" onEditCommit="#intCellCommit" text="BattleValue" />
+      <TableColumn fx:id="colISize" onEditCommit="#intCellCommit" text="InventorySize" />
+      <TableColumn fx:id="colAllowedLocations" onEditCommit="#strCellCommit" text="AllowedLocations" />
+      <TableColumn fx:id="colDisallowedLocations" onEditCommit="#strCellCommit" text="DisallowedLocations" />
+      <TableColumn fx:id="colCriticalComponent" onEditCommit="#boolCellCommit" text="CriticalComponent" />
+    </columns>
+  </TableView>
+</AnchorPane>

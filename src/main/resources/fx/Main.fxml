@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BTEditor.controller.main.MainController">
+  <children>
+    <MenuBar prefHeight="25.0" prefWidth="1280.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#fileOpen" text="Open Directory" />
+            <MenuItem mnemonicParsing="false" onAction="#fileExit" text="Exit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="#false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#editSaveCurrent" text="Save current changes" />
+            <MenuItem mnemonicParsing="false" onAction="#editBackup" text="Backup..." />
+            <MenuItem mnemonicParsing="false" onAction="#editRestore" text="Restore..." />
+          </items>
+        </Menu>
+        <!--<Menu mnemonicParsing="false" text="View">-->
+          <!--<Menu fx:id="viewColumns" disable="true" mnemonicParsing="false" text="Columns..." visible="false" />-->
+        <!--</Menu>-->
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#helpAbout" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <Label fx:id="workingDirDisplay" text="Working directory path should be here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+    <TabPane fx:id="weapon" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+      <Tab text="WeaponEditor">
+        <fx:include fx:id="weaponEditor" source="WeaponTable.fxml" />
+      </Tab>
+    </TabPane>
+  </children>
+</AnchorPane>
