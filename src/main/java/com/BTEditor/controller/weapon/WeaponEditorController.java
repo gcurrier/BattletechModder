@@ -6,8 +6,8 @@ import com.BTEditor.controller.main.MainController;
 import com.BTEditor.controller.main.TableViewContextMenuHelper;
 import com.BTEditor.controller.prefs.WeaponTablePrefs;
 import com.BTEditor.model.enums.Category;
-import com.BTEditor.model.enums.Type;
 import com.BTEditor.model.enums.WeaponSubType;
+import com.BTEditor.model.enums.WeaponType;
 import com.BTEditor.model.weapon.Weapon;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -329,7 +329,7 @@ public class WeaponEditorController {
         break;
 
       case "Type":
-        for (Type type : Type.values())
+        for (WeaponType type : WeaponType.values())
           filterListBox.getItems().add(type.name());
         break;
 

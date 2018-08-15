@@ -2,8 +2,11 @@
   <dictionary name="jinx3">
     <words>
       <w>battletech</w>
+      <w>heatsink</w>
+      <w>heatsinks</w>
       <w>hkcu</w>
       <w>hkey</w>
+      <w>starsystem</w>
     </words>
   </dictionary>
 </component>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BTEditor.controller.heatsink.HeatsinkEditorController">
+  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <ComboBox fx:id="filterComboBox" onAction="#filterTypeSelected" prefHeight="21.0" prefWidth="150.0" promptText="Select Filter Type...">
+      <items>
+        <FXCollections fx:factory="observableArrayList" />
+      </items>
+    </ComboBox>
+    <CheckBox fx:id="toggleStock" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Stock Only" textAlignment="CENTER" />
+    <CheckBox fx:id="toggleBatch" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Batch Edit" textAlignment="CENTER" />
+    <ListView id="filterList" fx:id="filterListBox" onMouseClicked="#subFilterClicked" VBox.vgrow="ALWAYS" />
+  </VBox>
+  <TableView fx:id="heatsinkTable" editable="true" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <columns>
+      <TableColumn fx:id="colFilePath" text="FilePath" />
+      <TableColumn fx:id="colFileName" text="FileName" />
+      <TableColumn fx:id="colName" onEditCommit="#strCellCommit" text="Name" />
+      <TableColumn fx:id="colDissCap" onEditCommit="#intCellCommit" text="DissipationCapacity" />
+      <TableColumn fx:id="colBonusA" onEditCommit="#strCellCommit" text="BonusValueA" />
+      <TableColumn fx:id="colBonusB" onEditCommit="#strCellCommit" text="BonusValueB" />
+      <TableColumn fx:id="colCost" onEditCommit="#intCellCommit" text="Cost" />
+      <TableColumn fx:id="colRarity" onEditCommit="#intCellCommit" text="Rarity" />
+      <TableColumn fx:id="colPurchasable" onEditCommit="#boolCellCommit" text="Purchasable" />
+      <TableColumn fx:id="colId" onEditCommit="#strCellCommit" text="Id" />
+      <TableColumn fx:id="colDetails" onEditCommit="#strCellCommit" text="Details" />
+      <TableColumn fx:id="colIcon" onEditCommit="#strCellCommit" text="Icon" />
+      <TableColumn fx:id="colComponentType" onEditCommit="#strCellCommit" text="ComponentType" />
+      <TableColumn fx:id="colComponentSubType" onEditCommit="#strCellCommit" text="ComponentSubType" />
+      <TableColumn fx:id="colPrefabId" onEditCommit="#strCellCommit" text="PrefabIdentifier" />
+      <TableColumn fx:id="colBattleValue" onEditCommit="#intCellCommit" text="BattleValue" />
+      <TableColumn fx:id="colInvSize" onEditCommit="#intCellCommit" text="InventorySize" />
+      <TableColumn fx:id="colAllowedLocations" onEditCommit="#strCellCommit" text="AllowedLocations" />
+      <TableColumn fx:id="colDisallowedLocations" onEditCommit="#strCellCommit" text="DisallowedLocations" />
+      <TableColumn fx:id="colCriticalComponent" onEditCommit="#boolCellCommit" text="CriticalComponent" />
+    </columns>
+  </TableView>
+</AnchorPane>

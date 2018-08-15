@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BTEditor.controller.main.MainController">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BTEditor.controller.main.MainController">
   <children>
     <MenuBar prefHeight="25.0" prefWidth="1280.0">
       <menus>
@@ -36,9 +36,12 @@
       </menus>
     </MenuBar>
     <Label fx:id="workingDirDisplay" text="Working directory path should be here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-    <TabPane fx:id="weapon" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
-      <Tab text="WeaponEditor">
+    <TabPane fx:id="allTabsPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+      <Tab fx:id="weaponTab" text="WeaponEditor">
         <fx:include fx:id="weaponEditor" source="WeaponTable.fxml" />
+      </Tab>
+      <Tab fx:id="heatsinkTab" text="HeatsinkEditor">
+        <fx:include fx:id="heatsinkEditor" source="HeatsinkTable.fxml" />
       </Tab>
     </TabPane>
   </children>

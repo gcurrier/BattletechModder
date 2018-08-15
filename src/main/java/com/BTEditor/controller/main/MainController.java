@@ -1,10 +1,13 @@
 package com.BTEditor.controller.main;
 
 import com.BTEditor.Main;
+import com.BTEditor.controller.heatsink.HeatsinkCollection;
+import com.BTEditor.controller.heatsink.HeatsinkEditorController;
 import com.BTEditor.controller.prefs.AppPrefs;
 import com.BTEditor.controller.weapon.WeaponCollection;
 import com.BTEditor.controller.weapon.WeaponEditorController;
 import com.BTEditor.model.common.ItemCollection;
+import com.BTEditor.model.enums.ItemFolders;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,13 +27,21 @@ import java.util.Date;
 
 public class MainController {
   @FXML
+  public TabPane allTabsPane;
+  @FXML
+  public Tab weaponTab;
+  @FXML
   public AnchorPane weaponEditor;
   @FXML
-  public TabPane weapon;
+  private WeaponCollection weaponArrayList;
+  @FXML
+  public Tab heatsinkTab;
+  @FXML
+  public AnchorPane heatsinkEditor;
+  @FXML
+  private HeatsinkCollection heatsinkArrayList;
   @FXML
   private AppPrefs prefs;
-  @FXML
-  private WeaponCollection weaponArrayList;
   @FXML
   private MenuItem fileOpen;
   @FXML
@@ -53,6 +64,8 @@ public class MainController {
 
   @FXML
   private WeaponEditorController weaponEditorController;
+  @FXML
+  private HeatsinkEditorController heatsinkEditorController;
 
 //TODO  @FXML private WeaponEditorController weaponEditorController;
 
@@ -62,6 +75,10 @@ public class MainController {
     //TODO
     weaponArrayList = new WeaponCollection(prefs.getWorkingDir());
     weaponEditorController.postInitSetup(this);
+
+    heatsinkArrayList = new HeatsinkCollection(prefs.getWorkingDir());
+    heatsinkEditorController.postInitSetup(this);
+
     workingDirDisplay.setText(prefs.getWorkingDir());
 //    populateViewColumnsMenu();
   }
@@ -81,11 +98,30 @@ public class MainController {
     if (dir != null) {
       prefs.setWorkingDir(dir.getAbsolutePath());
       workingDirDisplay.setText(prefs.getWorkingDir());
+      String workingPath = prefs.getWorkingDir()+ "\\";
       //TODO initialize the tables of each tab displayed in the gui window
       //TODO get list of available tabs and populate based on the tab id (should reflect the folder name) found while skipping the rest of the folders available
 //      weaponArrayList = new WeaponCollection(dir.getAbsolutePath() + "\\weapon");
-      weaponEditorController.populateTable();
-      ItemCollection weapons = new ItemCollection(prefs.getWorkingDir());
+//      weaponEditorController.populateTable();
+//      ItemCollection weapons = new ItemCollection(prefs.getWorkingDir());
+      for(ItemFolders item: ItemFolders.values()) {
+        switch (item) {
+          case weapon:
+            weaponEditorController.populateTable();
+            ItemCollection weaponsCollection = new ItemCollection(workingPath + item.name());
+            break;
+          case heatsinks:
+            heatsinkEditorController.populateTable();
+            ItemCollection heatsinkCollection = new ItemCollection(workingPath + item.name() );
+            break;
+//          case shops:
+//            break;
+//          case starsystem:
+//            break;
+//          case upgrades:
+//            break;
+        }
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 package com.BTEditor.controller.weapon;
 
-import com.BTEditor.model.enums.Type;
+import com.BTEditor.model.enums.WeaponType;
 import com.BTEditor.model.enums.WeaponSubType;
 import com.BTEditor.model.weapon.Weapon;
 
@@ -17,7 +17,7 @@ public class IWeaponComparator implements Comparator<Weapon> {
                 return WeaponSubType.valueOf(wpn1.getWeaponSubType()).compareTo(WeaponSubType.valueOf(wpn2.getWeaponSubType()));
             }
         } else {
-            return Type.valueOf(wpn1.getType()).compareTo(Type.valueOf(wpn2.getType()));
+            return WeaponType.valueOf(wpn1.getType()).compareTo(WeaponType.valueOf(wpn2.getType()));
         }
     }
 }

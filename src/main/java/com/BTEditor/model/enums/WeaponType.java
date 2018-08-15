@@ -1,5 +1,5 @@
 package com.BTEditor.model.enums;
 
-public enum Type {
+public enum WeaponType {
     Autocannon, Gauss, Laser, PPC, LRM, SRM, Flamer, MachineGun, Melee
 }
