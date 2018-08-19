@@ -25,7 +25,7 @@ public class HeatsinkTablePrefs {
   }
 
   public int getColWidth(String key) {
-    return preferences.getInt(key, columnWidthDefaults.getOrDefault(key, 50));
+    return preferences.getInt(key, columnWidthDefaults.getOrDefault(key, 75));
   }
 
   public void setShowCol(String key, boolean flag) {
@@ -37,22 +37,30 @@ public class HeatsinkTablePrefs {
   }
 
   private void setColVisDefaults() {
-//    columnVisDefaults.add("showName");
-//    columnVisDefaults.add("showManufacturer");
-//    columnVisDefaults.add("showDamage");
-//    columnVisDefaults.add("showInstability");
-//    columnVisDefaults.add("showAccuracyModifier");
-//    columnVisDefaults.add("showCriticalChangeMultiplier");
-//    columnVisDefaults.add("showHeatGenerated");
-//    columnVisDefaults.add("showBonusValueA");
-//    columnVisDefaults.add("showBonusValueB");
-//    columnVisDefaults.add("showDmgPerTon");
-//    columnVisDefaults.add("showDmgPerHeat");
-//    columnVisDefaults.add("showStbPerTon");
-//    columnVisDefaults.add("showStbPerHeat");
-//    columnVisDefaults.add("showCost");
-//    columnVisDefaults.add("showRarity");
-//    columnVisDefaults.add("showPurchasable");
+    columnVisDefaults.add("showDissipationCapacity");
+    columnVisDefaults.add("showName");
+    columnVisDefaults.add("showName");
+    columnVisDefaults.add("showCost");
+    columnVisDefaults.add("showManufacturer");
+    columnVisDefaults.add("showRarity");
+    columnVisDefaults.add("showPurchasable");
+    columnVisDefaults.add("showModel");
+    columnVisDefaults.add("showId");
+    columnVisDefaults.add("showDetails");
+    columnVisDefaults.add("showIcon");
+    columnVisDefaults.add("showBonusValueA);");
+    columnVisDefaults.add("showBonusValueB");
+    columnVisDefaults.add("showComponentType");
+    columnVisDefaults.add("showComponentSubType");
+    columnVisDefaults.add("showPrefabIdentifier");
+    columnVisDefaults.add("showBattleValue");
+    columnVisDefaults.add("showInventorySize");
+    columnVisDefaults.add("showTonnage");
+    columnVisDefaults.add("showAllowedLocations");
+    columnVisDefaults.add("showDisallowedLocations");
+    columnVisDefaults.add("showCriticalComponent");
+    columnVisDefaults.add("showStatusEffects");
+    columnVisDefaults.add("showComponentTags");
   }
 
   private void setColWidthDefaults() {

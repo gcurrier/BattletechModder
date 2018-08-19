@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="BTEditor" default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="javafx:com.sun.javafx.tools.ant ">
+
+  <target name="default" depends="clean,compile">
+
+    <!-- defines the classpath -->
+    <path id="cp">
+      <filelist>
+        <file name="${javaHome}/../lib/ant-javafx.jar"/>
+        <file name="${basedir}"/>
+      </filelist>
+    </path>
+
+    <!-- defines the task with a reference to classpath -->
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+             uri="javafx:com.sun.javafx.tools.ant"
+             classpathref="cp"/>
+
+
+    <fx:application id="appId" name="${appName}" mainClass="${mainClass}" version="${versionNo}"/>
+
+
+    <!-- Defines the resources needed by the application -->
+    <fx:resources id="appRes">
+      <fx:fileset dir="${distDir}" includes="${appName}-${versionNo}.jar"/>
+    </fx:resources>
+
+    <!-- Create a jar file -->
+    <fx:jar destfile="${distDir}/${appName}-${versionNo}.jar">
+      <fx:application refid="appId"/>
+      <fx:resources refid="appRes"/>
+      <fileset dir="${outputDir}"/>
+    </fx:jar>
+
+    <fx:deploy width="300" height="250"
+               outdir="${distDir}" embedJNLP="true"
+               outfile="${appName}-${versionNo}"
+               nativebundles="exe" verbose="true">
+
+      <!-- define for ex. min javafx version -->
+      <!-- <fx:platform /> -->
+
+      <!-- defines the application and setup preferences -->
+      <fx:preferences shortcut="true" install="true" menu="true"/>
+
+      <!-- defines the application parts -->
+      <fx:application refId="appId"/>
+
+      <!-- defines the needed resources -->
+      <fx:resources refid="appRes"/>
+
+      <!-- defines the application info details -->
+      <fx:info title="${appTitle}"
+               vendor="${appVendor}"
+               copyright="${appCopyright}"/>
+
+      <!-- Some bundle arguments only for special platforms -->
+      <fx:bundleArgument arg="win.menuGroup" value="${appMenuGroup}"/>
+    </fx:deploy>
+
+  </target>
+
+  <!-- Removes the folders of previous runs -->
+  <target name="clean">
+    <mkdir dir="${outputDir}"/>
+    <mkdir dir="${distDir}"/>
+
+    <delete>
+      <fileset dir="${outputDir}" includes="**/*"/>
+      <fileset dir="${distDir}" includes="**/*"/>
+    </delete>
+  </target>
+
+  <!-- Compiles the sources -->
+  <target name="compile" depends="clean">
+    <javac includeantruntime="false"
+           srcdir="${sourceDir}"
+           destdir="${outputDir}"
+           fork="yes"
+           executable="${javaHome}/../bin/javac"
+           source="1.8"
+           debug="on">
+    </javac>
+  </target>
+
+</project>
+
+
+<taskdef name="jfxdeploy" classname="com.sun.javafx.tools.ant.DeployFXTask"
+         classpathref="maven.plugin.classpath"/>
+    <!-- define the JarSign ANT task-->
+<taskdef name="jfxsignjar" classname="com.sun.javafx.tools.ant.FXSignJarTask"
+         classpathref="maven.plugin.classpath"/>
+<jfxdeploy width="1280" height="800"
+           outdir="${project.build.directory}/deploy" outfile="${project.build.finalName}"
+           nativeBundles="all">
+<info title="${project.build.finalName}"/>
+
+<!-- set the main class of your application; I had to create a Main.class (class Main extends MyMain) otherwise it will return an error on start-->
+<application name="${project.name}" mainClass="com.BTEditor.Main"/>
+<mkdir dir="${project.build.directory}/css"/>
+<mkdir dir="${project.build.directory}/img"/>
+<mkdir dir="${project.build.directory}/files"/>
+<copy todir="${project.build.directory}/css">
+  <fileset dir="${project.basedir}/deploy/css" includes="**/*"/>
+</copy>
+<copy todir="${project.build.directory}/deploy/img">
+  <fileset dir="${project.basedir}/img" includes="**/*"/>
+</copy>
+<copy todir="${project.build.directory}/files">
+  <fileset dir="${project.basedir}/deploy/files" includes="**/*"/>
+</copy>
+<resources>
+  <fileset dir="${project.build.directory}" includes="*.jar"/>
+  <fileset dir="${project.build.directory}/dependency" includes="*.jar"/>
+  <fileset dir="${project.build.directory}/css" includes="**/*"/>
+  <fileset dir="${project.build.directory}/img" includes="**/*"/>
+  <fileset dir="${project.build.directory}/files" includes="**/*"/>
+</resources>
+<!-- set your jvm args-->
+<platform javafx="${javafx.version}+">
+  <jvmarg value="-Xms512m"/>
+  <jvmarg value="-Xmx1024m"/>
+</platform>
+<propertyfile file="version.properties" comment="Version information">
+  <entry key="version" value="${project.version}" />
+  <entry key="current.build.date" value="${maven.build.timestamp}" />
+</propertyfile>
+<!--<exec executable="C:\Program Files (x86)\Inno Setup 5\iscc.exe">-->
+<!--<arg value="/cc" />-->
+<!--<arg value="${project.basedir}/innoscript/BTEditor.iss" />-->
+<!--</exec>-->
+</jfxdeploy>
+    <!-- you need to generate a key yourself create a self signed certificate) -->
+    <!--<jfxsignjar destdir="${project.build.directory}/deploy"-->
+    <!--keyStore="path/to/your/keystore" storePass="yourPass" alias="yourAlias"-->
+    <!--keyPass="keyPass">-->
+    <!--<fileset dir="${project.build.directory}/deploy"-->
+    <!--includes="*.jar" />-->
+    <!--</jfxsignjar>-->

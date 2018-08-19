@@ -4,20 +4,27 @@ import com.BTEditor.model.common.Description;
 import com.BTEditor.model.common.Tags;
 import com.fasterxml.jackson.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"DissipationCapacity", "Description", "BonusValueA,", "BonusValueB", "ComponentType",
+@JsonPropertyOrder({"DissipationCapacity", "Description", "BonusValueA,", "BonusValueB", "ComponentType", "ComponentSubType",
     "PrefabIdentifier", "BattleValue", "InventorySize", "Tonnage", "AllowedLocations", "DisallowedLocations",
     "CriticalComponent", "statusEffects", "ComponentTags"})
 public class Heatsink {
 
+  //  @JsonProperty("Category")
+//  private String category;
+//  @JsonProperty("Type")
+//  private String type;
   @JsonProperty("DissipationCapacity")
   private Integer dissipationCapacity;
+
   @JsonProperty("Description")
   private Description description;
+
   @JsonProperty("BonusValueA")
   private String bonusValueA;
   @JsonProperty("BonusValueB")
@@ -33,15 +40,17 @@ public class Heatsink {
   @JsonProperty("InventorySize")
   private Integer inventorySize;
   @JsonProperty("Tonnage")
-  private Double tonnage;
+  private Integer tonnage;
   @JsonProperty("AllowedLocations")
   private String allowedLocations;
   @JsonProperty("DisallowedLocations")
   private String disallowedLocations;
   @JsonProperty("CriticalComponent")
   private Boolean criticalComponent;
+
   @JsonProperty("statusEffects")
   private List<Object> statusEffects = null;
+
   @JsonProperty("ComponentTags")
   private Tags componentTags;
   @JsonIgnore
@@ -50,6 +59,148 @@ public class Heatsink {
   private String fileName;
   @JsonIgnore
   private String filePath;
+
+  @JsonIgnore
+  public void applyBonuses() {
+    for (String subString : bonusValueA.split("\\|"))
+      applyBonus(subString);
+
+    for (String subString : bonusValueB.split("\\|"))
+      applyBonus(subString);
+  }
+
+  @JsonIgnore
+  public void removeBonuses() {
+    for (String subString : bonusValueA.split("\\|"))
+      removeBonus(subString);
+
+    for (String subString : bonusValueB.split("\\|"))
+      removeBonus(subString);
+  }
+
+  @JsonIgnore
+  public void adjustBonus(String newBonus, char whichBonus) {
+    if (whichBonus == 'A') {
+      for (String bonus : bonusValueA.split("\\|"))
+        removeBonus(bonus);
+      bonusValueA = newBonus;
+    }
+
+    if (whichBonus == 'B') {
+      for (String bonus : bonusValueB.split("\\|"))
+        removeBonus(bonus);
+      bonusValueB = newBonus;
+    }
+
+    for (String bonus : newBonus.split("\\|"))
+      applyBonus(bonus);
+  }
+
+  @JsonIgnore
+  private void applyBonus(String bonus) {
+    if (bonus.equals(""))
+      return;
+
+    if (bonus.charAt(0) == '-')
+      subtractBonusValue(bonus);
+
+    else
+      addBonusValue(bonus);
+  }
+
+  @JsonIgnore
+  private void removeBonus(String bonus) {
+    if (bonus.equals(""))
+      return;
+
+    if (bonus.charAt(0) == '-')
+      addBonusValue(bonus);
+
+    else
+      subtractBonusValue(bonus);
+  }
+
+  @JsonIgnore
+  private void addBonusValue(String bonus) {
+    //TODO specific bonuses for heatsinks
+//    if (bonus.contains(" Dmg.")) {
+//      damage += bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Stb.Dmg.")) {
+//      instability += bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Acc.")) {
+//      accuracyModifier -= bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Crit.")) {
+//      criticalChanceMultiplier += bonusValue(bonus) / 100D;
+//    }
+//    if (bonus.contains(" Heat.")) {
+//      heatGenerated += bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Dmg. (H)"))
+//      heatDamage += bonusValue(bonus);
+  }
+
+  @JsonIgnore
+  private void subtractBonusValue(String bonus) {
+    //TODO specific bonuses for heatsinks
+//    if (bonus.contains(" Dmg.")) {
+//      damage -= bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Stb.Dmg.")) {
+//      instability -= bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Acc.")) {
+//      accuracyModifier += bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Crit.")) {
+//      criticalChanceMultiplier -= bonusValue(bonus) / 100D;
+//    }
+//    if (bonus.contains(" Heat.")) {
+//      heatGenerated -= bonusValue(bonus);
+//    }
+//    if (bonus.contains(" Dmg. (H)"))
+//      heatDamage -= bonusValue(bonus);
+  }
+
+  @JsonIgnore
+  private int bonusValue(String bonus) {
+    int i = 0;
+    while (i < bonus.length() && !Character.isDigit(bonus.charAt(i)))
+      i++;
+    int j = i;
+    while (j < bonus.length() && Character.isDigit(bonus.charAt(j))) {
+      j++;
+    }
+    return Integer.parseInt(bonus.substring(i, j));
+  }
+
+  @JsonIgnore
+  private String round(double value) {
+    DecimalFormat df = new DecimalFormat("#.##");
+    return df.format(value);
+  }
+
+//  @JsonProperty("Category")
+//  public String getCategory() {
+//    return category;
+//  }
+//
+//  @JsonProperty("Category")
+//  public void setCategory(String category) {
+//    this.category = category;
+//  }
+//
+//  @JsonProperty("Type")
+//  public String getType() {
+//    return type;
+//  }
+//
+//  @JsonProperty("Type")
+//  public void setType(String type) {
+//    this.type = type;
+//  }
 
   @JsonProperty("DissipationCapacity")
   public Integer getDissipationCapacity() {
@@ -142,12 +293,12 @@ public class Heatsink {
   }
 
   @JsonProperty("Tonnage")
-  public Double getTonnage() {
+  public Integer getTonnage() {
     return tonnage;
   }
 
   @JsonProperty("Tonnage")
-  public void setTonnnage(Double tonnage) {
+  public void setTonnage(Integer tonnage) {
     this.tonnage = tonnage;
   }
 
@@ -201,6 +352,66 @@ public class Heatsink {
     this.componentTags = componentTags;
   }
 
+  @JsonIgnore
+  public String getManufacturer() {
+    return description.getManufacturer();
+  }
+
+  @JsonIgnore
+  public Integer getCost() {
+    return description.getCost();
+  }
+
+  @JsonIgnore
+  public Integer getRarity() {
+    return description.getRarity();
+  }
+
+  @JsonIgnore
+  public Boolean getPurchasable() {
+    return description.getPurchasable();
+  }
+
+  @JsonIgnore
+  public String getModel() {
+    return description.getModel();
+  }
+
+  @JsonIgnore
+  public String getUIName() {
+    return description.getUIName();
+  }
+
+  @JsonIgnore
+  public String getName() {
+    return description.getName();
+  }
+
+  @JsonIgnore
+  public String getId() {
+    return description.getId();
+  }
+
+  @JsonIgnore
+  public String getDetails() {
+    return description.getDetails();
+  }
+
+  @JsonIgnore
+  public String getIcon() {
+    return description.getIcon();
+  }
+
+  @JsonIgnore
+  public String getFileName() {
+    return fileName;
+  }
+
+  @JsonIgnore
+  public String getFilePath() {
+    return filePath;
+  }
+
   @JsonAnyGetter
   public Map<String, Object> getAdditionalProperties() {
     return this.additionalProperties;
@@ -212,22 +423,14 @@ public class Heatsink {
   }
 
   @JsonIgnore
-  public String getFileName() {
-    return fileName;
-  }
-
-  @JsonIgnore
   public void setFileName(String fileName) {
     this.fileName = fileName;
-  }
-
-  @JsonIgnore
-  public String getFilePath() {
-    return filePath;
   }
 
   @JsonIgnore
   public void setFilePath(String filePath) {
     this.filePath = filePath;
   }
+
+
 }

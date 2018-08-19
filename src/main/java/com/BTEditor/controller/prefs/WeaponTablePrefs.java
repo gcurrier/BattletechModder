@@ -53,6 +53,10 @@ public class WeaponTablePrefs {
     columnVisDefaults.add("showCost");
     columnVisDefaults.add("showRarity");
     columnVisDefaults.add("showPurchasable");
+    columnVisDefaults.add("showModel");
+    columnVisDefaults.add("showId");
+    columnVisDefaults.add("showDetails");
+    columnVisDefaults.add("showIcon");
   }
 
   private void setColWidthDefaults() {

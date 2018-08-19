@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="BTEditor_v0.3.5a.jnlp">
+  <information>
+    <title>BTEditor_v0.3.5a</title>
+    <vendor>Unknown</vendor>
+    <description>BTEditor</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" java-vm-args="-Xms512m -Xmx1024m "  href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="BTEditor_v0.3.5a.jar" size="4910920" download="eager" />
+    <jar href="commons-io-2.6.jar" size="214788" download="eager" />
+    <jar href="jackson-annotations-2.9.6.jar" size="66981" download="eager" />
+    <jar href="jackson-core-2.9.6.jar" size="323848" download="eager" />
+    <jar href="jackson-databind-2.9.6.jar" size="1349339" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="1280" height="800" main-class="com.BTEditor.Main"  name="BTEditor" />
+  <update check="background"/>
+</jnlp>

@@ -31,7 +31,7 @@ import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 public class WeaponEditorController {
-  public WeaponCollection weaponCollection;
+//  public WeaponCollection weaponCollection;
 
   @FXML
   private WeaponTablePrefs weaponTablePrefs;
@@ -268,41 +268,43 @@ public class WeaponEditorController {
   }
 
   private void setTableContextMenu() {
-    weaponTable.setRowFactory(new Callback<TableView<Weapon>, TableRow<Weapon>>() {
-      @Override
-      public TableRow<Weapon> call(TableView<Weapon> param) {
-        final TableRow<Weapon> row = new TableRow<>();
-        final ContextMenu contextMenu = new ContextMenu();
+    weaponTable.setRowFactory(param -> {
+      final TableRow<Weapon> row = new TableRow<>();
+      final ContextMenu contextMenu = new ContextMenu();
 
-        MenuItem openFile = new MenuItem("Open File");
-        openFile.setOnAction(event -> mainController.getWeaponList().openFile(row.getItem()));
+      MenuItem openFile = new MenuItem("Open File");
+      openFile.setOnAction(event -> mainController.getWeaponList().openFile(row.getItem()));
 
-        MenuItem openTagEditor = new MenuItem("Edit ComponentTags");
-        openTagEditor.setOnAction(event -> {
-          try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fx/TagEditor.fxml"));
-            Parent root = loader.load();
-            TagEditorController controller = loader.getController();
-            controller.setup(row.getItem());
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root));
-            stage.setTitle("Select Weapon Tags");
-            stage.showAndWait();
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        });
+      MenuItem openTagEditor = new MenuItem("Edit ComponentTags");
+      openTagEditor.setOnAction(event -> {
+        try {
+          FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fx/TagEditor.fxml"));
+          Parent root = loader.load();
+          TagEditorController controller = loader.getController();
+          controller.setup(row.getItem());
+          Stage stage = new Stage();
+          stage.initModality(Modality.APPLICATION_MODAL);
+          stage.setScene(new Scene(root));
+          stage.setTitle("Select Weapon Tags");
+          stage.showAndWait();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      });
 
-        contextMenu.getItems().addAll(openFile, openTagEditor);
-        // only display context menu for non-null items:
-        row.contextMenuProperty().bind(Bindings.when(Bindings.isNotNull(row.itemProperty())).then(contextMenu).otherwise((ContextMenu) null));
-        return row;
-      }
+      contextMenu.getItems().addAll(openFile, openTagEditor);
+      // only display context menu for non-null items:
+      row.contextMenuProperty().bind(Bindings.when(Bindings.isNotNull(row.itemProperty())).then(contextMenu).otherwise((ContextMenu) null));
+      return row;
     });
   }
 
+  private void clearTable(TableView<?> tableView){
+    tableView.getItems().clear();
+  }
+
   public void populateTable() {
+    clearTable(weaponTable);
     this.mainController.getWeaponList()
         .filter(
             filterComboBox.getValue(),

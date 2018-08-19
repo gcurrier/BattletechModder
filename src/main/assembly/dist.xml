@@ -1,0 +1,35 @@
+<assembly>
+  <id>dist</id>
+  <formats>
+    <!--<format>tar.gz</format>-->
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <!--<fileSet>-->
+    <!--<directory>${project.basedir}</directory>-->
+    <!--<outputDirectory>/</outputDirectory>-->
+    <!--<includes>-->
+    <!--<include>README*</include>-->
+    <!--</includes>-->
+    <!--</fileSet>-->
+    <fileSet>
+      <directory>target</directory>
+      <includes>
+        <include>BattletechEditor-${version}.jar</include>
+      </includes>
+      <outputDirectory>\</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}\src\main\resources</directory>
+      <outputDirectory>\resources</outputDirectory>
+      <includes>
+        <include>\files\*</include>
+        <include>\img\*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}\appassembler</directory>
+      <outputDirectory>\</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

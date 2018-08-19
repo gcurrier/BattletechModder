@@ -103,16 +103,15 @@ public class MainController {
       //TODO get list of available tabs and populate based on the tab id (should reflect the folder name) found while skipping the rest of the folders available
 //      weaponArrayList = new WeaponCollection(dir.getAbsolutePath() + "\\weapon");
 //      weaponEditorController.populateTable();
-//      ItemCollection weapons = new ItemCollection(prefs.getWorkingDir());
       for(ItemFolders item: ItemFolders.values()) {
         switch (item) {
           case weapon:
             weaponEditorController.populateTable();
-            ItemCollection weaponsCollection = new ItemCollection(workingPath + item.name());
+//            ItemCollection weaponsCollection = new ItemCollection(workingPath + item.name());
             break;
           case heatsinks:
             heatsinkEditorController.populateTable();
-            ItemCollection heatsinkCollection = new ItemCollection(workingPath + item.name() );
+//            ItemCollection heatsinkCollection = new ItemCollection(workingPath + item.name() );
             break;
 //          case shops:
 //            break;
@@ -225,6 +224,10 @@ public class MainController {
 
   public WeaponCollection getWeaponList() {
     return weaponArrayList;
+  }
+
+  public HeatsinkCollection getHeatsinkList() {
+    return heatsinkArrayList;
   }
 
 //  public WeaponCollection setWeaponList(ArrayList<Weapon> weaponArrayList) {

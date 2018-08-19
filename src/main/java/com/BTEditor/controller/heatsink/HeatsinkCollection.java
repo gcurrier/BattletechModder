@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static com.BTEditor.model.enums.ItemFolders.heatsinks;
+
 public class HeatsinkCollection {
   private String workingDir;
 
@@ -28,7 +30,7 @@ public class HeatsinkCollection {
   private ArrayList<Heatsink> heatsinkSubList = new ArrayList<>();
 
   public HeatsinkCollection(String path) {
-    workingDir = path;
+    workingDir = path + "\\" + heatsinks.name();
     DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
     printer.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
     mapper = new ObjectMapper();
@@ -71,7 +73,7 @@ public class HeatsinkCollection {
       for (File file : fileList) {
         if (file.isDirectory()) {
           search(file);
-        } else if (!file.getName().contains("Template") && file.getName().contains(".json") && file.getName().contains("Heatsink_")) {
+        } else if (!file.getName().contains("Template") && file.getName().contains(".json") && file.getName().contains("HeatSink_")) {
           fileArrayList.add(file);
         }
       }
@@ -81,7 +83,7 @@ public class HeatsinkCollection {
   @Deprecated
   private boolean isOnIgnoreList(File file) {
     String excludes[] = {
-        "HeatsinkTemplate.json"};
+        "HeatSink_Template.json"};
 
     for (String exclude : excludes)
       if (file.getName().equals(exclude) || !file.getName().endsWith(".json"))
@@ -150,44 +152,37 @@ public class HeatsinkCollection {
     }
   }
 
-  void filter(String filterType, String filterSubType, boolean stockOnlyFlag) {
+  void filter(String filterType) {
     heatsinkSubList.clear();
     if (filterType == null)
       filterType = "All";
     switch (filterType) {
       case "All":
+        heatsinkSubList.addAll(heatsinkArrayList);
+        break;
+      case "Thermal Exchangers":
         for (Heatsink hs : heatsinkArrayList) {
-          if (!stockOnlyFlag || hs.getDescription().getId().contains("STOCK")) {
+          if (hs.getDescription().getId().contains("Thermal")) {
             heatsinkSubList.add(hs);
           }
         }
         break;
-
-//      case "HeatsinkCategory":
-//        for (Heatsink hs : heatsinkArrayList) {
-//          if (hs.getCategory().equals(filterSubType) && (!stockOnlyFlag || hs.getDescription().getId().contains("STOCK"))) {
-//            heatsinkSubList.add(hs);
-//          }
-//        }
-//        break;
-//
-//      case "Type":
-//        for (Heatsink hs : heatsinkArrayList) {
-//          if (hs.getType().equals(filterSubType) && (!stockOnlyFlag || hs.getDescription().getId().contains("STOCK"))) {
-//            heatsinkSubList.add(hs);
-//          }
-//        }
-//        break;
-//
-//      case "HeatsinkSubType":
-//        for (Heatsink hs : heatsinkArrayList) {
-//          if (hs.getHeatsinkSubType().equals(filterSubType) && (!stockOnlyFlag || hs.getDescription().getId().contains("STOCK"))) {
-//            heatsinkSubList.add(hs);
-//          }
-//        }
-//        break;
+      case "Thermal Banks":
+        for (Heatsink hs : heatsinkArrayList) {
+          if (hs.getDescription().getId().contains("Bank")) {
+            heatsinkSubList.add(hs);
+          }
+        }
+        break;
+      case "Heatsinks":
+        for (Heatsink hs : heatsinkArrayList) {
+          if ((hs.getDescription().getId().contains("Double") || hs.getDescription().getId().contains("Standard")) && !hs.getDescription().getId().contains("Standard-Bank")) {
+            heatsinkSubList.add(hs);
+          }
+        }
+        break;
     }
-//    heatsinkSubList.sort(new IHeatsinkComparator());
+    heatsinkSubList.sort(new IHeatsinkComparator());
   }
 
   void singleEdit(Heatsink hs, String field, String newStr) {
@@ -201,33 +196,13 @@ public class HeatsinkCollection {
         hs.getDescription().setManufacturer(newStr);
         break;
 
-//      case "BonusValueA":
-//        hs.adjustBonus(newStr, 'A');
-//        break;
-//
-//      case "BonusValueB":
-//        hs.adjustBonus(newStr, 'B');
-//        break;
-//
-//      case "HeatsinkCategory":
-//        hs.setCategory(newStr);
-//        break;
-//
-//      case "Type":
-//        hs.setType(newStr);
-//        break;
+      case "BonusValueA":
+        hs.adjustBonus(newStr, 'A');
+        break;
 
-//      case "HeatsinkSubType":
-//        hs.setHeatsinkSubType(newStr);
-//        break;
-//
-//      case "AmmoCategory":
-//        hs.setAmmoCategory(newStr);
-//        break;
-//
-//      case "HeatsinkEffectID":
-//        hs.setHeatsinkEffectID(newStr);
-//        break;
+      case "BonusValueB":
+        hs.adjustBonus(newStr, 'B');
+        break;
 
       case "Model":
         hs.getDescription().setModel(newStr);
@@ -261,95 +236,9 @@ public class HeatsinkCollection {
 
   void singleEdit(Heatsink hs, String field, Integer newInt) {
     switch (field) {
-//      case "Damage":
-//        hs.removeBonuses();
-//        hs.setDamage(newInt);
-//        hs.applyBonuses();
-//        break;
-//
-//      case "Instability":
-//        hs.removeBonuses();
-//        hs.setInstability(newInt);
-//        hs.applyBonuses();
-//        break;
-//
-//      case "HeatDamage":
-//        hs.removeBonuses();
-//        hs.setHeatDamage(newInt);
-//        hs.applyBonuses();
-//        break;
-//
-//      case "AccuracyModifier":
-//        hs.removeBonuses();
-//        hs.setAccuracyModifier(newInt);
-//        hs.applyBonuses();
-//        break;
-//
-//      case "HeatGenerated":
-//        hs.removeBonuses();
-//        hs.setHeatGenerated(newInt);
-//        hs.applyBonuses();
-//        break;
-
-//      case "MinRange":
-//        hs.setMinRange(newInt);
-//        break;
-//
-//      case "ShortRangeSplit":
-//        hs.setShortRangeSplit(newInt);
-//        break;
-//
-//      case "MidRangeSplit":
-//        hs.setMidRangeSplit(newInt);
-//        break;
-//
-//      case "LongRangeSplit":
-//        hs.setLongRangeSplit(newInt);
-//        break;
-//
-//      case "MaxRange":
-//        hs.setMaxRange(newInt);
-//        break;
-//
-//      case "RefireModifier":
-//        hs.setRefireModifier(newInt);
-//        break;
-//
-//      case "ShotsWhenFired":
-//        hs.setShotsWhenFired(newInt);
-//        break;
-//
-//      case "AttackRecoil":
-//        hs.setAttackRecoil(newInt);
-//        break;
-
       case "InventorySize":
         hs.setInventorySize(newInt);
         break;
-
-//      case "StartingAmmoCapacity":
-//        hs.setStartingAmmoCapacity(newInt);
-//        break;
-//
-//      case "OverheatedDamageMultiplier":
-//        hs.setOverheatedDamageMultiplier(newInt);
-//        break;
-//
-//      case "EvasiveDamageMultiplier":
-//        hs.setEvasiveDamageMultiplier(newInt);
-//        break;
-//
-//      case "EvasivePipsIgnored":
-//        hs.setEvasivePipsIgnored(newInt);
-//        break;
-//
-//      case "DamageVariance":
-//        hs.setDamageVariance(newInt);
-//        break;
-//
-//      case "ProjectilesPerShot":
-//        hs.setProjectilesPerShot(newInt);
-//        break;
 
       case "Cost":
         hs.getDescription().setCost(newInt);
@@ -362,35 +251,25 @@ public class HeatsinkCollection {
       case "BattleValue":
         hs.setBattleValue(newInt);
         break;
+
+      case "Tonnage":
+        hs.setBattleValue(newInt);
+        break;
     }
   }
 
-//  void singleEdit(Heatsink hs, String field, Double newDbl) {
-//    switch (field) {
-//      case "CriticalChanceMultiplier":
-//        hs.removeBonuses();
-//        hs.setCriticalChanceMultiplier(newDbl);
-//        hs.applyBonuses();
-//
-//      case "Tonnage":
-//        hs.setTonnage(newDbl);
-//        break;
-//    }
-//  }
+  void singleEdit(Heatsink hs, String field, Double newDbl) {
+    switch (field) {
+      default:
+        break;
+    }
+  }
 
   void singleEdit(Heatsink hs, String field, Boolean newBool) {
     switch (field) {
       case "Purchasable":
         hs.getDescription().setPurchasable(newBool);
         break;
-
-//      case "AOECapable":
-//        hs.setAOECapable(newBool);
-//        break;
-//
-//      case "IndirectFireCapable":
-//        hs.setIndirectFireCapable(newBool);
-//        break;
 
       case "CriticalComponent":
         hs.setCriticalComponent(newBool);
@@ -416,14 +295,14 @@ public class HeatsinkCollection {
     }
   }
 
-//  void batchEdit(Heatsink item, String field, Double newDbl) {
-//    String name = item.getDescription().getName().replaceAll(" \\+", "");
-//    for (Heatsink hs : heatsinkArrayList) {
-//      if (hs.getDescription().getName().replaceAll(" \\+", "").equals(name)) {
-//        singleEdit(hs, field, newDbl);
-//      }
-//    }
-//  }
+  void batchEdit(Heatsink item, String field, Double newDbl) {
+    String name = item.getDescription().getName().replaceAll(" \\+", "");
+    for (Heatsink hs : heatsinkArrayList) {
+      if (hs.getDescription().getName().replaceAll(" \\+", "").equals(name)) {
+        singleEdit(hs, field, newDbl);
+      }
+    }
+  }
 
   void batchEdit(Heatsink item, String field, Boolean newBool) {
     String name = item.getDescription().getName().replaceAll(" \\+", "");

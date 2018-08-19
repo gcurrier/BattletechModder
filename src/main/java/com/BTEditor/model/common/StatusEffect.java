@@ -7,176 +7,183 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "durationData",
-        "targetingData",
-        "effectType",
-        "Description",
-        "nature",
-        "statisticData",
-        "tagData",
-        "floatieData",
-        "actorBurningData",
-        "vfxData",
-        "instantModData",
-        "poorlyMaintainedEffectData"
+    "durationData",
+    "targetingData",
+    "effectType",
+    "Description",
+    "nature",
+    "statisticData",
+    "tagData",
+    "floatieData",
+    "actorBurningData",
+    "vfxData",
+    "instantModData",
+    "poorlyMaintainedEffectData"
 })
 public class StatusEffect {
 
-    @JsonProperty("durationData")
-    private DurationData durationData;
-    @JsonProperty("targetingData")
-    private TargetingData targetingData;
-    @JsonProperty("effectType")
-    private String effectType;
-    @JsonProperty("Description")
-    private Description description;
-    @JsonProperty("nature")
-    private String nature;
-    @JsonProperty("statisticData")
-    private StatisticData statisticData;
-    @JsonProperty("tagData")
-    private Object tagData;
-    @JsonProperty("floatieData")
-    private Object floatieData;
-    @JsonProperty("actorBurningData")
-    private Object actorBurningData;
-    @JsonProperty("vfxData")
-    private Object vfxData;
-    @JsonProperty("instantModData")
-    private Object instantModData;
-    @JsonProperty("poorlyMaintainedEffectData")
-    private Object poorlyMaintainedEffectData;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  @JsonProperty("durationData")
+  private DurationData durationData;
 
-    @JsonProperty("durationData")
-    public DurationData getDurationData() {
-        return durationData;
-    }
+  @JsonProperty("targetingData")
+  private TargetingData targetingData;
 
-    @JsonProperty("durationData")
-    public void setDurationData(DurationData durationData) {
-        this.durationData = durationData;
-    }
+  @JsonProperty("effectType")
+  private String effectType;
 
-    @JsonProperty("targetingData")
-    public TargetingData getTargetingData() {
-        return targetingData;
-    }
+  @JsonProperty("Description")
+  private Description description;
 
-    @JsonProperty("targetingData")
-    public void setTargetingData(TargetingData targetingData) {
-        this.targetingData = targetingData;
-    }
+  @JsonProperty("nature")
+  private String nature;
 
-    @JsonProperty("effectType")
-    public String getEffectType() {
-        return effectType;
-    }
+  @JsonProperty("statisticData")
+  private StatisticData statisticData;
 
-    @JsonProperty("effectType")
-    public void setEffectType(String effectType) {
-        this.effectType = effectType;
-    }
+  @JsonProperty("tagData")
+  private Object tagData;
+  @JsonProperty("floatieData")
+  private Object floatieData;
+  @JsonProperty("actorBurningData")
+  private Object actorBurningData;
+  @JsonProperty("vfxData")
+  private Object vfxData;
+  @JsonProperty("instantModData")
+  private Object instantModData;
+  @JsonProperty("poorlyMaintainedEffectData")
+  private Object poorlyMaintainedEffectData;
 
-    @JsonProperty("Description")
-    public Description getDescription() {
-        return description;
-    }
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("Description")
-    public void setDescription(Description description) {
-        this.description = description;
-    }
+  @JsonProperty("durationData")
+  public DurationData getDurationData() {
+    return durationData;
+  }
 
-    @JsonProperty("nature")
-    public String getNature() {
-        return nature;
-    }
+  @JsonProperty("durationData")
+  public void setDurationData(DurationData durationData) {
+    this.durationData = durationData;
+  }
 
-    @JsonProperty("nature")
-    public void setNature(String nature) {
-        this.nature = nature;
-    }
+  @JsonProperty("targetingData")
+  public TargetingData getTargetingData() {
+    return targetingData;
+  }
 
-    @JsonProperty("statisticData")
-    public StatisticData getStatisticData() {
-        return statisticData;
-    }
+  @JsonProperty("targetingData")
+  public void setTargetingData(TargetingData targetingData) {
+    this.targetingData = targetingData;
+  }
 
-    @JsonProperty("statisticData")
-    public void setStatisticData(StatisticData statisticData) {
-        this.statisticData = statisticData;
-    }
+  @JsonProperty("effectType")
+  public String getEffectType() {
+    return effectType;
+  }
 
-    @JsonProperty("tagData")
-    public Object getTagData() {
-        return tagData;
-    }
+  @JsonProperty("effectType")
+  public void setEffectType(String effectType) {
+    this.effectType = effectType;
+  }
 
-    @JsonProperty("tagData")
-    public void setTagData(Object tagData) {
-        this.tagData = tagData;
-    }
+  @JsonProperty("Description")
+  public Description getDescription() {
+    return description;
+  }
 
-    @JsonProperty("floatieData")
-    public Object getFloatieData() {
-        return floatieData;
-    }
+  @JsonProperty("Description")
+  public void setDescription(Description description) {
+    this.description = description;
+  }
 
-    @JsonProperty("floatieData")
-    public void setFloatieData(Object floatieData) {
-        this.floatieData = floatieData;
-    }
+  @JsonProperty("nature")
+  public String getNature() {
+    return nature;
+  }
 
-    @JsonProperty("actorBurningData")
-    public Object getActorBurningData() {
-        return actorBurningData;
-    }
+  @JsonProperty("nature")
+  public void setNature(String nature) {
+    this.nature = nature;
+  }
 
-    @JsonProperty("actorBurningData")
-    public void setActorBurningData(Object actorBurningData) {
-        this.actorBurningData = actorBurningData;
-    }
+  @JsonProperty("statisticData")
+  public StatisticData getStatisticData() {
+    return statisticData;
+  }
 
-    @JsonProperty("vfxData")
-    public Object getVfxData() {
-        return vfxData;
-    }
+  @JsonProperty("statisticData")
+  public void setStatisticData(StatisticData statisticData) {
+    this.statisticData = statisticData;
+  }
 
-    @JsonProperty("vfxData")
-    public void setVfxData(Object vfxData) {
-        this.vfxData = vfxData;
-    }
+  @JsonProperty("tagData")
+  public Object getTagData() {
+    return tagData;
+  }
 
-    @JsonProperty("instantModData")
-    public Object getInstantModData() {
-        return instantModData;
-    }
+  @JsonProperty("tagData")
+  public void setTagData(Object tagData) {
+    this.tagData = tagData;
+  }
 
-    @JsonProperty("instantModData")
-    public void setInstantModData(Object instantModData) {
-        this.instantModData = instantModData;
-    }
+  @JsonProperty("floatieData")
+  public Object getFloatieData() {
+    return floatieData;
+  }
 
-    @JsonProperty("poorlyMaintainedEffectData")
-    public Object getPoorlyMaintainedEffectData() {
-        return poorlyMaintainedEffectData;
-    }
+  @JsonProperty("floatieData")
+  public void setFloatieData(Object floatieData) {
+    this.floatieData = floatieData;
+  }
 
-    @JsonProperty("poorlyMaintainedEffectData")
-    public void setPoorlyMaintainedEffectData(Object poorlyMaintainedEffectData) {
-        this.poorlyMaintainedEffectData = poorlyMaintainedEffectData;
-    }
+  @JsonProperty("actorBurningData")
+  public Object getActorBurningData() {
+    return actorBurningData;
+  }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  @JsonProperty("actorBurningData")
+  public void setActorBurningData(Object actorBurningData) {
+    this.actorBurningData = actorBurningData;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonProperty("vfxData")
+  public Object getVfxData() {
+    return vfxData;
+  }
+
+  @JsonProperty("vfxData")
+  public void setVfxData(Object vfxData) {
+    this.vfxData = vfxData;
+  }
+
+  @JsonProperty("instantModData")
+  public Object getInstantModData() {
+    return instantModData;
+  }
+
+  @JsonProperty("instantModData")
+  public void setInstantModData(Object instantModData) {
+    this.instantModData = instantModData;
+  }
+
+  @JsonProperty("poorlyMaintainedEffectData")
+  public Object getPoorlyMaintainedEffectData() {
+    return poorlyMaintainedEffectData;
+  }
+
+  @JsonProperty("poorlyMaintainedEffectData")
+  public void setPoorlyMaintainedEffectData(Object poorlyMaintainedEffectData) {
+    this.poorlyMaintainedEffectData = poorlyMaintainedEffectData;
+  }
+
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
+
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 
 }

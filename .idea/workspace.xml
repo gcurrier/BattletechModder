@@ -2,26 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkEditorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/IHeatsinkComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/HeatsinkSubType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/HeatsinkType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/ItemFolders.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/jinx3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/jinx3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package/windows/Battletech-Mercs-Logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package/windows/Battletech-Mercs-logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package/windows/BattletechModder-setup-icon.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package/windows/BattletechModder.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package/windows/BattletechModder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/assembly/dist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/TabController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkEditorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/IWeaponComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/IWeaponComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/WeaponType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/StatusEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/StatusEffect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fx/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fx/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/weapon/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/BTEditor/model/weapon/Weapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fx/WeaponTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fx/WeaponTable.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,90 +84,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fx/Main.fxml">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="114" column="19" lean-forward="true" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
+            <state relative-caret-position="34">
+              <caret line="193" column="53" selection-start-line="193" selection-start-column="53" selection-end-line="193" selection-end-column="53" />
               <folding>
-                <element signature="e#3581#3582#0" expanded="true" />
-                <element signature="e#3606#3607#0" expanded="true" />
-                <element signature="e#6534#6535#0" expanded="true" />
-                <element signature="e#6556#6557#0" expanded="true" />
-                <element signature="e#6601#6602#0" expanded="true" />
-                <element signature="e#6633#6634#0" expanded="true" />
+                <element signature="n#developers#0;n#project#0;n#!!top" />
+                <element signature="n#repositories#0;n#project#0;n#!!top" />
+                <element signature="n#dependencies#0;n#project#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemCollection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java">
+      <file leaf-file-name="build.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1122">
+              <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeatsinkTable.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml">
+      <file leaf-file-name="dist.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/assembly/dist.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="28" column="88" lean-forward="true" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file leaf-file-name="HeatsinkCollection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2754">
-              <caret line="245" column="14" lean-forward="true" selection-start-line="245" selection-start-column="14" selection-end-line="245" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeatsinkEditorController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkEditorController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="122" column="6" selection-start-line="122" selection-start-column="6" selection-end-line="122" selection-end-column="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Heatsink.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeatsinkTablePrefs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="578">
+              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -174,8 +122,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -188,11 +136,18 @@
       <find>getList</find>
       <find>weaponEditor</find>
       <find>fx\WeaponTab.fxml</find>
-      <find>weaponArrayList</find>
       <find>weaponPane</find>
+      <find>mainController</find>
+      <find>weaponArrayList</find>
+      <find>filterComboBox</find>
+      <find>col</find>
+      <find>setFileName</find>
+      <find>colFilePath</find>
+      <find>fileName</find>
     </findStrings>
     <replaceStrings>
       <replace>BTEditor</replace>
+      <replace>h_col</replace>
     </replaceStrings>
   </component>
   <component name="FindManager">
@@ -214,7 +169,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/shop/Shop.java" />
         <option value="$PROJECT_DIR$/src/main/java/readme.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/upgrade/Gyro.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/weapon/Weapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/starSystem/TravelRequirements.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/upgrade/CockpitMod.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/upgrade/TgtTrackingSys.java" />
@@ -226,27 +180,36 @@
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/AboutController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/TableViewContextMenuHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponTablePrefs.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/AppPrefs.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponPrefs.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fx/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fx/WeaponTab.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/ItemFolders.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/IHeatsinkComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/HeatsinkSubType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/WeaponType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/HeatsinkType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/IWeaponComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fx/Main.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/TabController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/StatusEffect.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkEditorController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/fx/WeaponTable.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/model/weapon/Weapon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java" />
+        <option value="$PROJECT_DIR$/src/main/assembly/zip.xml" />
+        <option value="$PROJECT_DIR$/src/main/assembly/dist.xml" />
+        <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -290,7 +253,7 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="18" />
     <option name="width" value="1936" />
     <option name="height" value="1047" />
@@ -304,8 +267,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,6 +278,17 @@
             <path>
               <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
               <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
+              <item name="package" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
+              <item name="package" type="462c0819:PsiDirectoryNode" />
+              <item name="windows" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -329,121 +302,7 @@
               <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="heatsink" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="prefs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="weapon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="heatsink" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="BTEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="weapon" type="462c0819:PsiDirectoryNode" />
+              <item name="assembly" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
@@ -458,13 +317,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="fx" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattletechModder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattletechModder" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -478,6 +343,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.xml" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.3240324" />
@@ -498,11 +364,11 @@
       <recent name="com.BTEditor.controller.weapon" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GitProjects\BattletechModder\package\windows" />
       <recent name="C:\GitProjects\BattletechModder\src\main\resources\fx" />
       <recent name="C:\GitProjects\BattletechModder\src\main\java\com\BTEditor\controller" />
       <recent name="C:\GitProjects\BTEditor\src\main\java\com\BTEditor\model\common" />
       <recent name="C:\GitProjects\BTEditor\src\main\java\com\BTEditor\controller\weapon" />
-      <recent name="C:\GitProjects\BTEditor\src\main\resources\fx" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -602,6 +468,9 @@
       <Port>5050</Port>
     </configuration>
   </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -619,39 +488,51 @@
       <workItem from="1533475229900" duration="3136000" />
       <workItem from="1533504783789" duration="513000" />
       <workItem from="1533583004259" duration="7170000" />
-      <workItem from="1534333035752" duration="3355000" />
+      <workItem from="1534333035752" duration="3415000" />
+      <workItem from="1534540985718" duration="4235000" />
+      <workItem from="1534625587539" duration="3055000" />
+      <workItem from="1534671220417" duration="4031000" />
+      <workItem from="1534675280790" duration="14519000" />
     </task>
+    <task id="LOCAL-00001" summary="Addtion of Heatsink data; update of weaponTable.fxml">
+      <created>1534338087681</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1534338087681</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27356000" />
+    <option name="totallyTimeSpent" value="53256000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="0" width="1936" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="6" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="15" weight="0.32893288" />
+      <window_info anchor="bottom" id="Messages" order="15" weight="0.3278867" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info id="Image Layers" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="7" weight="0.23560767" />
+      <window_info anchor="right" id="Maven Projects" order="7" sideWeight="0.49837664" weight="0.23560767" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" visible="true" weight="0.32893288" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5346535" />
-      <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32570806" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23093683" />
+      <window_info anchor="bottom" id="Terminal" order="14" visible="true" weight="0.32897604" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.2249467" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.15405117" />
       <window_info anchor="right" id="Database" order="8" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
-      <window_info anchor="right" id="Structure" order="10" side_tool="true" visible="true" weight="0.16684435" />
-      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3278867" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5016234" side_tool="true" visible="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="4" sideWeight="0.49837664" visible="true" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.50217867" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.27995643" />
       <window_info anchor="right" id="JetGradle" order="9" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
@@ -673,25 +554,28 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="Addtion of Heatsink data; update of weaponTable.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Addtion of Heatsink data; update of weaponTable.fxml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="49" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="prefs.getWorkingDir()" language="JAVA" />
-        <watch expression="this.mainController.getWeaponList()" language="JAVA" />
-        <watch expression="observableList." language="JAVA" />
-        <watch expression="FXCollections.observableList(mainController.getWeaponList().getWeaponSubList())" />
-        <watch expression="observableList" />
-        <watch expression="weaponTable." language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <expanded value="true" />
+    </buildFile>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -746,24 +630,55 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>tagList.contains(jsonNode.get(&quot;ComponentTags&quot;).get(&quot;tagSetSourceFile&quot;).asText())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>jsonNode.get(&quot;ComponentTags&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId().contains(&quot;Double&quot;) || hs.getDescription().getId().contains(&quot;Standard&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId().contains(&quot;Double&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId().contains(&quot;Double&quot;+&quot;.&quot;+&quot;json&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId().contains(&quot;Double//.json&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId().contains(&quot;Double.json&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hs.getDescription().getId().contains(&quot;Double%json&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30124">
-          <caret line="1772" selection-start-line="1772" selection-end-line="1772" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/AppPrefs.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/AboutController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java" />
@@ -781,80 +696,12 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/upgrade/Actuator.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/starSystem/StarSystem.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponViewPrefs.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/AppPrefs.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/AboutController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="2569" selection-start-line="2569" selection-end-line="2569" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding>
-            <element signature="n#developers#0;n#project#0;n#!!top" />
-            <element signature="n#plugin#1;n#plugins#0;n#build#0;n#project#0;n#!!top" />
-            <element signature="n#plugin#2;n#plugins#0;n#build#0;n#project#0;n#!!top" />
-            <element signature="n#plugin#3;n#plugins#0;n#build#0;n#project#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/ItemFolders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/IHeatsinkComparator.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/HeatsinkSubType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/WeaponType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/weapon/Weapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="115" column="36" lean-forward="true" selection-start-line="112" selection-start-column="4" selection-end-line="115" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -865,77 +712,251 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/Category.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2754">
-          <caret line="245" column="14" lean-forward="true" selection-start-line="245" selection-start-column="14" selection-end-line="245" selection-end-column="14" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/ItemFolders.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="51">
+          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/Tag/TagEditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/TabController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/AppPrefs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-732">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/StatusEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/IWeaponComparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/enums/HeatsinkSubType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="853" selection-start-line="853" selection-end-line="853" />
+          <folding>
+            <element signature="e#31427#31428#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="2565" selection-start-line="2565" selection-end-line="2565" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fx/WeaponTable.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="41" column="37" lean-forward="true" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/weapon/WeaponEditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="188" selection-start-line="188" selection-end-line="188" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/HeatsinkTablePrefs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="49" column="38" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="49" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/prefs/WeaponTablePrefs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/javafx/event/EventDispatchChainImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2406#2407#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/main/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="114" column="19" lean-forward="true" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
-          <folding>
-            <element signature="e#3581#3582#0" expanded="true" />
-            <element signature="e#3606#3607#0" expanded="true" />
-            <element signature="e#6534#6535#0" expanded="true" />
-            <element signature="e#6556#6557#0" expanded="true" />
-            <element signature="e#6601#6602#0" expanded="true" />
-            <element signature="e#6633#6634#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="114" column="18" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/ItemCollection.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/common/Description.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="25">
+          <caret line="36" column="21" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="24" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fx/HeatsinkTable.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="88" lean-forward="true" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fx/Main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkEditorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="122" column="6" selection-start-line="122" selection-start-column="6" selection-end-line="122" selection-end-column="6" />
+        <state relative-caret-position="-509">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/heatsink/Heatsink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="402" column="3" selection-start-line="354" selection-start-column="2" selection-end-line="402" selection-end-column="3" />
+          <folding>
+            <element signature="e#271#313#0" />
+            <element signature="e#1949#2162#0" />
+            <element signature="e#2166#2382#0" />
+            <element signature="e#2386#2827#0" />
+            <element signature="e#2831#3032#0" />
+            <element signature="e#3036#3238#0" />
+            <element signature="e#3242#3887#0" />
+            <element signature="e#3303#3340#0" />
+            <element signature="e#3891#4541#0" />
+            <element signature="e#3957#3994#0" />
+            <element signature="e#4545#4852#0" />
+            <element signature="e#4856#4989#0" />
+            <element signature="e#4991#5020#0" />
+            <element signature="e#9130#9284#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/model/weapon/Weapon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="368" column="3" selection-start-line="368" selection-start-column="3" selection-end-line="368" selection-end-column="3" />
+          <folding>
+            <element signature="e#16040#16041#0" expanded="true" />
+            <element signature="e#16068#16069#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/BTEditor/controller/heatsink/HeatsinkCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3111">
+          <caret line="185" column="3" selection-start-line="185" selection-start-column="3" selection-end-line="185" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/assembly/zip.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/assembly/dist.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/innoScript/BTEditor.iss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="193" column="53" selection-start-line="193" selection-start-column="53" selection-end-line="193" selection-end-column="53" />
+          <folding>
+            <element signature="n#developers#0;n#project#0;n#!!top" />
+            <element signature="n#repositories#0;n#project#0;n#!!top" />
+            <element signature="n#dependencies#0;n#project#0;n#!!top" />
           </folding>
         </state>
       </provider>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <property name="compile_classpath" refid="maven.compile.classpath"/>
+  <property name="outputDir" value="C:\GitProjects\BattletechModder\target\classes"/>
+  <property name="sourceDir" value="C:\GitProjects\BattletechModder\src\main\java"/>
+  <property name="distDir" value="C:\GitProjects\BattletechModder\target\classes/../dist"/>
+  <property name="javaHome" value="C:\Program Files\Java\jdk1.8.0_181\jre"/>
+  <property name="versionNo" value="0.3.5a"/>
+  <property name="mainClass" value="com.BTEditor.Main"/>
+  <property name="appName" value="BTEditor"/>
+  <property name="appTitle" value="BTEditor"/>
+  <taskdef classname="com.sun.javafx.tools.ant.DeployFXTask" name="jfxdeploy" classpathref="maven.plugin.classpath"/>
+  <taskdef classname="com.sun.javafx.tools.ant.FXSignJarTask" name="jfxsignjar" classpathref="maven.plugin.classpath"/>
+  <jfxdeploy nativeBundles="all" outfile="BTEditor_v0.3.5a" width="1280" height="800" outdir="C:\GitProjects\BattletechModder\target/deploy">
+    <info title="BTEditor_v0.3.5a"/>
+    <application mainClass="com.BTEditor.Main" name="${project.name}"/>
+    <resources>
+      <fileset includes="*.jar" dir="C:\GitProjects\BattletechModder\target"/>
+      <fileset includes="*.jar" dir="C:\GitProjects\BattletechModder\target/dependency"/>
+      <fileset includes="**/*" dir="C:\GitProjects\BattletechModder/src/main/resources/css"/>
+      <fileset includes="**/*" dir="C:\GitProjects\BattletechModder/src/main/resources/img"/>
+      <fileset includes="**/*" dir="C:\GitProjects\BattletechModder/src/main/resources/files"/>
+    </resources>
+    <platform javafx="8+">
+      <jvmarg value="-Xms512m"/>
+      <jvmarg value="-Xmx1024m"/>
+    </platform>
+  </jfxdeploy>
+</target>
+</project>

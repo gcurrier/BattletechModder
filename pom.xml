@@ -6,7 +6,7 @@
 
   <groupId>groupId</groupId>
   <artifactId>BTEditor</artifactId>
-  <version>0.0.1</version>
+  <version>0.3.5a</version>
   <packaging>jar</packaging>
 
   <developers>
@@ -21,6 +21,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javafx.version>8</javafx.version>
     <jackson.vers>2.9.6</jackson.vers>
+    <mainClass>com.BTEditor.Main</mainClass>
+    <application.name>BTEditor</application.name>
+    <application.title>${project.artifactId}</application.title>
   </properties>
 
   <repositories>
@@ -87,7 +90,7 @@
           </execution>
         </executions>
       </plugin>
-      <!-- maven-dependency-plugin -->
+       <!--maven-dependency-plugin-->
       <plugin>
         <!-- copy all dependencies of your app to target folder-->
         <groupId>org.apache.maven.plugins</groupId>
@@ -143,6 +146,18 @@
             <phase>package</phase>
             <configuration>
               <target>
+                <property name="compile_classpath" refid="maven.compile.classpath"/>
+                <property name="outputDir" value="${project.build.outputDirectory}"/>
+                <property name="sourceDir" value="${project.build.sourceDirectory}"/>
+                <property name="distDir" value="${project.build.outputDirectory}/../dist"/>
+                <property name="javaHome" value="${java.home}"/>
+                <property name="versionNo" value="${project.version}"/>
+                <property name="mainClass" value="${mainClass}" />
+                <property name="appName" value="${application.title}"/>
+                <property name="appTitle" value="${application.title}"/>
+                <!--<property name="appVendor" value="${project.organization.name}"/>-->
+                <!--<property name="appMenuGroup" value="${project.organization.name}"/>-->
+                <!--<ant antfile="${project.basedir}/build.xml" target="default"/>-->
                 <!-- define the deploy ANT task-->
                 <taskdef name="jfxdeploy" classname="com.sun.javafx.tools.ant.DeployFXTask"
                          classpathref="maven.plugin.classpath"/>
@@ -152,27 +167,53 @@
                 <jfxdeploy width="1280" height="800"
                            outdir="${project.build.directory}/deploy" outfile="${project.build.finalName}"
                            nativeBundles="all">
-                  <info title="${project.name}"/>
+                  <info title="${project.build.finalName}"/>
+
                   <!-- set the main class of your application; I had to create a Main.class (class Main extends MyMain) otherwise it will return an error on start-->
                   <application name="${project.name}" mainClass="com.BTEditor.Main"/>
+                  <!--<mkdir dir="${project.build.directory}/css"/>-->
+                  <!--<mkdir dir="${project.build.directory}/img"/>-->
+                  <!--<mkdir dir="${project.build.directory}/files"/>-->
+                  <!--<copy todir="${project.build.directory}/css">-->
+                    <!--<fileset dir="${project.basedir}/deploy/css" includes="**/*"/>-->
+                  <!--</copy>-->
+                  <!--<copy todir="${project.build.directory}/deploy/img">-->
+                    <!--<fileset dir="${project.basedir}/img" includes="**/*"/>-->
+                  <!--</copy>-->
+                  <!--<copy todir="${project.build.directory}/files">-->
+                    <!--<fileset dir="${project.basedir}/deploy/files" includes="**/*"/>-->
+                  <!--</copy>-->
                   <resources>
+                    <!--<mkdir dir="${project.build.directory}/css"/>-->
+                    <!--<mkdir dir="${project.build.directory}/img"/>-->
+                    <!--<mkdir dir="${project.build.directory}/files"/>-->
                     <fileset dir="${project.build.directory}" includes="*.jar"/>
-                    <fileset dir="${project.build.directory}/dependency"
-                             includes="*.jar"/>
+                    <fileset dir="${project.build.directory}/dependency" includes="*.jar"/>
+                    <fileset dir="${project.basedir}/src/main/resources/css" includes="**/*"/>
+                    <fileset dir="${project.basedir}/src/main/resources/img" includes="**/*"/>
+                    <fileset dir="${project.basedir}/src/main/resources/files" includes="**/*"/>
                   </resources>
                   <!-- set your jvm args-->
                   <platform javafx="${javafx.version}+">
                     <jvmarg value="-Xms512m"/>
                     <jvmarg value="-Xmx1024m"/>
                   </platform>
+                  <!--<propertyfile file="version.properties" comment="Version information">-->
+                    <!--<entry key="version" value="${project.version}" />-->
+                    <!--<entry key="current.build.date" value="${maven.build.timestamp}" />-->
+                  <!--</propertyfile>-->
+                  <!--<exec executable="C:\Program Files (x86)\Inno Setup 5\iscc.exe">-->
+                    <!--<arg value="/cc" />-->
+                    <!--<arg value="${project.basedir}/innoscript/BTEditor.iss" />-->
+                  <!--</exec>-->
                 </jfxdeploy>
-                <!-- you need to generate a key yourself create a self signed certificate) -->
-                <!--<jfxsignjar destdir="${project.build.directory}/deploy"-->
-                <!--keyStore="path/to/your/keystore" storePass="yourPass" alias="yourAlias"-->
-                <!--keyPass="keyPass">-->
-                <!--<fileset dir="${project.build.directory}/deploy"-->
-                <!--includes="*.jar" />-->
-                <!--</jfxsignjar>-->
+                <!--&lt;!&ndash; you need to generate a key yourself create a self signed certificate) &ndash;&gt;-->
+                <!--&lt;!&ndash;<jfxsignjar destdir="${project.build.directory}/deploy"&ndash;&gt;-->
+                <!--&lt;!&ndash;keyStore="path/to/your/keystore" storePass="yourPass" alias="yourAlias"&ndash;&gt;-->
+                <!--&lt;!&ndash;keyPass="keyPass">&ndash;&gt;-->
+                <!--&lt;!&ndash;<fileset dir="${project.build.directory}/deploy"&ndash;&gt;-->
+                <!--&lt;!&ndash;includes="*.jar" />&ndash;&gt;-->
+                <!--&lt;!&ndash;</jfxsignjar>&ndash;&gt;-->
               </target>
             </configuration>
             <goals>

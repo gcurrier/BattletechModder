@@ -1,0 +1,45 @@
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'BTEditor_v0.3.5a.jnlp'
+            },
+            {
+                javafx : '8+',
+                jvmargs : '-Xms512m -Xmx1024m '
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedcom.BTEditor() {
+        dtjava.embed(
+            {
+                id : 'com.BTEditor',
+                url : 'BTEditor_v0.3.5a.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '1280',
+                height : '800'
+            },
+            {
+                javafx : '8+',
+                jvmargs : '-Xms512m -Xmx1024m '
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedcom.BTEditor);
+</script>
+
+</head><body>
+<h2>Test page for <b>BTEditor</b></h2>
+  <b>Webstart:</b> <a href='BTEditor_v0.3.5a.jnlp' onclick="return launchApplication('BTEditor_v0.3.5a.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>

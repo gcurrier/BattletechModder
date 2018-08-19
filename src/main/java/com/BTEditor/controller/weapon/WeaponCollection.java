@@ -1,5 +1,6 @@
 package com.BTEditor.controller.weapon;
 
+import com.BTEditor.model.enums.ItemFolders;
 import com.BTEditor.model.weapon.Weapon;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -17,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static com.BTEditor.model.enums.ItemFolders.weapon;
+
 public class WeaponCollection {
   private String workingDir;
 
@@ -28,7 +31,7 @@ public class WeaponCollection {
   private ArrayList<Weapon> weaponSubList = new ArrayList<>();
 
   public WeaponCollection(String path) {
-    workingDir = path;
+    workingDir = path + "\\" + weapon.name();
     DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
     printer.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
     mapper = new ObjectMapper();
