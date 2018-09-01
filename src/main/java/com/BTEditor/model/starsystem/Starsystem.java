@@ -1,4 +1,4 @@
-package com.BTEditor.model.starSystem;
+package com.BTEditor.model.starsystem;
 
 import com.BTEditor.model.common.Description;
 import com.BTEditor.model.common.Tags;
@@ -12,7 +12,7 @@ import java.util.Map;
 @JsonPropertyOrder({ "Description", "Position", "Tags", "FuelingStation", "JumpDistance", "Owner", "ShopRefreshRate",
 		"ShopMaxInventory", "ShopMaxSpecials", "SystemInfluence", "Difficulty", "TravelRequirements", "MapRequiredTags",
 		"MapExcludedTags", "SupportedBiomes", "StarType", "ContractEmployers", "ContractTargets" })
-public class StarSystem {
+public class Starsystem {
 
 	@JsonProperty("Description")
 	private Description description;

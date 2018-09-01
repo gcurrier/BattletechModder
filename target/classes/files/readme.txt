@@ -45,7 +45,7 @@ Batch Editing
 NOTES
 -------------------
 
-- as this is a beta release, it's encouraged to create your own manual backup of "/weapon" until you feel confident in the backup and restore functionality. Just in case. An emergency data folder backup is provided in the event you're like me and really know how to break stuff beyond the point of recovery. it is located in the resources/files directory.
+- as this is a beta release, it's encouraged to create your own manual backup of files until you feel confident in the backup and restore functionality. Just in case, an emergency data folder backup is provided in the event you're like me and really know how to break stuff beyond the point of recovery. It is located in the /app folder of the installation directory.
 
 - works on mod weapons, so long as they follow the same json structure as the vanilla weapons. Just point the app to the folder containing the mod weapons.
 
@@ -57,7 +57,7 @@ NOTES
 KNOWN ISSUES
 -------------------
 
-Issue running scene builder 10 with java 10 in development.
+Issues running scene builder 10 with java 10 in development.
 
 -------------------
 LICENSE

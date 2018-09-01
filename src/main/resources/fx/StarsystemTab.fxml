@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.BTEditor.controller.starsystem.StarsystemEditorController"
+            prefHeight="400.0" prefWidth="600.0">
+  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <ComboBox fx:id="filterComboBox" onAction="#filterTypeSelected" prefHeight="21.0" prefWidth="150.0" promptText="Select Filter Type...">
+      <items>
+        <FXCollections fx:factory="observableArrayList" />
+      </items>
+    </ComboBox>
+    <CheckBox fx:id="toggleAll" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="All" textAlignment="CENTER" />
+    <CheckBox fx:id="toggleFlipped" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="All, no flipped" textAlignment="CENTER" />
+    <CheckBox fx:id="toggleContested" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="All, no contested" textAlignment="CENTER" />
+    <CheckBox fx:id="toggleNeither" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" text="All, neither" textAlignment="CENTER" />
+    <ListView id="filterList" fx:id="filterListBox" onMouseClicked="#subFilterClicked" VBox.vgrow="ALWAYS" />
+  </VBox>
+
+</AnchorPane>

@@ -4,6 +4,8 @@ import com.BTEditor.Main;
 import com.BTEditor.controller.heatsink.HeatsinkCollection;
 import com.BTEditor.controller.heatsink.HeatsinkEditorController;
 import com.BTEditor.controller.prefs.AppPrefs;
+import com.BTEditor.controller.starsystem.StarsystemCollection;
+import com.BTEditor.controller.starsystem.StarsystemEditorController;
 import com.BTEditor.controller.weapon.WeaponCollection;
 import com.BTEditor.controller.weapon.WeaponEditorController;
 import com.BTEditor.model.common.ItemCollection;
@@ -41,6 +43,12 @@ public class MainController {
   @FXML
   private HeatsinkCollection heatsinkArrayList;
   @FXML
+  public Tab starsystemTab;
+  @FXML
+  public AnchorPane starsystemEditor;
+  @FXML
+  private StarsystemCollection starsystemArrayList;
+  @FXML
   private AppPrefs prefs;
   @FXML
   private MenuItem fileOpen;
@@ -66,6 +74,8 @@ public class MainController {
   private WeaponEditorController weaponEditorController;
   @FXML
   private HeatsinkEditorController heatsinkEditorController;
+  @FXML
+  private StarsystemEditorController starsystemEditorController;
 
 //TODO  @FXML private WeaponEditorController weaponEditorController;
 
@@ -78,6 +88,9 @@ public class MainController {
 
     heatsinkArrayList = new HeatsinkCollection(prefs.getWorkingDir());
     heatsinkEditorController.postInitSetup(this);
+
+    starsystemArrayList = new StarsystemCollection(prefs.getWorkingDir());
+    starsystemEditorController.postInitSetup(this);
 
     workingDirDisplay.setText(prefs.getWorkingDir());
 //    populateViewColumnsMenu();
@@ -115,8 +128,8 @@ public class MainController {
             break;
 //          case shops:
 //            break;
-//          case starsystem:
-//            break;
+          case starsystem:
+            break;
 //          case upgrades:
 //            break;
         }
@@ -228,6 +241,10 @@ public class MainController {
 
   public HeatsinkCollection getHeatsinkList() {
     return heatsinkArrayList;
+  }
+
+  public StarsystemCollection getStarsystemList() {
+    return starsystemArrayList;
   }
 
 //  public WeaponCollection setWeaponList(ArrayList<Weapon> weaponArrayList) {

@@ -1,4 +1,4 @@
-package com.BTEditor.model.starSystem;
+package com.BTEditor.model.starsystem;
 
 import com.fasterxml.jackson.annotation.*;
 

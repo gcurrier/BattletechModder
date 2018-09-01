@@ -1,6 +1,7 @@
 package com.BTEditor.controller.Tag;
 
 import com.BTEditor.model.heatsink.Heatsink;
+import com.BTEditor.model.starsystem.Starsystem;
 import com.BTEditor.model.weapon.Weapon;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -48,17 +49,37 @@ public class TagEditorController {
   }
 
   public void heatsinkSetup(Heatsink hs) {
-    List<String> wpnTagList = hs.getComponentTags().getItems();
+    List<String> hsTagList = hs.getComponentTags().getItems();
 
     vBox.getChildren().addAll(new Label("ComponentTags"), new Separator());
     for (String str : tagList) {
       CheckBox checkBox = new CheckBox(str);
-      checkBox.setSelected(wpnTagList.contains(str));
+      checkBox.setSelected(hsTagList.contains(str));
       checkBox.setOnAction(event -> {
         if (checkBox.isSelected())
-          wpnTagList.add(str);
+          hsTagList.add(str);
         else
-          wpnTagList.remove(str);
+          hsTagList.remove(str);
+      });
+      vBox.getChildren().add(checkBox);
+    }
+    Button closeButton = new Button("Close");
+    closeButton.setOnAction(event -> closeButton.getScene().getWindow().hide());
+    vBox.getChildren().addAll(new Separator(), closeButton);
+  }
+
+  public void starsystemSetup(Starsystem ss) {
+    List<String> sysTagList = ss.getTags().getItems();
+
+    vBox.getChildren().addAll(new Label("Tags"), new Separator());
+    for (String str : tagList) {
+      CheckBox checkBox = new CheckBox(str);
+      checkBox.setSelected(sysTagList.contains(str));
+      checkBox.setOnAction(event -> {
+        if (checkBox.isSelected())
+          sysTagList.add(str);
+        else
+          sysTagList.remove(str);
       });
       vBox.getChildren().add(checkBox);
     }
